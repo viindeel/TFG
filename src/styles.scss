@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.scss */
+@import 'node_modules/ngx-toastr/fesm2022/ngx-toastr.mjs';
+
+$primary-color: #5cb85c; // Define tu color primario aquí
+
+/* Aquí puedes añadir estilos globales que utilicen esta variable */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  background-color: #f9f9f9; /* Un fondo claro */
+}
+
+.app-header {
+  background-color: lighten($primary-color, 40%); /* Un tono más claro del primario para el header */
+  /* ... otros estilos del header ... */
+}
+
+.app-nav a.active {
+  color: $primary-color; /* Usa el color primario para el enlace activo */
+  font-weight: bold;
+}
+
+button[mat-raised-button][color="primary"] {
+  background-color: $primary-color;
+  color: white;
+}
+
+/* ... otros estilos globales ... */
