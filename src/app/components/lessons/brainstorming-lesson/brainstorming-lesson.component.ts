@@ -1,41 +1,31 @@
 import { NgFor, NgClass, NgIf } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core'; // Importamos OnDestroy
-import { RouterModule, Router } from '@angular/router'; // Importamos Router
-import { Subscription, interval } from 'rxjs'; // Importamos Subscription e interval
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+import { Subscription, interval } from 'rxjs';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 export interface BrainstormingMatch {
-  term: string;
-  definition: string;
+  termKey: string;
+  definitionKey: string;
 }
 
 @Component({
   selector: 'app-brainstorming-lesson',
   standalone: true,
-  imports: [RouterModule, NgFor, NgClass, NgIf],
+  imports: [RouterModule, NgFor, NgClass, NgIf, TranslateModule],
   templateUrl: './brainstorming-lesson.component.html',
   styleUrl: './brainstorming-lesson.component.scss'
 })
 export class BrainstormingLessonComponent implements OnInit, OnDestroy {
-  brainstormingMatches: BrainstormingMatch []= [
-    {
-      term: 'Generar tantas ideas como sea posible',
-      definition: 'El objetivo principal es la cantidad, no la calidad. Anima a todos a compartir cualquier idea que se les ocurra, sin importar lo descabellada que parezca.'
-    },
-    {
-      term: 'No juzgar las ideas',
-      definition: 'Durante la fase inicial, todas las ideas son bienvenidas. Evita las críticas y los juicios para fomentar un ambiente creativo y libre.'
-    },
-    {
-      term: 'Fomentar ideas descabelladas',
-      definition: 'Las ideas que parecen extrañas o imposibles a menudo pueden ser el punto de partida para soluciones innovadoras. ¡Anima a pensar fuera de la caja!'
-    },
-    {
-      term: 'Construir sobre las ideas de otros',
-      definition: 'Los participantes deben escuchar atentamente las ideas de los demás y tratar de mejorarlas o combinarlas para crear nuevas ideas.'
-    }
+  originalMatches: BrainstormingMatch[] = [
+    { termKey: 'TERM_GENERATE_IDEAS', definitionKey: 'DEFINITION_GENERATE_IDEAS' },
+    { termKey: 'TERM_NO_JUDGE_IDEAS', definitionKey: 'DEFINITION_NO_JUDGE_IDEAS' },
+    { termKey: 'TERM_ENCOURAGE_WILD_IDEAS', definitionKey: 'DEFINITION_ENCOURAGE_WILD_IDEAS' },
+    { termKey: 'TERM_BUILD_ON_OTHERS_IDEAS', definitionKey: 'DEFINITION_BUILD_ON_OTHERS_IDEAS' }
   ];
 
-  shuffledDefinitions: string[] = []; 
+  brainstormingMatches: { term: string; definition: string }[] = [];
+  shuffledDefinitions: string[] = [];
   selectedTerm: string | null = null;
   selectedDefinition: string | null = null;
   feedbackMessage: string = '';
@@ -45,9 +35,11 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   showCongratulations: boolean = false;
   private countdownSubscription: Subscription | undefined;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private translate: TranslateService) { }
 
   ngOnInit(): void {
+    this.loadLanguagePreference();
+    this.translateTermsAndDefinitions();
     this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
   }
 
@@ -57,12 +49,37 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     }
   }
 
-  shuffleArray(array: any): any{
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  loadLanguagePreference() {
+    const storedLanguage = localStorage.getItem('preferredLanguage');
+    if (storedLanguage) {
+      this.translate.use(storedLanguage);
+    } else {
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
     }
-    return array;
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('preferredLanguage', lang);
+    this.translateTermsAndDefinitions();
+    this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
+  }
+
+  translateTermsAndDefinitions() {
+    this.brainstormingMatches = this.shuffleArray(this.originalMatches.map(match => ({
+      term: this.translate.instant(match.termKey),
+      definition: this.translate.instant(match.definitionKey)
+    })));
+  }
+
+  shuffleArray<T>(array: T[]): T[] {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
   }
 
   selectTerm(term: string) {
@@ -79,23 +96,23 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
         this.selectedDefinition = definition;
         this.checkMatch();
       } else {
-        this.feedbackMessage = 'Por favor, selecciona un principio primero.';
+        this.feedbackMessage = this.translate.instant('SELECT_PRINCIPLE_FIRST');
       }
     }
   }
 
   checkMatch() {
     if (this.selectedTerm && this.selectedDefinition) {
-      const correctMatch = this.brainstormingMatches.find(match => match.term === this.selectedTerm);
-      if (correctMatch && correctMatch.definition === this.selectedDefinition) {
-        this.feedbackMessage = `¡Correcto! "${this.selectedTerm}" coincide con "${this.selectedDefinition}".`;
+      const correctMatch = this.originalMatches.find(match => this.translate.instant(match.termKey) === this.selectedTerm);
+      if (correctMatch && this.translate.instant(correctMatch.definitionKey) === this.selectedDefinition) {
+        this.feedbackMessage = this.translate.instant('CORRECT_MATCH', { term: this.selectedTerm, definition: this.selectedDefinition });
         this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
-        if (this.matchedPairs.length === this.brainstormingMatches.length) {
+        if (this.matchedPairs.length === this.originalMatches.length) {
           this.isGameOver = true;
           this.showCongratulationsPopup();
         }
       } else {
-        this.feedbackMessage = `¡Incorrecto! Inténtalo de nuevo.`;
+        this.feedbackMessage = this.translate.instant('INCORRECT_MATCH');
       }
       this.selectedTerm = null;
       this.selectedDefinition = null;
@@ -114,6 +131,20 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
 
   showCongratulationsPopup() {
     this.showCongratulations = true;
+    this.countdownSubscription = interval(1000).subscribe(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        this.closeCongratulationsPopup();
+      }
+    });
+  }
+
+  closeCongratulationsPopup() {
+    this.showCongratulations = false;
+    this.countdown = 3;
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+    }
   }
 
   goToLecciones() {

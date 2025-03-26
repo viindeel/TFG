@@ -1,0 +1,20 @@
+{
+  "BRAINSTORMING_GAME_TITLE": "Abbina le Idee!",
+  "BRAINSTORMING_GAME_INSTRUCTIONS": "Abbina ogni principio di brainstorming con la sua definizione corretta.",
+  "BRAINSTORMING_PRINCIPLES": "Principi di Brainstorming",
+  "BRAINSTORMING_DEFINITIONS": "Definizioni",
+  "TERM_GENERATE_IDEAS": "Generare quante più idee possibili",
+  "DEFINITION_GENERATE_IDEAS": "L'obiettivo principale è la quantità, non la qualità. Incoraggia tutti a condividere qualsiasi idea venga in mente, non importa quanto stravagante possa sembrare.",
+  "TERM_NO_JUDGE_IDEAS": "Non giudicare le idee",
+  "DEFINITION_NO_JUDGE_IDEAS": "Durante la fase iniziale, tutte le idee sono benvenute. Evita critiche e giudizi per favorire un ambiente creativo e libero.",
+  "TERM_ENCOURAGE_WILD_IDEAS": "Incoraggiare idee stravaganti",
+  "DEFINITION_ENCOURAGE_WILD_IDEAS": "Le idee che sembrano strane o impossibili possono spesso essere il punto di partenza per soluzioni innovative. Incoraggia a pensare fuori dagli schemi!",
+  "TERM_BUILD_ON_OTHERS_IDEAS": "Costruire sulle idee degli altri",
+  "DEFINITION_BUILD_ON_OTHERS_IDEAS": "I partecipanti dovrebbero ascoltare attentamente le idee degli altri e cercare di migliorarle o combinarle per creare nuove idee.",
+  "CONGRATULATIONS": "Congratulazioni! Gioco completato",
+  "CLOSING_IN": "Chiusura in",
+  "RETURN_TO_LESSONS": "Torna alle Lezioni",
+  "SELECT_PRINCIPLE_FIRST": "Per favore, seleziona prima un principio.",
+  "CORRECT_MATCH": "Corretto! \"{{ term }}\" corrisponde a \"{{ definition }}\".",
+  "INCORRECT_MATCH": "Errato! Riprova."
+}
