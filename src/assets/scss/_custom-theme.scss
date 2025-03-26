@@ -1,0 +1,18 @@
+// Define tus colores personalizados
+$primary-color: #007bff; // Un tono de azul que te guste
+$secondary-color: #6c757d; // Un tono de gris que te guste
+
+// Importa las funciones y mixins de Bootstrap
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins';
+
+// Sobreescribe las variables de color de Bootstrap
+$primary: $primary-color;
+$secondary: $secondary-color;
+
+// Puedes sobreescribir otros colores si lo deseas
+//$success: tu-color-verde;
+//$danger: tu-color-rojo;
+
+// Importa el re

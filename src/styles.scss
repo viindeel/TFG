@@ -1,9 +1,19 @@
-/* styles.scss */
-@import 'node_modules/ngx-toastr/fesm2022/ngx-toastr.mjs';
+/* src/styles.scss */
 
-$primary-color: #5cb85c; // Define tu color primario aquí
+// Define tus colores personalizados (azul y gris)
+$primary-color: #007bff; // Reemplaza con tu tono de azul preferido
+$secondary-color: #6c757d; // Reemplaza con tu tono de gris preferido
 
-/* Aquí puedes añadir estilos globales que utilicen esta variable */
+// Sobreescribe las variables de color de Bootstrap
+$primary: $primary-color;
+$secondary: $secondary-color;
+
+// Puedes sobreescribir otros colores de Bootstrap si lo deseas
+//$success: tu-color-verde;
+//$danger: tu-color-rojo;
+
+// Importa el resto de Bootstrap
+// Estilos globales existentes (mantenemos tus estilos)
 body {
   font-family: 'Roboto', sans-serif;
   color: #333;

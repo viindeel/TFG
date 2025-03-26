@@ -1,6 +1,6 @@
 <div class="app-container">
   <header class="app-header">
-    <h1>Mi Aplicación TFG</h1>
+    <h1>Palabras al Poder</h1>
     <nav class="app-nav">
       <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
       <a routerLink="/lecciones" routerLinkActive="active">Lecciones</a>
@@ -9,10 +9,11 @@
   </header>
 
   <main class="app-main">
+    <button (click)="mostrarNotificacion()">Mostrar Notificación</button>
     <router-outlet></router-outlet>
   </main>
 
   <footer class="app-footer">
-    <p>&copy; 2025 Mi TFG</p>
+    <p>&copy; 2025 Palabras al Poder</p>
   </footer>
 </div>

@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <section class="mb-4">
+      <h1 class="display-4">¡A Emparejar las Ideas!</h1>
+      <p class="lead">Une cada principio de brainstorming con su definición correcta. Haz clic en un principio y luego en su definición correspondiente.</p>
+      <hr class="my-4">
+    </section>
+  
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Principios de Brainstorming</h3>
+        <ul class="list-group">
+          <li class="list-group-item"
+              *ngFor="let match of brainstormingMatches"
+              (click)="selectTerm(match.term)"
+              [class.selected]="selectedTerm === match.term"
+              style="cursor: pointer;">
+            {{ match.term }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3>Definiciones</h3>
+        <ul class="list-group">
+          <li class="list-group-item"
+              *ngFor="let definition of shuffledDefinitions"
+              (click)="selectDefinition(definition)"
+              [class.selected]="selectedDefinition === definition"
+              style="cursor: pointer;">
+            {{ definition }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="mt-4">
+      <p>{{ feedbackMessage }}</p>
+      </div>
+  </div>

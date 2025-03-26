@@ -1,14 +1,26 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
-import { importProvidersFrom } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideToastr } from 'ngx-toastr'; // Importa provideToastr
-import { routes } from './app.routes';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Importa MatSnackBar
+import { RouterLink, RouterLinkActive } from '@angular/router'; // Importa RouterLink y RouterLinkActive
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(routes),
-    importProvidersFrom(BrowserAnimationsModule),
-    provideToastr() // Añade provideToastr a los providers
-  ]
-}).catch(err => console.error(err));
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive], // Añade RouterLink y RouterLinkActive
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+export class AppComponent {
+  title = 'Palabras al Poder';
+
+  constructor(private snackBar: MatSnackBar) {}
+
+  mostrarNotificacion() {
+    this.snackBar.open('¡Hola desde MatSnackBar!', 'Cerrar', {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
+  }
+}
