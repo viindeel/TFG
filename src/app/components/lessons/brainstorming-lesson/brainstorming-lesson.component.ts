@@ -1,6 +1,7 @@
-import { NgFor, NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgFor, NgClass, NgIf } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core'; // Importamos OnDestroy
+import { RouterModule, Router } from '@angular/router'; // Importamos Router
+import { Subscription, interval } from 'rxjs'; // Importamos Subscription e interval
 
 export interface BrainstormingMatch {
   term: string;
@@ -10,11 +11,11 @@ export interface BrainstormingMatch {
 @Component({
   selector: 'app-brainstorming-lesson',
   standalone: true,
-  imports: [RouterModule, NgFor, NgClass],
+  imports: [RouterModule, NgFor, NgClass, NgIf],
   templateUrl: './brainstorming-lesson.component.html',
   styleUrl: './brainstorming-lesson.component.scss'
 })
-export class BrainstormingLessonComponent implements OnInit {
+export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   brainstormingMatches: BrainstormingMatch []= [
     {
       term: 'Generar tantas ideas como sea posible',
@@ -34,14 +35,26 @@ export class BrainstormingLessonComponent implements OnInit {
     }
   ];
 
-  shuffledDefinitions: string[] = [];
+  shuffledDefinitions: string[] = []; 
   selectedTerm: string | null = null;
   selectedDefinition: string | null = null;
   feedbackMessage: string = '';
   matchedPairs: { term: string; definition: string }[] = [];
+  isGameOver: boolean = false;
+  countdown: number = 3;
+  showCongratulations: boolean = false;
+  private countdownSubscription: Subscription | undefined;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
+  }
+
+  ngOnDestroy(): void {
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+    }
   }
 
   shuffleArray(array: any): any{
@@ -53,15 +66,15 @@ export class BrainstormingLessonComponent implements OnInit {
   }
 
   selectTerm(term: string) {
-    if (!this.isAlreadyMatched(term, null)) { // No permitir seleccionar términos ya emparejados
+    if (!this.isAlreadyMatched(term, null) && !this.isGameOver) {
       this.selectedTerm = term;
-      this.selectedDefinition = null; // Reset definition on new term selection
-      this.feedbackMessage = ''; // Clear previous feedback
+      this.selectedDefinition = null;
+      this.feedbackMessage = '';
     }
   }
 
   selectDefinition(definition: string) {
-    if (!this.isAlreadyMatched(null, definition)) { // No permitir seleccionar definiciones ya emparejadas
+    if (!this.isAlreadyMatched(null, definition) && !this.isGameOver) {
       if (this.selectedTerm) {
         this.selectedDefinition = definition;
         this.checkMatch();
@@ -77,10 +90,14 @@ export class BrainstormingLessonComponent implements OnInit {
       if (correctMatch && correctMatch.definition === this.selectedDefinition) {
         this.feedbackMessage = `¡Correcto! "${this.selectedTerm}" coincide con "${this.selectedDefinition}".`;
         this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
+        if (this.matchedPairs.length === this.brainstormingMatches.length) {
+          this.isGameOver = true;
+          this.showCongratulationsPopup();
+        }
       } else {
         this.feedbackMessage = `¡Incorrecto! Inténtalo de nuevo.`;
       }
-      this.selectedTerm = null; // Reset selections after checking
+      this.selectedTerm = null;
       this.selectedDefinition = null;
     }
   }
@@ -93,5 +110,13 @@ export class BrainstormingLessonComponent implements OnInit {
       return this.matchedPairs.some(pair => pair.definition === definition);
     }
     return false;
+  }
+
+  showCongratulationsPopup() {
+    this.showCongratulations = true;
+  }
+
+  goToLecciones() {
+    this.router.navigate(['/lecciones']);
   }
 }

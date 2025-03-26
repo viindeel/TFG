@@ -37,5 +37,12 @@
   <div class="mt-4">
     <p [ngClass]="{'correct': feedbackMessage.startsWith('¡Correcto!'), 'incorrect': feedbackMessage.startsWith('¡Incorrecto!')}"
        class="feedback-message">{{ feedbackMessage }}</p>
+  </div>
+
+  <div class="congratulations-popup" *ngIf="showCongratulations">
+    <div>
+      <h2>¡Felicidades! Juego completado</h2>
+      <button (click)="goToLecciones()" class="btn btn-primary">Volver a Lecciones</button>
     </div>
+  </div>
 </div>
