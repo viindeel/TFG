@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -10,7 +10,7 @@ export interface BrainstormingMatch {
 @Component({
   selector: 'app-brainstorming-lesson',
   standalone: true,
-  imports: [RouterModule, NgFor],
+  imports: [RouterModule, NgFor, NgClass],
   templateUrl: './brainstorming-lesson.component.html',
   styleUrl: './brainstorming-lesson.component.scss'
 })
@@ -35,10 +35,10 @@ export class BrainstormingLessonComponent implements OnInit {
   ];
 
   shuffledDefinitions: string[] = [];
-  
   selectedTerm: string | null = null;
   selectedDefinition: string | null = null;
   feedbackMessage: string = '';
+  matchedPairs: { term: string; definition: string }[] = [];
 
   ngOnInit(): void {
     this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
@@ -53,17 +53,21 @@ export class BrainstormingLessonComponent implements OnInit {
   }
 
   selectTerm(term: string) {
-    this.selectedTerm = term;
-    this.selectedDefinition = null; // Reset definition on new term selection
-    this.feedbackMessage = ''; // Clear previous feedback
+    if (!this.isAlreadyMatched(term, null)) { // No permitir seleccionar términos ya emparejados
+      this.selectedTerm = term;
+      this.selectedDefinition = null; // Reset definition on new term selection
+      this.feedbackMessage = ''; // Clear previous feedback
+    }
   }
 
   selectDefinition(definition: string) {
-    if (this.selectedTerm) {
-      this.selectedDefinition = definition;
-      this.checkMatch();
-    } else {
-      this.feedbackMessage = 'Por favor, selecciona un principio primero.';
+    if (!this.isAlreadyMatched(null, definition)) { // No permitir seleccionar definiciones ya emparejadas
+      if (this.selectedTerm) {
+        this.selectedDefinition = definition;
+        this.checkMatch();
+      } else {
+        this.feedbackMessage = 'Por favor, selecciona un principio primero.';
+      }
     }
   }
 
@@ -72,11 +76,22 @@ export class BrainstormingLessonComponent implements OnInit {
       const correctMatch = this.brainstormingMatches.find(match => match.term === this.selectedTerm);
       if (correctMatch && correctMatch.definition === this.selectedDefinition) {
         this.feedbackMessage = `¡Correcto! "${this.selectedTerm}" coincide con "${this.selectedDefinition}".`;
+        this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
       } else {
         this.feedbackMessage = `¡Incorrecto! Inténtalo de nuevo.`;
       }
       this.selectedTerm = null; // Reset selections after checking
       this.selectedDefinition = null;
     }
+  }
+
+  isAlreadyMatched(term: string | null, definition: string | null): boolean {
+    if (term) {
+      return this.matchedPairs.some(pair => pair.term === term);
+    }
+    if (definition) {
+      return this.matchedPairs.some(pair => pair.definition === definition);
+    }
+    return false;
   }
 }

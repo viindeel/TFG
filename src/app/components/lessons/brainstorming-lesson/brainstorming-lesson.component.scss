@@ -1,0 +1,86 @@
+/* src/app/components/lessons/brainstorming-lesson/brainstorming-lesson.component.scss */
+
+.container {
+    margin-top: 3rem;
+  }
+  
+  h1 {
+    color: #343a40; /* Gris oscuro */
+    margin-bottom: 1.5rem;
+  }
+  
+  .lead {
+    color: #6c757d; /* Gris más claro */
+    margin-bottom: 2rem;
+  }
+  
+  hr {
+    border-top: 2px solid #ced4da; /* Gris muy claro */
+    margin-bottom: 2.5rem;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Espacio entre las columnas */
+  }
+  
+  .col-md-6 {
+    width: calc(50% - 10px);
+  }
+  
+  h3 {
+    color: #007bff; /* Azul Bootstrap */
+    margin-bottom: 1rem;
+  }
+  
+  .list-group {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #007bff; /* Borde azul */
+    border-radius: 0.25rem;
+  }
+  
+  .list-group-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e9ecef; /* Gris muy claro */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Transición suave */
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    &.selected {
+      background-color: #007bff;
+      color: white;
+    }
+  
+    &.matched {
+      background-color: #28a745; /* Verde para las parejas correctas */
+      color: white;
+      cursor: default;
+      pointer-events: none; /* Deshabilita los clicks */
+    }
+  
+    &:hover {
+      background-color: #f8f9fa; /* Gris muy claro al pasar el ratón */
+    }
+  }
+  
+  .mt-4 {
+    margin-top: 2rem;
+  }
+  
+  .feedback-message {
+    font-weight: bold;
+    margin-top: 1.5rem;
+  }
+  
+  .feedback-message.correct {
+    color: #28a745; /* Verde */
+  }
+  
+  .feedback-message.incorrect {
+    color: #dc3545; /* Rojo */
+  }
