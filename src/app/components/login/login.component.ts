@@ -24,7 +24,7 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
      private credentialsService: CredentialsService, // Descomentar cuando crees el servicio
      private tokenService: TokenService, // Descomentar cuando crees el servicio
-    private router: Router,
+     private router: Router,
      private snackBar: MatSnackBar, // Usamos MatSnackBar
      private userStateService: UserStateService, // Descomentar cuando crees el servicio
 
