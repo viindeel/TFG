@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar'; // Usaremos MatSnackBar
 import { Router } from '@angular/router';
-
-// Importa tus interfaces y servicios si ya los tienes o los vas a crear
-// import { CredentialsService } from '../../services/auth/credentials.service';
-// import { UserInterface } from '../../services/auth/interfaces';
+ import { CredentialsService } from '../../services/auth/credentials.service';
+ import { UserInterface } from '../../services/auth/interfaces';
 
 @Component({
   selector: 'app-registro',
@@ -22,7 +20,7 @@ export class RegistroComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private credentialsService: CredentialsService, // Descomentar cuando crees el servicio
+    private credentialsService: CredentialsService, // Descomentar cuando crees el servicio
     private snackBar: MatSnackBar, // Usamos MatSnackBar
     private router: Router
   ) {
@@ -45,8 +43,7 @@ export class RegistroComponent {
     const registerData = this.registerForm.value;
     console.log('Datos de registro:', registerData); // Por ahora, solo mostramos los datos en la consola
 
-    // Cuando tengas tu servicio de autenticación (credentialsService), descomenta el siguiente bloque y adapta la lógica
-    /*
+  
     this.credentialsService.register(registerData as UserInterface).subscribe({
       next: (data) => {
         console.log('Registro exitoso:', data);
@@ -65,7 +62,6 @@ export class RegistroComponent {
         });
       }
     });
-    */
 
     // Por ahora, como no tenemos backend, simulamos un registro exitoso después de 1 segundo
     this.snackBar.open('Intentando registrar usuario...', 'Espere', { duration: 1000 });

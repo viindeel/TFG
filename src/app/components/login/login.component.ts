@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Usaremos MatSnackBar en lugar de PopupService
-
-// Importa tus interfaces y servicios si ya los tienes o los vas a crear
-// import { CredentialsService } from '../../services/auth/credentials.service';
-// import { TokenService } from '../../services/auth/token.service';
-// import { UserStateService } from '../../services/auth/user-state.service';
-// import { LoginInterface } from '../../services/auth/interfaces';
+import { CredentialsService } from '../../services/auth/credentials.service';
+import { TokenService } from '../../services/auth/token.service';
+import { UserStateService } from '../../services/auth/user-state.service';
+import { LoginInterface } from '../../services/auth/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +22,12 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private credentialsService: CredentialsService, // Descomentar cuando crees el servicio
-    // private tokenService: TokenService, // Descomentar cuando crees el servicio
+     private credentialsService: CredentialsService, // Descomentar cuando crees el servicio
+     private tokenService: TokenService, // Descomentar cuando crees el servicio
     private router: Router,
-    private snackBar: MatSnackBar // Usamos MatSnackBar
-    // private userStateService: UserStateService, // Descomentar cuando crees el servicio
-    // private popupService: PopupService // Ya no lo usaremos
+     private snackBar: MatSnackBar, // Usamos MatSnackBar
+     private userStateService: UserStateService, // Descomentar cuando crees el servicio
+
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -45,8 +43,7 @@ export class LoginComponent {
     const loginData = this.loginForm.value;
     console.log('Datos de login:', loginData); // Por ahora, solo mostramos los datos en la consola
 
-    // Cuando tengas tu servicio de autenticación (credentialsService), descomenta el siguiente bloque y adapta la lógica
-    /*
+
     this.credentialsService.login(loginData as LoginInterface).subscribe({
       next: (data) => {
         this.snackBar.open('Cargando...', 'Espere', { duration: 1500 });
@@ -77,7 +74,6 @@ export class LoginComponent {
         });
       }
     });
-    */
 
     // Por ahora, como no tenemos backend, simulamos un login exitoso después de 1 segundo
     this.snackBar.open('Intentando iniciar sesión...', 'Espere', { duration: 1000 });
