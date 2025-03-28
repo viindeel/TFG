@@ -1,0 +1,25 @@
+
+
+<div class="auth-container position-relative m-auto my-5 py-5 px-3 bg-white shadow-sm rounded-3 border border-light-subtle">
+
+    <div class="mb-2 border-bottom border-light-subtle pb-2">
+      <h2 class="mb-0 h4">Iniciar sesión</h2>
+    </div>
+    <form method="post" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input class="form-control form-control-sm" type="text" placeholder="Jorge" formControlName="username">
+      </div>
+  
+      <div class="mb-4">
+        <label class="form-label">Contraseña</label>
+        <input class="form-control form-control-sm" type="password" placeholder="*****" formControlName="password">
+      </div>
+  
+      <div class="mb-0">
+        <button type="submit" class="btn btn-sm btn-primary w-100" [disabled]="loginForm.invalid">Entrar</button>
+      </div>
+    </form>
+  
+  </div>
+  

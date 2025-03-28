@@ -26,8 +26,8 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
 
   brainstormingMatches: { term: string; definition: string }[] = [];
   shuffledDefinitions: string[] = [];
-  selectedTerm: string | null = null;
-  selectedDefinition: string | null = null;
+  selectedTerm: string = ''; 
+  selectedDefinition: string = ''; 
   feedbackMessage: string = '';
   matchedPairs: { term: string; definition: string }[] = [];
   isGameOver: boolean = false;
@@ -39,8 +39,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadLanguagePreference();
-    this.translateTermsAndDefinitions();
-    this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
+    this.translateTermsAndDefinitions();  // Aseguramos que solo se inicialicen las traducciones en este punto.
   }
 
   ngOnDestroy(): void {
@@ -50,42 +49,33 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   }
 
   loadLanguagePreference() {
-    const storedLanguage = localStorage.getItem('preferredLanguage');
-    if (storedLanguage) {
-      this.translate.use(storedLanguage);
-    } else {
-      this.translate.setDefaultLang('en');
-      this.translate.use('en');
-    }
+    const storedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    this.translate.use(storedLanguage);
   }
 
   changeLanguage(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('preferredLanguage', lang);
     this.translateTermsAndDefinitions();
-    this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
   }
 
   translateTermsAndDefinitions() {
     this.brainstormingMatches = this.shuffleArray(this.originalMatches.map(match => ({
-      term: this.translate.instant(match.termKey),
-      definition: this.translate.instant(match.definitionKey)
+      term: this.translate.instant(match.termKey) as string ?? '',
+      definition: this.translate.instant(match.definitionKey) as string ?? ''
     })));
+
+    this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
   }
 
   shuffleArray<T>(array: T[]): T[] {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
+    return [...array].sort(() => Math.random() - 0.5);
   }
 
   selectTerm(term: string) {
     if (!this.isAlreadyMatched(term, null) && !this.isGameOver) {
       this.selectedTerm = term;
-      this.selectedDefinition = null;
+      this.selectedDefinition = '';
       this.feedbackMessage = '';
     }
   }
@@ -96,37 +86,39 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
         this.selectedDefinition = definition;
         this.checkMatch();
       } else {
-        this.feedbackMessage = this.translate.instant('SELECT_PRINCIPLE_FIRST');
+        this.feedbackMessage = this.translate.instant('SELECT_PRINCIPLE_FIRST') as string ?? '';
       }
     }
   }
 
   checkMatch() {
     if (this.selectedTerm && this.selectedDefinition) {
-      const correctMatch = this.originalMatches.find(match => this.translate.instant(match.termKey) === this.selectedTerm);
-      if (correctMatch && this.translate.instant(correctMatch.definitionKey) === this.selectedDefinition) {
-        this.feedbackMessage = this.translate.instant('CORRECT_MATCH', { term: this.selectedTerm, definition: this.selectedDefinition });
-        this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
-        if (this.matchedPairs.length === this.originalMatches.length) {
-          this.isGameOver = true;
-          this.showCongratulationsPopup();
+      const correctMatch = this.originalMatches.find(match => 
+        (this.translate.instant(match.termKey) as string ?? '') === this.selectedTerm
+      );
+
+      if (correctMatch) {
+        const correctDefinition = this.translate.instant(correctMatch.definitionKey) as string ?? '';
+        if (correctDefinition === this.selectedDefinition) {
+          this.feedbackMessage = this.translate.instant('CORRECT_MATCH', { term: this.selectedTerm, definition: this.selectedDefinition }) as string ?? '';
+          this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
+
+          if (this.matchedPairs.length === this.originalMatches.length) {
+            this.isGameOver = true;
+            this.showCongratulationsPopup();
+          }
+        } else {
+          this.feedbackMessage = this.translate.instant('INCORRECT_MATCH') as string ?? '';
         }
-      } else {
-        this.feedbackMessage = this.translate.instant('INCORRECT_MATCH');
       }
-      this.selectedTerm = null;
-      this.selectedDefinition = null;
+
+      this.selectedTerm = '';
+      this.selectedDefinition = '';
     }
   }
 
   isAlreadyMatched(term: string | null, definition: string | null): boolean {
-    if (term) {
-      return this.matchedPairs.some(pair => pair.term === term);
-    }
-    if (definition) {
-      return this.matchedPairs.some(pair => pair.definition === definition);
-    }
-    return false;
+    return term ? this.matchedPairs.some(pair => pair.term === term) : this.matchedPairs.some(pair => pair.definition === definition);
   }
 
   showCongratulationsPopup() {
