@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,10 +17,4 @@ export class AppComponent {
 
   constructor(private snackBar: MatSnackBar) {}
 
-  mostrarNotificacion() {
-    this.snackBar.open('¡Hola desde MatSnackBar!', 'Cerrar', {
-      duration: 3000,
-      verticalPosition: 'top',
-    });
-  }
 }

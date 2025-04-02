@@ -1,20 +1,55 @@
 {
-    "BRAINSTORMING_GAME_TITLE": "Brainstorming-Zuordnung!",
-    "BRAINSTORMING_GAME_INSTRUCTIONS": "Ordne jedes Brainstorming-Prinzip seiner korrekten Definition zu.",
-    "BRAINSTORMING_PRINCIPLES": "Brainstorming-Prinzipien",
-    "BRAINSTORMING_DEFINITIONS": "Definitionen",
-    "TERM_GENERATE_IDEAS": "So viele Ideen wie möglich generieren",
-    "DEFINITION_GENERATE_IDEAS": "Das Hauptziel ist die Quantität, nicht die Qualität. Ermutige jeden, jede Idee zu teilen, die ihm in den Sinn kommt, egal wie abwegig sie erscheint.",
-    "TERM_NO_JUDGE_IDEAS": "Ideen nicht bewerten",
-    "DEFINITION_NO_JUDGE_IDEAS": "Während der Anfangsphase sind alle Ideen willkommen. Vermeide Kritik und Urteile, um ein freies und kreatives Umfeld zu fördern.",
-    "TERM_ENCOURAGE_WILD_IDEAS": "Verrückte Ideen fördern",
-    "DEFINITION_ENCOURAGE_WILD_IDEAS": "Ideen, die seltsam oder unmöglich erscheinen, können oft der Ausgangspunkt für innovative Lösungen sein. Ermutige zum Umdenken!",
-    "TERM_BUILD_ON_OTHERS_IDEAS": "Auf den Ideen anderer aufbauen",
-    "DEFINITION_BUILD_ON_OTHERS_IDEAS": "Die Teilnehmer sollten aufmerksam den Ideen der anderen zuhören und versuchen, sie zu verbessern oder zu kombinieren, um neue Ideen zu schaffen.",
-    "CONGRATULATIONS": "Herzlichen Glückwunsch! Spiel abgeschlossen",
-    "CLOSING_IN": "Schließt in",
-    "RETURN_TO_LESSONS": "Zurück zu den Lektionen",
-    "SELECT_PRINCIPLE_FIRST": "Bitte wähle zuerst ein Prinzip aus.",
-    "CORRECT_MATCH": "Richtig! \"{{ term }}\" stimmt mit \"{{ definition }}\" überein.",
-    "INCORRECT_MATCH": "Falsch! Versuche es noch einmal."
+  "BRAINSTORMING_GAME_TITLE": "Brainstorming-Zuordnung!",
+  "BRAINSTORMING_GAME_INSTRUCTIONS": "Ordne jedes Brainstorming-Prinzip seiner korrekten Definition zu.",
+  "BRAINSTORMING_PRINCIPLES": "Brainstorming-Prinzipien",
+  "BRAINSTORMING_DEFINITIONS": "Definitionen",
+  "TERM_GENERATE_IDEAS": "So viele Ideen wie möglich generieren",
+  "DEFINITION_GENERATE_IDEAS": "Das Hauptziel ist die Quantität, nicht die Qualität. Ermutige jeden, jede Idee zu teilen, die ihm in den Sinn kommt, egal wie abwegig sie erscheint.",
+  "TERM_NO_JUDGE_IDEAS": "Ideen nicht bewerten",
+  "DEFINITION_NO_JUDGE_IDEAS": "Während der Anfangsphase sind alle Ideen willkommen. Vermeide Kritik und Urteile, um ein freies und kreatives Umfeld zu fördern.",
+  "TERM_ENCOURAGE_WILD_IDEAS": "Verrückte Ideen fördern",
+  "DEFINITION_ENCOURAGE_WILD_IDEAS": "Ideen, die seltsam oder unmöglich erscheinen, können oft der Ausgangspunkt für innovative Lösungen sein. Ermutige zum Umdenken!",
+  "TERM_BUILD_ON_OTHERS_IDEAS": "Auf den Ideen anderer aufbauen",
+  "DEFINITION_BUILD_ON_OTHERS_IDEAS": "Die Teilnehmer sollten aufmerksam den Ideen der anderen zuhören und versuchen, sie zu verbessern oder zu kombinieren, um neue Ideen zu schaffen.",
+  "CONGRATULATIONS": "Herzlichen Glückwunsch! Spiel abgeschlossen",
+  "CLOSING_IN": "Schließt in",
+  "RETURN_TO_LESSONS": "Zurück zu den Lektionen",
+  "SELECT_PRINCIPLE_FIRST": "Bitte wähle zuerst ein Prinzip aus.",
+  "CORRECT_MATCH": "Richtig! \"{{ term }}\" stimmt mit \"{{ definition }}\" überein.",
+  "INCORRECT_MATCH": "Falsch! Versuche es noch einmal.",
+
+  "PHRASAL_VERBS": {
+    "DEAL_WITH": "Umgehen mit",
+    "SHUT_DOWN": "Abschalten / Schließen",
+    "COME_TOGETHER": "Zusammenkommen",
+    "END_UP": "Enden / Landen",
+    "THROW_UP": "Sich übergeben",
+    "DAWN_ON": "Jemandem dämmern / klar werden"
+  },
+  "DEFINITIONS": {
+    "DEAL_WITH": "Ein Problem oder eine Situation handhaben, verwalten oder Maßnahmen ergreifen.",
+    "SHUT_DOWN": "Den Betrieb von etwas schließen oder stoppen (z.B. eine Fabrik, ein Computer).",
+    "COME_TOGETHER": "Sich für einen gemeinsamen Zweck zusammenschließen oder treffen; kooperieren.",
+    "END_UP": "Schließlich an einem bestimmten Ort oder in einer bestimmten Situation sein, oft unerwartet.",
+    "THROW_UP": "Sich übergeben; erbrechen.",
+    "DAWN_ON": "Jemandem allmählich bewusst oder klar werden."
+  },
+  "PHRASAL_VERB_FACTORY": {
+    "TITLE": "Phrasal Verb Fabrik!",
+    "INSTRUCTIONS": "Ziehe das richtige Phrasal Verb auf seine Definition.",
+    "DEFINITIONS": "Definitionen",
+    "VERBS": "Phrasal Verbs",
+    "DROP_HERE": "Verb hier ablegen",
+    "ALL_USED": "Alle Verben platziert!",
+    "SCORE": "Punktestand"
+  },
+  "FEEDBACK": {
+      "CORRECT_TITLE": "Richtig!",
+      "CORRECT_TEXT": "Gut gemacht!",
+      "INCORRECT_TITLE": "Falsch",
+      "INCORRECT_TEXT": "Versuch es nochmal!",
+      "GAME_COMPLETE_TITLE": "Sehr gut!",
+      "GAME_COMPLETE_TEXT": "Du hast alle Phrasal Verbs zugeordnet!",
+      "GAME_COMPLETE_BUTTON": "Nochmal spielen"
   }
+}

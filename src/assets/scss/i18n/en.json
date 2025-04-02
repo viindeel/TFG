@@ -1,20 +1,55 @@
 {
-    "BRAINSTORMING_GAME_TITLE": "Brainstorming Match!",
-    "BRAINSTORMING_GAME_INSTRUCTIONS": "Match each brainstorming principle with its correct definition.",
-    "BRAINSTORMING_PRINCIPLES": "Brainstorming Principles",
-    "BRAINSTORMING_DEFINITIONS": "Definitions",
-    "TERM_GENERATE_IDEAS": "Generate as many ideas as possible",
-    "DEFINITION_GENERATE_IDEAS": "The main goal is quantity, not quality. Encourage everyone to share any idea that comes to mind, no matter how far-fetched it seems.",
-    "TERM_NO_JUDGE_IDEAS": "Don't judge ideas",
-    "DEFINITION_NO_JUDGE_IDEAS": "During the initial phase, all ideas are welcome. Avoid criticism and judgments to foster a free and creative environment.",
-    "TERM_ENCOURAGE_WILD_IDEAS": "Encourage wild ideas",
-    "DEFINITION_ENCOURAGE_WILD_IDEAS": "Ideas that seem strange or impossible can often be the starting point for innovative solutions. Encourage thinking outside the box!",
-    "TERM_BUILD_ON_OTHERS_IDEAS": "Build on others' ideas",
-    "DEFINITION_BUILD_ON_OTHERS_IDEAS": "Participants should listen carefully to each other's ideas and try to improve or combine them to create new ideas.",
-    "CONGRATULATIONS": "Congratulations! Game completed",
-    "CLOSING_IN": "Closing in",
-    "RETURN_TO_LESSONS": "Return to Lessons",
-    "SELECT_PRINCIPLE_FIRST": "Please select a principle first.",
-    "CORRECT_MATCH": "Correct! \"{{ term }}\" matches with \"{{ definition }}\".",
-    "INCORRECT_MATCH": "Incorrect! Try again."
+  "BRAINSTORMING_GAME_TITLE": "Brainstorming Match!",
+  "BRAINSTORMING_GAME_INSTRUCTIONS": "Match each brainstorming principle with its correct definition.",
+  "BRAINSTORMING_PRINCIPLES": "Brainstorming Principles",
+  "BRAINSTORMING_DEFINITIONS": "Definitions",
+  "TERM_GENERATE_IDEAS": "Generate as many ideas as possible",
+  "DEFINITION_GENERATE_IDEAS": "The main goal is quantity, not quality. Encourage everyone to share any idea that comes to mind, no matter how far-fetched it seems.",
+  "TERM_NO_JUDGE_IDEAS": "Don't judge ideas",
+  "DEFINITION_NO_JUDGE_IDEAS": "During the initial phase, all ideas are welcome. Avoid criticism and judgments to foster a free and creative environment.",
+  "TERM_ENCOURAGE_WILD_IDEAS": "Encourage wild ideas",
+  "DEFINITION_ENCOURAGE_WILD_IDEAS": "Ideas that seem strange or impossible can often be the starting point for innovative solutions. Encourage thinking outside the box!",
+  "TERM_BUILD_ON_OTHERS_IDEAS": "Build on others' ideas",
+  "DEFINITION_BUILD_ON_OTHERS_IDEAS": "Participants should listen carefully to each other's ideas and try to improve or combine them to create new ideas.",
+  "CONGRATULATIONS": "Congratulations! Game completed",
+  "CLOSING_IN": "Closing in",
+  "RETURN_TO_LESSONS": "Return to Lessons",
+  "SELECT_PRINCIPLE_FIRST": "Please select a principle first.",
+  "CORRECT_MATCH": "Correct! \"{{ term }}\" matches with \"{{ definition }}\".",
+  "INCORRECT_MATCH": "Incorrect! Try again.",
+
+  "PHRASAL_VERBS": {
+    "DEAL_WITH": "Deal with",
+    "SHUT_DOWN": "Shut down",
+    "COME_TOGETHER": "Come together",
+    "END_UP": "End up",
+    "THROW_UP": "Throw up",
+    "DAWN_ON": "Dawn on"
+  },
+  "DEFINITIONS": {
+    "DEAL_WITH": "To handle, manage, or take action on a problem or situation.",
+    "SHUT_DOWN": "To close or stop the operation of something (e.g., a factory, a computer).",
+    "COME_TOGETHER": "To join or meet for a common purpose; to cooperate.",
+    "END_UP": "To finally be in a particular place or situation, often unexpectedly.",
+    "THROW_UP": "To vomit.",
+    "DAWN_ON": "To begin to be understood or realized by someone."
+  },
+  "PHRASAL_VERB_FACTORY": {
+    "TITLE": "Phrasal Verb Factory!",
+    "INSTRUCTIONS": "Drag the correct phrasal verb onto its definition.",
+    "DEFINITIONS": "Definitions",
+    "VERBS": "Phrasal Verbs",
+    "DROP_HERE": "Drop verb here",
+    "ALL_USED": "All verbs placed!",
+    "SCORE": "Score"
+  },
+  "FEEDBACK": {
+      "CORRECT_TITLE": "Correct!",
+      "CORRECT_TEXT": "Good job!",
+      "INCORRECT_TITLE": "Incorrect",
+      "INCORRECT_TEXT": "Try again!",
+      "GAME_COMPLETE_TITLE": "Well Done!",
+      "GAME_COMPLETE_TEXT": "You matched all the phrasal verbs!",
+      "GAME_COMPLETE_BUTTON": "Play Again"
   }
+}

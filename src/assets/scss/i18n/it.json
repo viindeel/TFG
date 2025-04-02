@@ -16,5 +16,40 @@
   "RETURN_TO_LESSONS": "Torna alle Lezioni",
   "SELECT_PRINCIPLE_FIRST": "Per favore, seleziona prima un principio.",
   "CORRECT_MATCH": "Corretto! \"{{ term }}\" corrisponde a \"{{ definition }}\".",
-  "INCORRECT_MATCH": "Errato! Riprova."
+  "INCORRECT_MATCH": "Errato! Riprova.",
+
+  "PHRASAL_VERBS": {
+    "DEAL_WITH": "Occuparsi di / Affrontare",
+    "SHUT_DOWN": "Chiudere / Spegnere",
+    "COME_TOGETHER": "Riunirsi / Unirsi",
+    "END_UP": "Finire / Trovarsi",
+    "THROW_UP": "Vomitare",
+    "DAWN_ON": "Rendersi conto / Capire improvvisamente"
+  },
+  "DEFINITIONS": {
+    "DEAL_WITH": "Gestire, trattare o agire riguardo a un problema o una situazione.",
+    "SHUT_DOWN": "Chiudere o interrompere il funzionamento di qualcosa (es. una fabbrica, un computer).",
+    "COME_TOGETHER": "Unirsi o incontrarsi per uno scopo comune; cooperare.",
+    "END_UP": "Trovarsi infine in un luogo o una situazione particolare, spesso inaspettatamente.",
+    "THROW_UP": "Vomitare.",
+    "DAWN_ON": "Iniziare ad essere capito o realizzato da qualcuno."
+  },
+  "PHRASAL_VERB_FACTORY": {
+    "TITLE": "Fabbrica di Phrasal Verb!",
+    "INSTRUCTIONS": "Trascina il phrasal verb corretto sulla sua definizione.",
+    "DEFINITIONS": "Definizioni",
+    "VERBS": "Phrasal Verbs",
+    "DROP_HERE": "Rilascia verbo qui",
+    "ALL_USED": "Tutti i verbi posizionati!",
+    "SCORE": "Punteggio"
+  },
+  "FEEDBACK": {
+      "CORRECT_TITLE": "Corretto!",
+      "CORRECT_TEXT": "Ben fatto!",
+      "INCORRECT_TITLE": "Errato",
+      "INCORRECT_TEXT": "Riprova!",
+      "GAME_COMPLETE_TITLE": "Ottimo Lavoro!",
+      "GAME_COMPLETE_TEXT": "Hai abbinato tutti i phrasal verbs!",
+      "GAME_COMPLETE_BUTTON": "Gioca Ancora"
+  }
 }

@@ -6,11 +6,13 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 import { BrainstormingLessonComponent } from './components/lessons/brainstorming-lesson/brainstorming-lesson.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { PhrasalVerbFactoryComponent } from './components/lessons/phrasal-verb-factory/phrasal-verb-factory.component';
 
 export const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'lecciones', component: LeccionesComponent },
   { path: 'lecciones/brainstorming', component: BrainstormingLessonComponent },
+  { path: 'lecciones/phrasal-verb-factory', component: PhrasalVerbFactoryComponent }, // <-- Añadir ruta
   { path: 'contacto', component: ContactoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
