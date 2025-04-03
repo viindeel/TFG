@@ -60,9 +60,8 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
   verbOptions: VerbOption[] = [];
   matchedCount = 0;
   totalVerbs = this.phrasalVerbsData.length;
-  currentLang = 'es'; // Inicializar idioma
+  currentLang = 'es'; // Idioma actual, por defecto 'es' (español)
 
-  // Suscripciones
   private langChangeSubscription: Subscription | undefined;
 
   constructor(
@@ -252,7 +251,7 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
             title: results.title || (isCorrect ? 'Correct!' : 'Incorrect'),
             text: results.text || (isCorrect ? 'Good job!' : 'Try again!'),
             toast: true,
-            position: 'top-end',
+            position: 'top',
             showConfirmButton: false,
             timer: 1500,
             timerProgressBar: true

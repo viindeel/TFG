@@ -32,11 +32,10 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
   companyLabels: string[] = [...this.companyLabelsKeys];
   marketShares: number[] = [40, 30, 20, 10];
 
-  // Datos de escenarios (Asegúrate que las claves existen en los JSON)
   allScenarios: MonopolyScenario[] = [
     { id: 1, textKey: 'SCENARIOS.MONOPOLY.BUYOUT', type: 'bad', effect: { 0: +15, 1: -10, 2: -5 } },
     { id: 2, textKey: 'SCENARIOS.MONOPOLY.INNOVATION', type: 'good', effect: { 0: +5, 1: -2, 2: -2, 3: -1 } },
-    { id: 3, textKey: 'SCENARIOS.MONOPOLY.PRICE_FIXING', type: 'bad', effect: { 1: -10, 2: -10, 0: +5 } }, // Penalización a otros, bonus pequeño a "tu" por no participar?
+    { id: 3, textKey: 'SCENARIOS.MONOPOLY.PRICE_FIXING', type: 'bad', effect: { 1: -10, 2: -10, 0: +5 } }, // Penalización a otros, bonus pequeño a "ti" por no participar?
     { id: 4, textKey: 'SCENARIOS.MONOPOLY.PREDATORY_PRICING', type: 'bad', effect: { 0: +10, 1: -15 } },
     { id: 5, textKey: 'SCENARIOS.MONOPOLY.NEW_ENTRY', type: 'good', effect: { 3: +8, 0: -3, 1: -3, 2: -2 } },
     { id: 6, textKey: 'SCENARIOS.MONOPOLY.LOBBYING', type: 'bad', effect: { 0: +5, 3: -5 } }, // Ganas influencia, perjudica a 'Otros'/sociedad
@@ -51,16 +50,15 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
   // Estado del juego
   playerScore: number = 0;
   timeLeft: number = 0;
-  readonly reactionTime: number = 8; // 8 segundos
+  readonly reactionTime: number = 8;
   gameActive: boolean = false; // Empieza inactivo
   scenarioCount: number = 0; // Contador de escenarios
   readonly maxScenarios: number = 10; // Límite de escenarios
   gameResult: { winner: string, playerRank: number, finalScore: number } | null = null; // Resultado final
 
-  // Suscripciones
   private timerSubscription: Subscription | undefined;
   private langChangeSubscription: Subscription | undefined;
-  currentLang: string = 'en'; // Asegúrate que el idioma inicial sea consistente
+  currentLang: string = 'en';
 
   constructor(
     private translate: TranslateService,
@@ -74,7 +72,7 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     // Forzar carga inicial en inglés
-    this.currentLang = 'en'; // Establecer inglés como idioma actual del componente
+    this.currentLang = 'en';
     this.translate.use('en').subscribe({ // Forzar la carga del inglés
         next: () => {
             console.log("MonopolyGame: Forced English language loaded.");
@@ -115,7 +113,7 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
     // Destruir gráfico al salir del componente
     if (isPlatformBrowser(this.platformId)) {
       this.marketShareChart?.destroy();
-      this.marketShareChart = null; // Poner a null
+      this.marketShareChart = null;
     }
   }
 
@@ -132,19 +130,14 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
             this.marketShareChart.data.labels = this.companyLabels;
             this.marketShareChart.update('none');
         }
-        // No es ideal llamar detectChanges aquí si no es estrictamente necesario
-        // this.cdr.detectChanges();
    });
     console.log("MonopolyGame: Initial data structure ready. Waiting for Start button.");
   }
 
-  // ===============================================================
-  // MÉTODO startGame() CON LA CORRECCIÓN PARA 'PLAY AGAIN'
-  // ===============================================================
   startGame() {
     console.log("MonopolyGame: Starting game (or Play Again)!");
 
-    // ---> PASO 1: Destruir gráfico anterior si existe <---
+    // Destruir gráfico anterior si existe
     if (isPlatformBrowser(this.platformId)) {
          if (this.marketShareChart) {
              this.marketShareChart.destroy(); // Destruir instancia Chart.js
@@ -152,7 +145,6 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
              console.log("MonopolyGame: Previous chart instance destroyed for restart.");
          }
     }
-    // ---------------------------------------------
 
     // Resetear estado del juego
     this.playerScore = 0;
@@ -167,7 +159,7 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
     // Usar setTimeout para asegurar que el canvas existe en el DOM antes de inicializar
     setTimeout(() => {
         if (this.gameActive && isPlatformBrowser(this.platformId)) {
-            // ---> PASO 2: Inicializar el gráfico AHORA <---
+            // Inicializar el gráfico AHORA
             // Como this.marketShareChart es null, esta llamada creará la instancia
             this.initializeChart();
         }
@@ -175,9 +167,6 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.nextScenario(); // Lanzar el primer escenario
   }
-  // ===============================================================
-  // FIN MÉTODO startGame() CORREGIDO
-  // ===============================================================
 
   initializeChart(): void {
     // Comprobación extra por seguridad
@@ -338,4 +327,4 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) { try { localStorage.setItem('preferredLanguage', lang); } catch (e) {} }
   }
 
-} // Fin de la clase MonopolyGameComponent
+}

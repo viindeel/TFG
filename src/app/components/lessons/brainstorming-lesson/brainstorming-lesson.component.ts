@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
-import { NgFor, NgClass, NgIf, isPlatformBrowser } from '@angular/common'; // Importa isPlatformBrowser
-import { Router } from '@angular/router'; // No necesitas RouterModule aquí si no usas sus directivas
-import { Subscription, interval, forkJoin } from 'rxjs'; // Importa forkJoin
+import { NgFor, NgClass, NgIf, isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+import { Subscription, interval, forkJoin } from 'rxjs';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 export interface BrainstormingMatch {
@@ -12,9 +12,9 @@ export interface BrainstormingMatch {
 @Component({
   selector: 'app-brainstorming-lesson',
   standalone: true,
-  imports: [NgFor, NgClass, NgIf, TranslateModule], // Quita RouterModule si no usas directivas de router en el HTML
+  imports: [NgFor, NgClass, NgIf, TranslateModule],
   templateUrl: './brainstorming-lesson.component.html',
-  styleUrls: ['./brainstorming-lesson.component.scss'] // Corregido a styleUrls
+  styleUrls: ['./brainstorming-lesson.component.scss']
 })
 export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   originalMatches: BrainstormingMatch[] = [
@@ -58,7 +58,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Desuscribirse para evitar memory leaks
+    // Desuscribirse para evitar memory leaks (acumulación innecesaria de memoria debido a referencias que no se liberan)
     if (this.countdownSubscription) {
       this.countdownSubscription.unsubscribe();
     }
@@ -69,7 +69,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
 
   loadLanguagePreference() {
     // Solo acceder a localStorage en el navegador
-    let preferredLanguage = 'en'; // Default language
+    let preferredLanguage = 'en';
     if (isPlatformBrowser(this.platformId)) {
         preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
     }
@@ -137,11 +137,13 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   }
 
   shuffleArray<T>(array: T[]): T[] {
+    // Crear una copia del array original para no modificarlo directamente
     const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
+    // Retornar el nuevo array mezclado
     return newArray;
   }
 

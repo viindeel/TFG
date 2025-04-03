@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, NgClass, isPlatformBrowser } from '@angular/common';
-import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; // Asegúrate que CdkDragDrop se importa
+import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { Subscription, Observable, forkJoin } from 'rxjs';
@@ -96,7 +96,7 @@ export class WorkLifeBalanceGameComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.currentLang = 'en'; // Forzar inglés como idioma inicial
+    this.currentLang = 'en';
     this.translate.use('en').subscribe({
         next: () => {
             console.log("WorkLifeBalanceGame: Forced English language loaded.");
@@ -157,12 +157,8 @@ subscribeToLangChanges() {
     this.cdr.detectChanges();
   }
 
-  // ===============================================================
-  // MÉTODO drop() CON LA CORRECCIÓN EN LA FIRMA: CdkDragDrop<any>
-  // ===============================================================
+
   drop(event: CdkDragDrop<any>): void {
-    // Ya no se necesita: const targetListData = event.container.data;
-    // Ya no se necesita: const sourceListData = event.previousContainer.data;
     const targetListId = event.container.id;
     const sourceListId = event.previousContainer.id;
     const task = event.item.data as TaskItem; // El item siempre debería ser TaskItem
@@ -200,9 +196,6 @@ subscribeToLangChanges() {
             // Comprobación de seguridad para dayTasks[targetDay]
             if (!this.dayTasks[targetDay]) { this.dayTasks[targetDay] = []; }
 
-            // --- Validaciones (Ejemplo) ---
-            // if (this.dayTasks[targetDay].length >= 3) { console.warn(`Day ${targetDay} is full`); Swal.fire(...); return; }
-
             energyChange = task.energyEffect;
             stressChange = task.stressEffect;
             workTaskChange = (task.category === 'work' ? 1 : 0);
@@ -225,7 +218,6 @@ subscribeToLangChanges() {
             stressChange = -task.stressEffect; // Revertir
             workTaskChange = -(task.category === 'work' ? 1 : 0); // Revertir
 
-            // Quitar de la lista local del día (¡OJO! Necesitamos el índice *original*)
             const taskIndexInSourceDay = this.dayTasks[sourceDay].findIndex(t => t.id === task.id);
             if (taskIndexInSourceDay > -1) {
                  this.dayTasks[sourceDay].splice(taskIndexInSourceDay, 1);
@@ -253,10 +245,6 @@ subscribeToLangChanges() {
     // Notificar cambios
     this.cdr.detectChanges();
   }
-  // ===============================================================
-  // FIN MÉTODO drop() CORREGIDO
-  // ===============================================================
-
 
   checkEndConditions(): void {
      const state = workLifeStore.getValue();
@@ -300,4 +288,4 @@ subscribeToLangChanges() {
     if (isPlatformBrowser(this.platformId)) { try { localStorage.setItem('preferredLanguage', lang); } catch (e) {} }
   }
 
-} // Fin de la clase
+}

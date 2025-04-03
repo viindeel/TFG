@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router'; // Importa RouterLink
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, RouterLink], // Añade RouterLink a los imports
+  imports: [CommonModule, RouterLink],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
