@@ -1,0 +1,19 @@
+/* --- Estilos Base con Transiciones --- */
+.btn {
+    /* Otros estilos que tenga tu botón */
+    transition: transform 0.3s ease-in-out; /* Transición aplicada al estado normal */
+  }
+  
+  .card {
+    /* Otros estilos que tenga tu tarjeta */
+    transition: background-color 0.3s ease-in-out; /* Transición aplicada al estado normal */
+  }
+  
+  /* --- Estados Hover --- */
+  .btn:hover {
+    transform: scale(1.05); /* Solo la transformación cambia en hover */
+  }
+  
+  .card:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Solo el color cambia en hover */
+  }

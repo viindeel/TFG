@@ -50,6 +50,83 @@
       "INCORRECT_TEXT": "Try again!",
       "GAME_COMPLETE_TITLE": "Well Done!",
       "GAME_COMPLETE_TEXT": "You matched all the phrasal verbs!",
-      "GAME_COMPLETE_BUTTON": "Play Again"
+      "GAME_COMPLETE_BUTTON": "Play Again",
+      "GAME_OVER_TITLE": "Game Over"
+  },
+
+  "SCENARIOS": {
+      "MONOPOLY": {
+          "BUYOUT": "Your company acquires all small competitors in the region.",
+          "INNOVATION": "Your R&D team launches a groundbreaking, efficient product.",
+          "PRICE_FIXING": "Competitor A suggests coordinating prices with your company.",
+          "PREDATORY_PRICING": "Your company drastically lowers prices below cost to drive out Competitor A.",
+          "NEW_ENTRY": "A new startup enters the market with a competitive alternative.",
+          "LOBBYING": "Your company spends heavily lobbying against stricter environmental regulations.",
+          "PATENT_TROLL": "Your company buys patents just to sue smaller innovators using similar tech.",
+          "OPEN_SOURCE": "Your company open-sources a key internal tool, boosting industry collaboration.",
+          "GREEN_INVEST": "Your company invests significantly in renewable energy for its factories.",
+          "PRIVACY_FINE": "Your company faces a large fine for data privacy violations."
+      }
+  },
+  "MONOPOLY_GAME": {
+    "TITLE": "Monopoly Buster!",
+    "INSTRUCTIONS": "React quickly! Is the described action fair competition (Allow) or anti-competitive (Bust)?",
+    "MARKET_SHARE": "Market Share",
+    "SCENARIO": "Scenario",
+    "ALLOW_BUTTON": "Allow",
+    "BUST_BUTTON": "Bust",
+    "SCORE": "Score",
+    "START_BUTTON": "Start Game",
+    "SELECT_LANGUAGE": "Select Language:",
+    "TIME_LEFT": "Time Left",
+    "LOADING_SCENARIO": "Loading next scenario...",
+    "TIME_UP": "Time's Up!",
+     "END": {
+        "TITLE": "Game Over!",
+        "WINNER": "Winner",
+        "YOUR_RANK": "Your Rank",
+        "FINAL_SCORE": "Final Score",
+        "BUTTON": "Play Again"
+    }
+  },
+  "COMPANIES": {
+      "TU_EMPRESA": "Your Company",
+      "COMPETIDOR_A": "Competitor A",
+      "COMPETIDOR_B": "Competitor B",
+      "OTROS": "Others"
+  },
+
+  "WLB_GAME": {
+    "TITLE": "Work-Life Balance Manager",
+    "INSTRUCTIONS": "Drag tasks from the list to the days of the week. Complete required work tasks without letting Energy drop to 0 or Stress reach 100!",
+    "START_BUTTON": "Start Week",
+    "ENERGY": "Energy",
+    "STRESS": "Stress",
+    "WORK_TASKS": "Work Tasks Completed",
+    "AVAILABLE_TASKS": "Available Tasks",
+    "YOUR_WEEK": "Your Week",
+    "DAY": "Day",
+    "DROP_TASK_HERE": "Drop task here",
+    "NO_TASKS_LEFT": "No tasks left",
+    "WIN": "Congratulations! You managed your week successfully!",
+    "LOSE_ENERGY": "Oh no! You ran out of energy.",
+    "LOSE_STRESS": "Oh no! You are completely stressed out."
+  },
+  "TASKS": {
+      "WLB": {
+          "REPORT": "Urgent Report",
+          "MEETING": "Team Meeting",
+          "EMAILS": "Answer Emails",
+          "PROJECT_PLAN": "Project Planning",
+          "CODE_REVIEW": "Code Review",
+          "CLIENT_CALL": "Client Call",
+          "GYM": "Gym Session",
+          "FAMILY_DINNER": "Family Dinner",
+          "HOBBY": "Hobby Time",
+          "GROCERIES": "Groceries",
+          "SLEEP": "Sleep (7-8h)",
+          "RELAX": "Relax / Meditate",
+          "SHORT_BREAK": "Short Break"
+      }
   }
 }

@@ -1,0 +1,9 @@
+.btn:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease-in-out;
+  }

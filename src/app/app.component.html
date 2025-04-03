@@ -1,20 +1,20 @@
-<div class="app-container">
-  <header class="app-header">
-    <h1>Palabras al Poder</h1>
+<div class="app-container d-flex flex-column min-vh-100">
+  <header class="app-header d-flex justify-content-between align-items-center py-4" style="background-color: #34495e; color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h1 class="mb-0 cursor-pointer" routerLink="/" routerLinkActive="active">Palabras al Poder</h1>
     <nav class="app-nav">
-      <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
-      <a routerLink="/lecciones" routerLinkActive="active">Lecciones</a>
-      <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-      <a routerLink="/registro" routerLinkActive="active">Registro</a>
+      <a routerLink="/inicio" routerLinkActive="active" class="nav-link">Inicio</a>
+      <a routerLink="/lecciones" routerLinkActive="active" class="nav-link">Lecciones</a>
+      <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
+      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+      <a routerLink="/registro" routerLinkActive="active" class="nav-link">Registro</a>
     </nav>
   </header>
 
-  <main class="app-main">
+  <main class="app-main py-5 flex-grow-1">
     <router-outlet></router-outlet>
   </main>
 
-  <footer class="app-footer">
-    <p>&copy; 2025 Palabras al Poder</p>
+  <footer class="app-footer text-center py-3" style="background-color: #34495e; color: white;">
+    <p class="mb-0">&copy; 2025 Palabras al Poder</p>
   </footer>
 </div>

@@ -1,36 +1,67 @@
-/* app.component.scss */
+.app-header {
+  background-color: #2c3e50;
+  padding: 20px 40px;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: #ecf0f1;
+  margin-left: 20px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #1abc9c;
+  transform: scale(1.1);
+}
+
+.app-footer {
+  background-color: #2c3e50;
+  padding: 10px 0;
+}
+
+.active {
+  font-weight: bold;
+  color: #1abc9c;
+}
+
+.app-main {
+  padding: 50px 20px;
+  background-color: #ecf0f1;
+  min-height: 80vh;
+}
+
+/* Flexbox layout for the footer to stay at the bottom */
 .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que el contenedor ocupe al menos toda la altura de la pantalla */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+/* Small screens: stack the nav vertically */
+@media (max-width: 768px) {
   .app-header {
-    background-color: #f0f0f0;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .app-nav a {
-    margin-left: 1rem;
-    text-decoration: none;
-    color: #333;
+
+  .app-nav {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .app-nav a.active {
-    font-weight: bold;
+
+  .nav-link {
+    margin: 5px 0;
   }
-  
-  .app-main {
-    flex-grow: 1; /* Permite que el main ocupe el espacio restante */
-    padding: 2rem;
-  }
-  
-  .app-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 0.5rem;
-  }
+}
+

@@ -1,86 +1,43 @@
-/* src/app/components/lessons/brainstorming-lesson/brainstorming-lesson.component.scss */
+.btn:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
+}
 
-.container {
-    margin-top: 3rem;
+.list-group-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.feedback-message {
+  padding: 10px;
+}
+.correct {
+  color: green;
+}
+.incorrect {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
   }
-  
-  h1 {
-    color: #343a40; /* Gris oscuro */
-    margin-bottom: 1.5rem;
+  .congratulations-popup div {
+    width: 90%;
+    margin: auto;
   }
-  
+}
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 1.8rem;
+  }
   .lead {
-    color: #6c757d; /* Gris más claro */
-    margin-bottom: 2rem;
+    font-size: 1rem;
   }
-  
-  hr {
-    border-top: 2px solid #ced4da; /* Gris muy claro */
-    margin-bottom: 2.5rem;
+  .btn {
+    font-size: 0.9rem;
   }
-  
-  .row {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px; /* Espacio entre las columnas */
-  }
-  
-  .col-md-6 {
-    width: calc(50% - 10px);
-  }
-  
-  h3 {
-    color: #007bff; /* Azul Bootstrap */
-    margin-bottom: 1rem;
-  }
-  
-  .list-group {
-    list-style: none;
-    padding: 0;
-    border: 1px solid #007bff; /* Borde azul */
-    border-radius: 0.25rem;
-  }
-  
   .list-group-item {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #e9ecef; /* Gris muy claro */
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Transición suave */
-  
-    &:last-child {
-      border-bottom: none;
-    }
-  
-    &.selected {
-      background-color: #007bff;
-      color: white;
-    }
-  
-    &.matched {
-      background-color: #28a745; /* Verde para las parejas correctas */
-      color: white;
-      cursor: default;
-      pointer-events: none; /* Deshabilita los clicks */
-    }
-  
-    &:hover {
-      background-color: #f8f9fa; /* Gris muy claro al pasar el ratón */
-    }
+    font-size: 0.9rem;
   }
-  
-  .mt-4 {
-    margin-top: 2rem;
-  }
-  
-  .feedback-message {
-    font-weight: bold;
-    margin-top: 1.5rem;
-  }
-  
-  .feedback-message.correct {
-    color: #28a745; /* Verde */
-  }
-  
-  .feedback-message.incorrect {
-    color: #dc3545; /* Rojo */
-  }
+}

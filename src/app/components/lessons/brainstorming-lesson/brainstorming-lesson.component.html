@@ -1,55 +1,55 @@
 <div class="container mt-5">
-  <select #languageSelect (change)="changeLanguage(languageSelect.value)">
+  <select #languageSelect class="form-select mb-3" (change)="changeLanguage(languageSelect.value)">
     <option value="en">English</option>
     <option value="it">Italiano</option>
     <option value="de">Deutsch</option>
   </select>
 
-  <section class="mb-4">
+  <section class="text-center bg-primary text-white p-5 rounded shadow-lg">
     <h1 class="display-4">{{ 'BRAINSTORMING_GAME_TITLE' | translate }}</h1>
     <p class="lead">{{ 'BRAINSTORMING_GAME_INSTRUCTIONS' | translate }}</p>
-    <hr class="my-4">
+    <hr class="my-4 border-light">
   </section>
 
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-md-6">
-      <h3>{{ 'BRAINSTORMING_PRINCIPLES' | translate }}</h3>
-      <ul class="list-group">
+      <h3 class="text-success">{{ 'BRAINSTORMING_PRINCIPLES' | translate }}</h3>
+      <ul class="list-group shadow-lg">
         <li class="list-group-item"
             *ngFor="let match of brainstormingMatches"
             (click)="selectTerm(match.term)"
             [class.selected]="selectedTerm === match.term"
             [class.matched]="isAlreadyMatched(match.term, null)"
-            style="cursor: pointer;">
+            style="cursor: pointer; transition: background 0.3s ease-in-out;">
           {{ match.term }}
         </li>
       </ul>
     </div>
     <div class="col-md-6">
-      <h3>{{ 'BRAINSTORMING_DEFINITIONS' | translate }}</h3>
-      <ul class="list-group">
+      <h3 class="text-danger">{{ 'BRAINSTORMING_DEFINITIONS' | translate }}</h3>
+      <ul class="list-group shadow-lg">
         <li class="list-group-item"
             *ngFor="let definition of shuffledDefinitions"
             (click)="selectDefinition(definition)"
             [class.selected]="selectedDefinition === definition"
             [class.matched]="isAlreadyMatched(null, definition)"
-            style="cursor: pointer;">
+            style="cursor: pointer; transition: background 0.3s ease-in-out;">
           {{ definition }}
         </li>
       </ul>
     </div>
   </div>
 
-  <div class="mt-4">
+  <div class="mt-4 text-center">
     <p [ngClass]="{'correct': feedbackMessage.startsWith('¡Correcto!'), 'incorrect': feedbackMessage.startsWith('¡Incorrecto!')}"
-       class="feedback-message">{{ feedbackMessage }}</p>
+       class="feedback-message fw-bold fs-5">{{ feedbackMessage }}</p>
   </div>
 
-  <div class="congratulations-popup" *ngIf="showCongratulations">
-    <div>
+  <div class="congratulations-popup text-center" *ngIf="showCongratulations">
+    <div class="p-4 bg-success text-white rounded shadow-lg">
       <h2>{{ 'CONGRATULATIONS' | translate }}</h2>
       <p>{{ 'CLOSING_IN' | translate }} {{ countdown }}...</p>
-      <button (click)="goToLecciones()" class="btn btn-primary">{{ 'RETURN_TO_LESSONS' | translate }}</button>
+      <button (click)="goToLecciones()" class="btn btn-light fw-bold">{{ 'RETURN_TO_LESSONS' | translate }}</button>
     </div>
   </div>
 </div>

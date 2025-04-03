@@ -1,0 +1,109 @@
+.monopoly-game-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    p {
+      text-align: center;
+      color: #555;
+    }
+  
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+  
+      button {
+        font-weight: bold;
+        transition: 0.2s ease-in-out;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  
+    .game-content {
+      .chart-area {
+        text-align: center;
+        margin-bottom: 20px;
+  
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+        }
+  
+        .chart-container {
+          max-width: 250px;  // Gráfico más pequeño
+          margin: auto;
+  
+          canvas {
+            width: 100% !important;
+            height: 180px !important; // Ajusta altura del gráfico
+          }
+        }
+      }
+  
+      .scenario-area {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        text-align: center;
+  
+        .scenario-box {
+          padding: 10px;
+          font-size: 1.1rem;
+        }
+  
+        .timer {
+          font-weight: bold;
+          color: #dc3545;
+  
+          progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+          }
+        }
+      }
+  
+      .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 15px;
+  
+        button {
+          min-width: 130px;
+          padding: 10px;
+          font-size: 1rem;
+          transition: 0.2s ease-in-out;
+  
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+  
+      .score-area {
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-top: 20px;
+      }
+    }
+  }
+  

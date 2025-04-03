@@ -1,0 +1,184 @@
+.wlb-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+  
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      button {
+        font-weight: bold;
+        padding: 5px 10px;
+        transition: transform 0.2s ease-in-out;
+  
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  
+    .start-button-container {
+      margin-top: 20px;
+  
+      .btn-warning {
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background 0.3s ease;
+  
+        &:hover {
+          background: darken(#ffc107, 10%);
+        }
+      }
+    }
+  
+    .status-bars {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+      margin-bottom: 20px;
+      
+      .status-bar {
+        flex: 1;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+        label {
+          font-weight: bold;
+          color: #333;
+          display: block;
+          margin-bottom: 5px;
+        }
+  
+        progress {
+          width: 100%;
+          height: 10px;
+          border-radius: 5px;
+        }
+  
+        &.energy-bar progress { background-color: #17a2b8; }
+        &.stress-bar progress { background-color: #dc3545; }
+        &.tasks-bar progress { background-color: #28a745; }
+      }
+    }
+  
+    .game-board {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+  
+      .task-list {
+        flex: 1;
+        padding: 15px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: left;
+  
+        h3 {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+  
+        .task-list-container {
+          min-height: 100px;
+          padding: 10px;
+          background: #f8f9fa;
+          border-radius: 8px;
+        }
+  
+        .task-item {
+          background: #e9ecef;
+          padding: 8px 12px;
+          margin-bottom: 5px;
+          border-radius: 6px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.9rem;
+          cursor: grab;
+          transition: transform 0.2s ease;
+  
+          &:hover {
+            transform: scale(1.05);
+            background: darken(#e9ecef, 5%);
+          }
+  
+          .task-category i {
+            font-size: 1.2rem;
+          }
+        }
+  
+        .empty-list {
+          text-align: center;
+          color: #aaa;
+          font-style: italic;
+          padding: 10px;
+        }
+      }
+  
+      .schedule-area {
+        flex: 2;
+        padding: 15px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+        .week-days {
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+  
+          .day-column {
+            flex: 1;
+            text-align: center;
+  
+            h4 {
+              font-size: 1rem;
+              font-weight: bold;
+              margin-bottom: 5px;
+            }
+  
+            .day-drop-list {
+              min-height: 80px;
+              padding: 10px;
+              background: #f8f9fa;
+              border-radius: 8px;
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              align-items: center;
+  
+              .drop-placeholder {
+                color: #aaa;
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

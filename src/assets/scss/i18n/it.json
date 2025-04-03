@@ -50,6 +50,83 @@
       "INCORRECT_TEXT": "Riprova!",
       "GAME_COMPLETE_TITLE": "Ottimo Lavoro!",
       "GAME_COMPLETE_TEXT": "Hai abbinato tutti i phrasal verbs!",
-      "GAME_COMPLETE_BUTTON": "Gioca Ancora"
+      "GAME_COMPLETE_BUTTON": "Gioca Ancora",
+      "GAME_OVER_TITLE": "Fine Partita"
+  },
+
+  "SCENARIOS": {
+      "MONOPOLY": {
+          "BUYOUT": "La tua azienda acquisisce tutti i piccoli concorrenti nella regione.",
+          "INNOVATION": "Il tuo team R&S lancia un prodotto innovativo ed efficiente.",
+          "PRICE_FIXING": "Il Concorrente A suggerisce di coordinare i prezzi con la tua azienda.",
+          "PREDATORY_PRICING": "La tua azienda abbassa drasticamente i prezzi sotto costo per eliminare il Concorrente A.",
+          "NEW_ENTRY": "Una nuova startup entra nel mercato con un'alternativa competitiva.",
+          "LOBBYING": "La tua azienda spende molto in attività di lobbying contro normative ambientali più severe.",
+          "PATENT_TROLL": "La tua azienda acquista brevetti solo per citare in giudizio piccoli innovatori che utilizzano tecnologie simili.",
+          "OPEN_SOURCE": "La tua azienda rende open source uno strumento interno chiave, promuovendo la collaborazione nel settore.",
+          "GREEN_INVEST": "La tua azienda investe significativamente in energie rinnovabili per le sue fabbriche.",
+          "PRIVACY_FINE": "La tua azienda si trova ad affrontare una pesante multa per violazioni della privacy dei dati."
+      }
+  },
+  "MONOPOLY_GAME": {
+    "TITLE": "Cacciatore di Monopoli!",
+    "INSTRUCTIONS": "Reagisci velocemente! L'azione descritta è concorrenza leale (Consenti) o anticoncorrenziale (Blocca)?",
+    "MARKET_SHARE": "Quota di Mercato",
+    "SCENARIO": "Scenario",
+    "ALLOW_BUTTON": "Consenti",
+    "BUST_BUTTON": "Blocca",
+    "SCORE": "Punteggio",
+    "START_BUTTON": "Inizia Partita",
+    "SELECT_LANGUAGE": "Seleziona Lingua:",
+    "TIME_LEFT": "Tempo Rimanente",
+    "LOADING_SCENARIO": "Caricamento scenario successivo...",
+    "TIME_UP": "Tempo Scaduto!",
+    "END": {
+        "TITLE": "Fine Partita!",
+        "WINNER": "Vincitore",
+        "YOUR_RANK": "Tuo Rango",
+        "FINAL_SCORE": "Punteggio Finale",
+        "BUTTON": "Gioca Ancora"
+    }
+  },
+   "COMPANIES": {
+      "TU_EMPRESA": "Tua Azienda",
+      "COMPETIDOR_A": "Concorrente A",
+      "COMPETIDOR_B": "Concorrente B",
+      "OTROS": "Altri"
+  },
+
+  "WLB_GAME": {
+    "TITLE": "Gestore Equilibrio Vita-Lavoro",
+    "INSTRUCTIONS": "Trascina le attività dalla lista ai giorni della settimana. Completa le attività lavorative richieste senza far scendere l'Energia a 0 o salire lo Stress a 100!",
+    "START_BUTTON": "Inizia Settimana",
+    "ENERGY": "Energia",
+    "STRESS": "Stress",
+    "WORK_TASKS": "Compiti Lavorativi Completati",
+    "AVAILABLE_TASKS": "Attività Disponibili",
+    "YOUR_WEEK": "La Tua Settimana",
+    "DAY": "Giorno",
+    "DROP_TASK_HERE": "Rilascia attività qui",
+    "NO_TASKS_LEFT": "Nessuna attività rimasta",
+    "WIN": "Congratulazioni! Hai gestito la tua settimana con successo!",
+    "LOSE_ENERGY": "Oh no! Hai esaurito l'energia.",
+    "LOSE_STRESS": "Oh no! Sei completamente stressato."
+  },
+  "TASKS": {
+      "WLB": {
+          "REPORT": "Report Urgente",
+          "MEETING": "Riunione Team",
+          "EMAILS": "Rispondere Email",
+          "PROJECT_PLAN": "Pianificazione Progetto",
+          "CODE_REVIEW": "Revisione Codice",
+          "CLIENT_CALL": "Chiamata Cliente",
+          "GYM": "Sessione Palestra",
+          "FAMILY_DINNER": "Cena in Famiglia",
+          "HOBBY": "Tempo per Hobby",
+          "GROCERIES": "Spesa",
+          "SLEEP": "Dormire (7-8h)",
+          "RELAX": "Relax / Meditazione",
+          "SHORT_BREAK": "Pausa Breve"
+      }
   }
 }

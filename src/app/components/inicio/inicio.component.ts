@@ -16,9 +16,9 @@ export class InicioComponent implements OnInit {
   constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.snackBar.open('¡Bienvenido a la página de Inicio!', 'Cerrar', {
+    this.snackBar.open('¡Bienvenido a Palabras al poder! ¿Cúanto serás capaz de aprender? ', 'Cerrar', {
       duration: 3000,
-      verticalPosition: 'top'
-    });
+      verticalPosition: 'top',
+      });
   }
 }
