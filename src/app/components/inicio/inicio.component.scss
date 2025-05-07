@@ -1,19 +1,176 @@
-/* --- Estilos Base con Transiciones --- */
+/* inicio.component.scss */
+
+/* --- Estilos Base con Transiciones (mantienes esto) --- */
 .btn {
-    /* Otros estilos que tenga tu botón */
-    transition: transform 0.3s ease-in-out; /* Transición aplicada al estado normal */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.card {
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-snackbar {
+  .mat-simple-snackbar {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
   }
-  
-  .card {
-    /* Otros estilos que tenga tu tarjeta */
-    transition: background-color 0.3s ease-in-out; /* Transición aplicada al estado normal */
+  .mat-simple-snackbar-action {
+    color: #fff;
   }
-  
-  /* --- Estados Hover --- */
-  .btn:hover {
-    transform: scale(1.05); /* Solo la transformación cambia en hover */
+}
+
+
+.video-modal-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.video-modal-content {
+  position: relative;
+  background-color: #fff; /* Fondo blanco para el contenedor del video (opcional, puede ser transparente) */
+  padding: 10px; /* Espacio alrededor del video */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+  max-width: 90%; /* Ancho máximo relativo */
+  width: 800px; /* Ancho fijo deseado */
+  transform: scale(1); /* Escala inicial */
+  // Puedes añadir transiciones para la escala o otros efectos de entrada
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  .video-modal-overlay.ng-enter & {
+      opacity: 0;
+      transform: scale(0.9);
   }
-  
-  .card:hover {
-    background-color: rgba(0, 0, 0, 0.05); /* Solo el color cambia en hover */
+  .video-modal-overlay.ng-enter.ng-enter-active & {
+      opacity: 1;
+      transform: scale(1);
   }
+  .video-modal-overlay.ng-leave & {
+      opacity: 1;
+      transform: scale(1);
+  }
+   .video-modal-overlay.ng-leave.ng-leave-active & {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+
+}
+
+.video-modal-content .close-button {
+    position: absolute;
+    top: -15px; /* Ajusta la posición fuera del borde */
+    right: -15px; /* Ajusta la posición fuera del borde */
+    background-color: #fff; /* Fondo blanco */
+    border: none;
+    border-radius: 50%; /* Redondo */
+    width: 30px; /* Tamaño */
+    height: 30px;
+    font-size: 20px; /* Tamaño del símbolo '×' */
+    line-height: 30px; /* Centra verticalmente '×' */
+    text-align: center; /* Centra horizontalmente '×' */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1; /* Asegura que esté por encima del video */
+}
+
+.video-wrapper {
+    position: relative;
+    // Ajusta el padding-bottom según la proporción de tu video. (16:9 = 56.25%)
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden; /* Oculta cualquier cosa que se salga */
+
+    video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .video-modal-content {
+    width: 95%; /* Usa un porcentaje mayor en móviles */
+    max-width: none; /* Elimina el max-width fijo */
+    padding: 5px; /* Menos padding */
+  }
+   .video-modal-content .close-button {
+       top: -10px;
+       right: -10px;
+       width: 25px;
+       height: 25px;
+       font-size: 16px;
+       line-height: 25px;
+   }
+    .video-wrapper {
+        padding-bottom: 56.25%; // Mantén la proporción
+    }
+}
+
+
+@keyframes tremble {
+  0%, 100% {
+    transform: translateX(0) translateY(0); /* Posición inicial y final */
+  }
+  25% {
+    transform: translateX(-2px) translateY(-1px); /* Mover ligeramente a la izquierda y arriba */
+  }
+  50% {
+    transform: translateX(2px) translateY(1px); /* Mover ligeramente a la derecha y abajo */
+  }
+  75% {
+    transform: translateX(-1px) translateY(1px); /* Mover ligeramente a la izquierda y abajo */
+  }
+}
+
+
+.card {
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  will-change: transform, opacity; /* Añadimos opacity si usas animaciones de entrada */
+
+  /* Añadimos la animación de temblor */
+}
+
+.card:hover {
+  animation: none; /* Detenemos el temblor al hacer hover */
+  transform: scale(1.05); /* Escalamos al hacer hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra al hacer hover */
+}
+
+.contactar {
+  animation: tremble 0.5s ease-in-out infinite; /* Nombre Duración Curva Repetición */
+}
+.lecciones {
+  animation: tremble 0.5s ease-in-out infinite;
+}
+
+
+.btn-info {
+    animation: tremble 0.7s ease-in-out infinite;
+}

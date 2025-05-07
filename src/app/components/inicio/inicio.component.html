@@ -4,8 +4,28 @@
     <p class="lead">Tu espacio para explorar conceptos de negocio y poner a prueba tus conocimientos en <strong>inglés, alemán e italiano</strong>.</p>
     <hr class="my-4 border-light">
     <p>Explora nuestras lecciones y comienza tu aprendizaje hoy mismo.</p>
-    <a class="btn btn-light btn-lg fw-bold shadow" routerLink="/lecciones" role="button">Explorar Lecciones</a>
+    <a class="lecciones btn btn-light btn-lg fw-bold shadow" routerLink="/lecciones" role="button">Explorar Lecciones</a>
   </section>
+
+  <div class="container mt-5">
+    <section class="mt-5 text-center">
+      <h2 class="fw-bold">Video Explicativo</h2>
+      <p>Mira un breve video que te explica cómo funciona "Palabras al Poder".</p>
+      <button class="btn btn-info fw-bold shadow" (click)="openVideo()">Ver Video</button>
+    </section>
+  
+  <div class="video-modal-overlay" *ngIf="showVideoModal" (click)="closeVideo()">
+    <div class="video-modal-content" (click)="$event.stopPropagation()"> <button class="close-button" (click)="closeVideo()">×</button> <div class="video-wrapper">
+        <video
+          [src]="sanitizedVideoUrl"controls
+          autoplay
+          playsinline
+          >
+          Tu navegador no sopporta la etiqueta de video.
+        </video>
+      </div>
+    </div>
+  </div>
 
   <section class="row mt-5 text-center">
     <h2 class="col-12 mb-4 fw-bold">¿Qué encontrarás aquí?</h2>
@@ -32,6 +52,6 @@
   <section class="mt-5 text-center">
     <h2 class="fw-bold">¿Tienes alguna pregunta?</h2>
     <p>No dudes en ponerte en contacto con nosotros.</p>
-    <a class="btn btn-dark fw-bold shadow" routerLink="/contacto" role="button">Contactar</a>
+    <a class="contactar btn btn-dark fw-bold shadow" routerLink="/contacto" role="button">Contactar</a>
   </section>
 </div>
