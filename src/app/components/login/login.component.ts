@@ -53,7 +53,7 @@ export class LoginComponent {
           console.log('Login exitoso:', data);
           this.snackBar.open('¡Bienvenido!', 'Cerrar', { duration: 2000 });
           // Redirigir según el rol (ADMIN o CLIENT)
-          if (data.role === "ADMIN") this.router.navigate(['/app/control-panel']); // Ajusta la ruta
+          if (data.role === "ADMIN") this.router.navigate(['/']); // Ajusta la ruta
           if (data.role === "CLIENT") this.router.navigate(['/']); // Ajusta la ruta
         }, 1500);
       },
