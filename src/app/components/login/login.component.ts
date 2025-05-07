@@ -74,13 +74,6 @@ export class LoginComponent {
         });
       }
     });
-
-    // Por ahora, como no tenemos backend, simulamos un login exitoso después de 1 segundo
-    this.snackBar.open('Intentando iniciar sesión...', 'Espere', { duration: 1000 });
-    setTimeout(() => {
-      this.snackBar.open('¡Simulación de inicio de sesión exitosa!', 'Cerrar', { duration: 2000 });
-      this.router.navigate(['/inicio']); // Redirigimos al inicio como ejemplo
-    }, 1500);
   }
 
 }

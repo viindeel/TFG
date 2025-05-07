@@ -5,9 +5,19 @@
       <a routerLink="/inicio" routerLinkActive="active" class="nav-link">Inicio</a>
       <a routerLink="/lecciones" routerLinkActive="active" class="nav-link">Lecciones</a>
       <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
-      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
-      <a routerLink="/registro" routerLinkActive="active" class="nav-link">Registro</a>
-    </nav>
+
+      <ng-container *ngIf="!isLoggedIn">
+        <a class="nav-link" (click)="irAlLogin()">Login</a>
+        <a class="nav-link" (click)="irAlRegistro()">Registro</a>
+        </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+         <span class="nav-link">Bienvenido, {{ username }}</span>
+        <a href="#" class="nav-link" (click)="logout()">Cerrar Sesión</a>
+
+        </ng-container>
+
+      </nav>
   </header>
 
   <main class="app-main py-5 flex-grow-1">
