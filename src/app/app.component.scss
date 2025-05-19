@@ -1,50 +1,115 @@
+// src/app/app.component.scss
+
 .app-header {
-  background-color: #2c3e50;
+  background-color: #2c3e50; // Tu color original del header
   padding: 20px 40px;
+  // Estilo original del HTML: color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  // Lo mantenemos implícito por el HTML, pero podrías añadirlo aquí también si centralizas.
+  // color: white; // El color del texto general del header
+  // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .app-nav {
   display: flex;
-  justify-content: space-between;
-}
+  justify-content: space-between; // Esto podría necesitar ajustarse si el nav crece mucho
+  align-items: center; // Alinea verticalmente los items del nav, incluido el dropdown
 
-.nav-link {
-  color: #ecf0f1;
-  margin-left: 20px;
-  font-size: 18px;
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
+  .nav-link { // Estilo base para todos los enlaces de navegación, incluido el toggle del dropdown
+    color: #ecf0f1;
+    margin-left: 20px; // Espacio entre elementos del nav
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0.5rem 0; // Un poco de padding vertical para mejor clickeabilidad si no lo tenía
+    display: inline-block; // Para que el padding funcione bien
 
-.nav-link:hover {
-  color: #1abc9c;
-  transform: scale(1.1);
+    &:hover {
+      color: #1abc9c;
+      transform: scale(1.1);
+    }
+
+    &.active { // Para los routerLinkActive
+      font-weight: bold;
+      color: #1abc9c;
+    }
+  }
+
+  // Estilos específicos para el desplegable del usuario
+  .user-dropdown {
+    position: relative; // MUY IMPORTANTE: para el posicionamiento absoluto del menú hijo.
+    display: inline-block; // Para que se alinee con otros .nav-link
+
+    .dropdown-toggle {
+      cursor: pointer;
+      user-select: none; // Evita selección de texto al hacer clic
+      color: #ecf0f1; // Asegura que el color sea el mismo que otros nav-links
+      // No necesita `margin-left` si ya lo tiene `.nav-link` (que `.user-dropdown` también tiene)
+      // font-size, text-decoration, transition son heredados o no aplican directamente al span
+
+      i { // Estilo para el icono de flecha si lo añades (ej: Font Awesome)
+        margin-left: 0.3em;
+        font-size: 0.8em; // Hacer el icono un poco más pequeño
+      }
+    }
+
+    .dropdown-menu {
+      display: block; // Angular lo quita/pone del DOM con *ngIf, así que 'block' es lo natural cuando está.
+      position: absolute;
+      top: 100%;        // Justo debajo del elemento que lo activa (el .dropdown-toggle)
+      right: 0;         // Alineado a la derecha de su contenedor (.user-dropdown)
+      background-color: #34495e; // Mismo color que el header o uno ligeramente diferente
+      border: 1px solid rgba(255, 255, 255, 0.15); // Borde sutil
+      border-radius: 0.25rem; // Esquinas redondeadas
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); // Sombra más pronunciada para destacar
+      z-index: 1000;      // Asegura que esté por encima de otros elementos
+      min-width: 200px;   // Ancho mínimo, ajústalo según el contenido
+      padding: 0.5rem 0;  // Padding vertical interno
+      margin-top: 0.25rem; // Pequeño espacio entre el toggle y el menú
+
+      .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 0.6rem 1.2rem; // Más padding para mejor toque/clic
+        clear: both;
+        font-weight: normal;
+        color: #ecf0f1;     // Color del texto de los ítems
+        text-align: left;
+        white-space: nowrap;  // Evita que el texto se divida en múltiples líneas
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        text-decoration: none; // Quitar subrayado si es un <a>
+        font-size: 16px; // Un poco más pequeño que los nav-links principales
+
+        &:hover {
+          background-color: #4a627a; // Un color de hover que contraste bien
+          color: #ffffff; // Asegurar que el texto siga siendo legible
+        }
+      }
+    }
+  }
 }
 
 .app-footer {
   background-color: #2c3e50;
   padding: 10px 0;
-}
-
-.active {
-  font-weight: bold;
-  color: #1abc9c;
+  // color: white; // Ya está en el HTML, pero puedes añadirlo aquí
 }
 
 .app-main {
   padding: 50px 20px;
   background-color: #ecf0f1;
-  min-height: 80vh;
+  min-height: 80vh; // Esto podría ser conflictivo con el flex-grow-1 para el footer fijo
 }
 
-/* Flexbox layout for the footer to stay at the bottom */
+/* Flexbox layout para el footer */
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.flex-grow-1 {
+.flex-grow-1 { // Este es para el <main>
   flex-grow: 1;
 }
 
@@ -52,19 +117,33 @@
 @media (max-width: 768px) {
   .app-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; // Los elementos del header se alinean a la izquierda
   }
 
   .app-nav {
     flex-direction: column;
-    align-items: flex-start;
-  }
+    align-items: flex-start; // Los links de navegación se alinean a la izquierda
+    width: 100%; // Ocupa todo el ancho para que los items se apilen bien
 
-  .nav-link {
-    margin: 5px 0;
+    .nav-link, .user-dropdown { // Aplicar a ambos
+      margin-left: 0; // Quitar margen izquierdo
+      margin-top: 8px;  // Añadir margen superior para separación vertical
+      margin-bottom: 8px;
+      width: 100%; // Para que el área clickeable sea ancha
+      // text-align: left; // Si quieres que el texto se alinee a la izquierda
+    }
+
+    .user-dropdown {
+      .dropdown-menu {
+        // En pantallas pequeñas, podrías querer que el menú ocupe más ancho o se posicione diferente
+        left: 0; // Que empiece desde la izquierda
+        right: auto; // Anula el 'right: 0' para que no se pegue a la derecha
+        min-width: 100%; // Que ocupe todo el ancho del .user-dropdown
+      }
+    }
   }
 }
 
-.titulooo{
+.titulooo {
   cursor: pointer;
 }

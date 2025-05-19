@@ -44,29 +44,28 @@
     "SCORE": "Punktestand"
   },
   "FEEDBACK": {
-      "CORRECT_TITLE": "Richtig!",
-      "CORRECT_TEXT": "Gut gemacht!",
-      "INCORRECT_TITLE": "Falsch",
-      "INCORRECT_TEXT": "Versuch es nochmal!",
-      "GAME_COMPLETE_TITLE": "Sehr gut!",
-      "GAME_COMPLETE_TEXT": "Du hast alle Phrasal Verbs zugeordnet!",
-      "GAME_COMPLETE_BUTTON": "Nochmal spielen",
-       "GAME_OVER_TITLE": "Spielende"
+    "CORRECT_TITLE": "Richtig!",
+    "CORRECT_TEXT": "Gut gemacht!",
+    "INCORRECT_TITLE": "Falsch",
+    "INCORRECT_TEXT": "Versuch es nochmal!",
+    "GAME_COMPLETE_TITLE": "Sehr gut!",
+    "GAME_COMPLETE_TEXT": "Du hast alle Phrasal Verbs zugeordnet!",
+    "GAME_COMPLETE_BUTTON": "Nochmal spielen",
+    "GAME_OVER_TITLE": "Spielende"
   },
-
   "SCENARIOS": {
-      "MONOPOLY": {
-          "BUYOUT": "Dein Unternehmen übernimmt alle kleinen Konkurrenten in der Region.",
-          "INNOVATION": "Dein F&E-Team bringt ein bahnbrechendes, effizientes Produkt auf den Markt.",
-          "PRICE_FIXING": "Konkurrent A schlägt vor, die Preise mit deinem Unternehmen abzustimmen.",
-          "PREDATORY_PRICING": "Dein Unternehmen senkt die Preise drastisch unter die Kosten, um Konkurrent A zu verdrängen.",
-          "NEW_ENTRY": "Ein neues Startup betritt den Markt mit einer wettbewerbsfähigen Alternative.",
-          "LOBBYING": "Dein Unternehmen gibt viel Geld für Lobbyarbeit gegen strengere Umweltvorschriften aus.",
-          "PATENT_TROLL": "Dein Unternehmen kauft Patente nur, um kleinere Innovatoren zu verklagen, die ähnliche Technologien verwenden.",
-          "OPEN_SOURCE": "Dein Unternehmen stellt ein wichtiges internes Werkzeug als Open Source zur Verfügung und fördert so die Branchenzusammenarbeit.",
-          "GREEN_INVEST": "Dein Unternehmen investiert erheblich in erneuerbare Energien für seine Fabriken.",
-          "PRIVACY_FINE": "Dein Unternehmen muss wegen Datenschutzverletzungen eine hohe Geldstrafe zahlen."
-      }
+    "MONOPOLY": {
+      "BUYOUT": "Dein Unternehmen übernimmt alle kleinen Konkurrenten in der Region.",
+      "INNOVATION": "Dein F&E-Team bringt ein bahnbrechendes, effizientes Produkt auf den Markt.",
+      "PRICE_FIXING": "Konkurrent A schlägt vor, die Preise mit deinem Unternehmen abzustimmen.",
+      "PREDATORY_PRICING": "Dein Unternehmen senkt die Preise drastisch unter die Kosten, um Konkurrent A zu verdrängen.",
+      "NEW_ENTRY": "Ein neues Startup betritt den Markt mit einer wettbewerbsfähigen Alternative.",
+      "LOBBYING": "Dein Unternehmen gibt viel Geld für Lobbyarbeit gegen strengere Umweltvorschriften aus.",
+      "PATENT_TROLL": "Dein Unternehmen kauft Patente nur, um kleinere Innovatoren zu verklagen, die ähnliche Technologien verwenden.",
+      "OPEN_SOURCE": "Dein Unternehmen stellt ein wichtiges internes Werkzeug als Open Source zur Verfügung und fördert so die Branchenzusammenarbeit.",
+      "GREEN_INVEST": "Dein Unternehmen investiert erheblich in erneuerbare Energien für seine Fabriken.",
+      "PRIVACY_FINE": "Dein Unternehmen muss wegen Datenschutzverletzungen eine hohe Geldstrafe zahlen."
+    }
   },
   "MONOPOLY_GAME": {
     "TITLE": "Monopoly-Jäger!",
@@ -81,21 +80,20 @@
     "TIME_LEFT": "Verbleibende Zeit",
     "LOADING_SCENARIO": "Nächstes Szenario wird geladen...",
     "TIME_UP": "Zeit abgelaufen!",
-     "END": {
-        "TITLE": "Spielende!",
-        "WINNER": "Gewinner",
-        "YOUR_RANK": "Dein Rang",
-        "FINAL_SCORE": "Endpunktestand",
-        "BUTTON": "Nochmal spielen"
+    "END": {
+      "TITLE": "Spielende!",
+      "WINNER": "Gewinner",
+      "YOUR_RANK": "Dein Rang",
+      "FINAL_SCORE": "Endpunktestand",
+      "BUTTON": "Nochmal spielen"
     }
   },
   "COMPANIES": {
-      "TU_EMPRESA": "Deine Firma",
-      "COMPETIDOR_A": "Wettbewerber A",
-      "COMPETIDOR_B": "Wettbewerber B",
-      "OTROS": "Andere"
+    "TU_EMPRESA": "Deine Firma",
+    "COMPETIDOR_A": "Wettbewerber A",
+    "COMPETIDOR_B": "Wettbewerber B",
+    "OTROS": "Andere"
   },
-
   "WLB_GAME": {
     "TITLE": "Work-Life-Balance Manager",
     "INSTRUCTIONS": "Ziehe Aufgaben aus der Liste auf die Wochentage. Erledige die erforderlichen Arbeitsaufgaben, ohne dass die Energie auf 0 fällt oder der Stress 100 erreicht!",
@@ -113,20 +111,24 @@
     "LOSE_STRESS": "Oh nein! Du bist völlig gestresst."
   },
   "TASKS": {
-      "WLB": {
-          "REPORT": "Dringender Bericht",
-          "MEETING": "Teambesprechung",
-          "EMAILS": "E-Mails beantworten",
-          "PROJECT_PLAN": "Projektplanung",
-          "CODE_REVIEW": "Code-Überprüfung",
-          "CLIENT_CALL": "Kundenanruf",
-          "GYM": "Fitnessstudio",
-          "FAMILY_DINNER": "Abendessen mit Familie",
-          "HOBBY": "Hobbyzeit",
-          "GROCERIES": "Einkäufe",
-          "SLEEP": "Schlafen (7-8h)",
-          "RELAX": "Entspannen / Meditieren",
-          "SHORT_BREAK": "Kurze Pause"
-      }
-  }
+    "WLB": {
+      "REPORT": "Dringender Bericht",
+      "MEETING": "Teambesprechung",
+      "EMAILS": "E-Mails beantworten",
+      "PROJECT_PLAN": "Projektplanung",
+      "CODE_REVIEW": "Code-Überprüfung",
+      "CLIENT_CALL": "Kundenanruf",
+      "GYM": "Fitnessstudio",
+      "FAMILY_DINNER": "Abendessen mit Familie",
+      "HOBBY": "Hobbyzeit",
+      "GROCERIES": "Einkäufe",
+      "SLEEP": "Schlafen (7-8h)",
+      "RELAX": "Entspannen / Meditieren",
+      "SHORT_BREAK": "Kurze Pause"
+    }
+  },
+  "SNACKBAR.DISMISS": "Schließen",
+  "SNACKBAR.CORRECT_MATCH": "Richtig! '{{term}}' ist es!",
+  "SNACKBAR.INCORRECT_MATCH": "Hoppla! Nicht ganz. Versuch die Definition nochmal!",
+  "SNACKBAR.SELECT_PRINCIPLE_FIRST_WARNING": "Moment! Bitte wähle zuerst ein Prinzip aus."
 }

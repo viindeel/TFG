@@ -9,15 +9,20 @@
       <ng-container *ngIf="!isLoggedIn">
         <a class="nav-link" (click)="irAlLogin()">Login</a>
         <a class="nav-link" (click)="irAlRegistro()">Registro</a>
-        </ng-container>
+      </ng-container>
 
       <ng-container *ngIf="isLoggedIn">
-         <span class="nav-link">Bienvenido, {{ username }}</span>
-        <a href="#" class="nav-link" (click)="logout()">Cerrar Sesión</a>
+        <div class="user-dropdown nav-link">
+          <span (click)="toggleDropdown()" class="dropdown-toggle" style="cursor: pointer;">
+            Bienvenido, {{ username }}
+          </span>
+          <div class="dropdown-menu" *ngIf="isDropdownOpen">
+            <a (click)="logoutAndCloseDropdown()" class="dropdown-item">Cerrar Sesión</a>
+          </div>
+        </div>
+      </ng-container>
 
-        </ng-container>
-
-      </nav>
+    </nav>
   </header>
 
   <main class="app-main py-5 flex-grow-1">

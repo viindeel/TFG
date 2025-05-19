@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { Subscription, interval, forkJoin } from 'rxjs';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
+// Importa MatSnackBar y MatSnackBarModule
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 export interface BrainstormingMatch {
   termKey: string;
   definitionKey: string;
@@ -12,7 +15,13 @@ export interface BrainstormingMatch {
 @Component({
   selector: 'app-brainstorming-lesson',
   standalone: true,
-  imports: [NgFor, NgClass, NgIf, TranslateModule],
+  imports: [
+    NgFor,
+    NgClass,
+    NgIf,
+    TranslateModule,
+    MatSnackBarModule // <--- AÑADIDO MatSnackBarModule
+  ],
   templateUrl: './brainstorming-lesson.component.html',
   styleUrls: ['./brainstorming-lesson.component.scss']
 })
@@ -28,204 +37,271 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   shuffledDefinitions: string[] = [];
   selectedTerm: string = '';
   selectedDefinition: string = '';
-  feedbackMessage: string = '';
+  feedbackMessage: string = ''; // Lo mantenemos por si quieres usarlo junto con el snackbar
   matchedPairs: { term: string; definition: string }[] = [];
   isGameOver: boolean = false;
   countdown: number = 3;
   showCongratulations: boolean = false;
   currentLang = '';
 
+  // Para el feedback visual de selección incorrecta en los items
+  lastIncorrectTerm: string = '';
+  lastIncorrectDefinition: string = '';
+  incorrectFeedbackTimeout: any;
+
   private countdownSubscription: Subscription | undefined;
-  private langChangeSubscription: Subscription | undefined; // Para desuscribirse
+  private langChangeSubscription: Subscription | undefined;
 
   constructor(
     private router: Router,
     private translate: TranslateService,
-    private cdr: ChangeDetectorRef, // Para forzar detección de cambios si es necesario
-    @Inject(PLATFORM_ID) private platformId: Object // Para lógica específica de plataforma si fuera necesario
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private _snackBar: MatSnackBar // <--- Inyectado MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang || this.translate.defaultLang || 'en';
-    // Escuchar cambios de idioma
     this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
-        console.log(`Brainstorming: Language changed to ${event.lang}, preparing data...`);
-        this.currentLang = event.lang;
-        this.prepareGameDataAsync(); // Usar método async
+      console.log(`Brainstorming: Language changed to ${event.lang}, preparing data...`);
+      this.currentLang = event.lang;
+      this.prepareGameDataAsync();
     });
-    // Cargar datos iniciales para el idioma actual/preferido
     this.loadLanguagePreference();
   }
 
   ngOnDestroy(): void {
-    // Desuscribirse para evitar memory leaks (acumulación innecesaria de memoria debido a referencias que no se liberan)
     if (this.countdownSubscription) {
       this.countdownSubscription.unsubscribe();
     }
     if (this.langChangeSubscription) {
-        this.langChangeSubscription.unsubscribe();
+      this.langChangeSubscription.unsubscribe();
+    }
+    if (this.incorrectFeedbackTimeout) { // Limpiar timeout si el componente se destruye
+        clearTimeout(this.incorrectFeedbackTimeout);
     }
   }
 
   loadLanguagePreference() {
-    // Solo acceder a localStorage en el navegador
     let preferredLanguage = 'en';
     if (isPlatformBrowser(this.platformId)) {
-        preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
+      preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
     }
-    // 'use' devuelve un Observable que completa cuando las traducciones están listas
     this.translate.use(preferredLanguage).subscribe(() => {
-        console.log(`Brainstorming: Initial language set to ${preferredLanguage}, preparing data...`);
-        this.currentLang = preferredLanguage;
-        this.prepareGameDataAsync(); // Cargar datos después de establecer idioma
+      console.log(`Brainstorming: Initial language set to ${preferredLanguage}, preparing data...`);
+      this.currentLang = preferredLanguage;
+      this.prepareGameDataAsync();
     });
   }
 
   changeLanguage(lang: string) {
-    // 'use' gestiona la carga del nuevo idioma
-    this.translate.use(lang); // onLangChange se disparará y llamará a prepareGameDataAsync
+    this.translate.use(lang);
     if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem('preferredLanguage', lang);
+      localStorage.setItem('preferredLanguage', lang);
     }
   }
 
-  // Renombrado para indicar que es asíncrono
   prepareGameDataAsync() {
     const termKeys = this.originalMatches.map(match => match.termKey);
     const definitionKeys = this.originalMatches.map(match => match.definitionKey);
     const allKeys = [...termKeys, ...definitionKeys];
 
-    // Usar translate.get()
     this.translate.get(allKeys).subscribe((translations: { [key: string]: string }) => {
       console.log("Brainstorming: Translations received.");
-
-      // Mapear usando las traducciones obtenidas
       this.brainstormingMatches = this.originalMatches.map(match => ({
-        term: translations[match.termKey] || match.termKey, // Fallback a la clave
-        definition: translations[match.definitionKey] || match.definitionKey // Fallback a la clave
+        term: translations[match.termKey] || match.termKey,
+        definition: translations[match.definitionKey] || match.definitionKey
       }));
-
-      // Mezclar y preparar estado inicial del juego
       this.brainstormingMatches = this.shuffleArray(this.brainstormingMatches);
       this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
-      this.resetGameState(); // Función para reiniciar el estado
-
-      this.cdr.detectChanges(); // Notificar a Angular que los datos han cambiado
+      this.resetGameState();
+      this.cdr.detectChanges();
       console.log("Brainstorming: Game data prepared.");
     }, error => {
-         console.error("Brainstorming: Error getting translations", error);
-         // Manejar error: mostrar datos con claves?
-         this.brainstormingMatches = this.shuffleArray(this.originalMatches.map(match => ({ term: match.termKey, definition: match.definitionKey })));
-         this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
-         this.resetGameState();
-         this.cdr.detectChanges();
+      console.error("Brainstorming: Error getting translations", error);
+      this.brainstormingMatches = this.shuffleArray(this.originalMatches.map(match => ({ term: match.termKey, definition: match.definitionKey })));
+      this.shuffledDefinitions = this.shuffleArray(this.brainstormingMatches.map(match => match.definition));
+      this.resetGameState();
+      this.cdr.detectChanges();
     });
   }
 
   resetGameState() {
-      this.selectedTerm = '';
-      this.selectedDefinition = '';
-      this.feedbackMessage = '';
-      this.matchedPairs = [];
-      this.isGameOver = false;
-      this.showCongratulations = false;
-      this.countdown = 3;
-      if (this.countdownSubscription) { // Detener contador si estaba activo
-          this.countdownSubscription.unsubscribe();
-          this.countdownSubscription = undefined;
-      }
+    this.selectedTerm = '';
+    this.selectedDefinition = '';
+    this.feedbackMessage = '';
+    this.matchedPairs = [];
+    this.isGameOver = false;
+    this.showCongratulations = false;
+    this.countdown = 3;
+    this.clearIncorrectSelectionFeedback(); // Asegurar que se limpia el feedback de error
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+      this.countdownSubscription = undefined;
+    }
   }
 
   shuffleArray<T>(array: T[]): T[] {
-    // Crear una copia del array original para no modificarlo directamente
     const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
-    // Retornar el nuevo array mezclado
     return newArray;
   }
 
   selectTerm(term: string) {
-    if (!this.isAlreadyMatched(term, null) && !this.isGameOver) {
-      this.selectedTerm = term;
-      this.selectedDefinition = '';
-      this.feedbackMessage = ''; // Limpiar mensaje previo
-    }
+    if (this.isGameOver || this.isAlreadyMatched(term, null) ) return;
+
+    this.clearIncorrectSelectionFeedback(); // Limpiar feedback de error anterior
+    this.selectedTerm = term;
+    this.selectedDefinition = ''; // Resetear definición si se selecciona un nuevo término
+    // this.feedbackMessage = ''; // Limpiar mensaje de feedback en HTML si no se usa el snackbar para esto
+    this.cdr.detectChanges();
   }
 
   selectDefinition(definition: string) {
-    if (!this.isAlreadyMatched(null, definition) && !this.isGameOver) {
-      if (this.selectedTerm) {
-        this.selectedDefinition = definition;
-        this.checkMatch();
-      } else {
-        // Usar get para el mensaje asíncrono
+    if (this.isGameOver || this.isAlreadyMatched(null, definition) || !this.selectedTerm) {
+      if (!this.selectedTerm && !this.isGameOver) {
+        // Usar MatSnackBar si no hay término seleccionado
         this.translate.get('SELECT_PRINCIPLE_FIRST').subscribe((res: string) => {
-             this.feedbackMessage = res || 'Please select a principle first.'; // Fallback
-             this.cdr.detectChanges(); // Actualizar vista
+          this._snackBar.open(res || 'Please select a principle first.', 
+                              this.translate.instant('SNACKBAR.DISMISS'), {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            panelClass: ['snackbar-warning'] // Una clase para aviso
+          });
         });
       }
+      return;
     }
+    this.clearIncorrectSelectionFeedback(); // Limpiar feedback de error anterior
+    this.selectedDefinition = definition;
+    this.checkMatch();
+    this.cdr.detectChanges();
   }
 
   checkMatch() {
     if (this.selectedTerm && this.selectedDefinition) {
-        // Busca el match usando los datos ya traducidos y almacenados
-        const correctMatchData = this.brainstormingMatches.find(bm => bm.term === this.selectedTerm);
+      const correctMatchData = this.brainstormingMatches.find(bm => bm.term === this.selectedTerm);
 
-        if (correctMatchData && correctMatchData.definition === this.selectedDefinition) {
-            // --- CORRECTO ---
-            this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
+      let snackBarMessageKey: string;
+      let snackBarActionKey: string = 'SNACKBAR.DISMISS';
+      let panelClass: string[];
+      // Opcional: Mensaje para el feedback en el HTML
+      let htmlFeedbackKey: string = '';
+      let htmlFeedbackParams: any = {};
 
-            // Usar forkJoin para obtener múltiples traducciones si es necesario
-            forkJoin({
-                msg: this.translate.get('CORRECT_MATCH', { term: this.selectedTerm, definition: this.selectedDefinition })
-            }).subscribe(results => {
-                this.feedbackMessage = results.msg || `Correct: ${this.selectedTerm}`; // Fallback
-                this.cdr.detectChanges();
-            });
 
-            if (this.matchedPairs.length === this.originalMatches.length) {
-                this.isGameOver = true;
-                this.showCongratulationsPopup();
-            }
-        } else {
-            // --- INCORRECTO ---
-            this.translate.get('INCORRECT_MATCH').subscribe((res: string) => {
-                this.feedbackMessage = res || 'Incorrect! Try again.'; // Fallback
-                this.cdr.detectChanges();
-            });
+      if (correctMatchData && correctMatchData.definition === this.selectedDefinition) {
+        this.matchedPairs.push({ term: this.selectedTerm, definition: this.selectedDefinition });
+
+        snackBarMessageKey = 'SNACKBAR.CORRECT_MATCH';
+        panelClass = ['snackbar-correct'];
+        // htmlFeedbackKey = 'CORRECT_MATCH'; // Si quieres usar el feedback en HTML también
+        // htmlFeedbackParams = { term: this.selectedTerm, definition: this.selectedDefinition };
+
+        if (this.matchedPairs.length === this.originalMatches.length) {
+          this.isGameOver = true;
+          // Retrasar el popup de felicitaciones para que el snackbar se vea
+          setTimeout(() => this.showCongratulationsPopup(), 1500);
         }
-        // Limpiar selección después de verificar
-        this.selectedTerm = '';
-        this.selectedDefinition = '';
+      } else {
+        this.lastIncorrectTerm = this.selectedTerm;
+        this.lastIncorrectDefinition = this.selectedDefinition;
+
+        snackBarMessageKey = 'SNACKBAR.INCORRECT_MATCH';
+        panelClass = ['snackbar-incorrect'];
+        // htmlFeedbackKey = 'INCORRECT_MATCH'; // Si quieres usar el feedback en HTML también
+
+        if (this.incorrectFeedbackTimeout) clearTimeout(this.incorrectFeedbackTimeout);
+        this.incorrectFeedbackTimeout = setTimeout(() => {
+          this.clearIncorrectSelectionFeedback();
+          this.cdr.detectChanges();
+        }, 1500); // Duración del temblor visual en los items
+      }
+
+      // Mostrar MatSnackBar
+      forkJoin({
+        message: this.translate.get(snackBarMessageKey, { term: this.selectedTerm }), // Simplificado para solo mostrar el término
+        action: this.translate.get(snackBarActionKey)
+      }).subscribe(translations => {
+        this._snackBar.open(translations.message, translations.action, {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+          panelClass: panelClass
+        });
+      });
+
+      // (Opcional) Actualizar feedbackMessage para el HTML
+      if (htmlFeedbackKey) {
+        this.translate.get(htmlFeedbackKey, htmlFeedbackParams).subscribe((res: string) => {
+          this.feedbackMessage = res;
+          this.cdr.detectChanges();
+        });
+      } else {
+        this.feedbackMessage = ''; // Limpiar si solo usamos snackbar para este feedback
+      }
+
+      // No limpiar selectedTerm/Definition inmediatamente si fue incorrecto y queremos que tiemblen.
+      // Se limpiarán con el timeout de clearIncorrectSelectionFeedback o en la siguiente selección.
+      // Si el match fue correcto, sí podemos limpiarlos porque ya no se interactuará con ellos.
+      if (panelClass.includes('snackbar-correct')) {
+          this.selectedTerm = '';
+          this.selectedDefinition = '';
+      }
+      this.cdr.detectChanges();
     }
   }
 
   isAlreadyMatched(term: string | null, definition: string | null): boolean {
     if (term) {
-        return this.matchedPairs.some(pair => pair.term === term);
+      return this.matchedPairs.some(pair => pair.term === term);
     } else if (definition) {
-        return this.matchedPairs.some(pair => pair.definition === definition);
+      return this.matchedPairs.some(pair => pair.definition === definition);
     }
     return false;
   }
 
+  // --- Funciones para el feedback visual de selección incorrecta ---
+  clearIncorrectSelectionFeedback() {
+    if (this.lastIncorrectTerm || this.lastIncorrectDefinition) { // Solo limpiar si había algo
+        this.lastIncorrectTerm = '';
+        this.lastIncorrectDefinition = '';
+        this.selectedTerm = ''; // Limpiar selección actual también para resetear visualmente
+        this.selectedDefinition = '';
+        this.cdr.detectChanges(); // Forzar actualización de la vista
+    }
+    if (this.incorrectFeedbackTimeout) {
+      clearTimeout(this.incorrectFeedbackTimeout);
+      this.incorrectFeedbackTimeout = null;
+    }
+  }
+
+  isTermIncorrectlySelected(term: string): boolean {
+    return this.lastIncorrectTerm === term;
+  }
+
+  isDefinitionIncorrectlySelected(definition: string): boolean {
+    return this.lastIncorrectDefinition === definition;
+  }
+  // --- Fin funciones feedback visual ---
+
   showCongratulationsPopup() {
     this.showCongratulations = true;
-    this.countdown = 3; // Reiniciar cuenta atrás
-     if (this.countdownSubscription) { // Cancelar anterior si existiera
-        this.countdownSubscription.unsubscribe();
-     }
+    this.countdown = 3;
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+    }
     this.countdownSubscription = interval(1000).subscribe(() => {
       if (this.countdown > 0) {
-         this.countdown--;
-         this.cdr.detectChanges(); // Actualizar vista del contador
+        this.countdown--;
+        this.cdr.detectChanges();
       }
       if (this.countdown === 0) {
-        this.closeCongratulationsPopup(); // Llama a cerrar cuando llega a 0
+        this.closeCongratulationsPopup();
       }
     });
   }
@@ -234,16 +310,15 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     this.showCongratulations = false;
     if (this.countdownSubscription) {
       this.countdownSubscription.unsubscribe();
-      this.countdownSubscription = undefined; // Limpiar referencia
+      this.countdownSubscription = undefined;
     }
-    // No reiniciar countdown aquí, ya se reinicia al mostrar o preparar juego
   }
 
   goToLecciones() {
-     if (this.countdownSubscription) { // Asegurarse de parar contador al navegar
-        this.countdownSubscription.unsubscribe();
-        this.countdownSubscription = undefined;
-     }
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+      this.countdownSubscription = undefined;
+    }
     this.router.navigate(['/lecciones']);
   }
 }

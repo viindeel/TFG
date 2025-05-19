@@ -20,8 +20,8 @@
             (click)="selectTerm(match.term)"
             [class.selected]="selectedTerm === match.term"
             [class.matched]="isAlreadyMatched(match.term, null)"
-            style="cursor: pointer; transition: background 0.3s ease-in-out;">
-          {{ match.term }}
+            [class.incorrect-selection-feedback]="isTermIncorrectlySelected(match.term)"
+            style="cursor: pointer;"> {{ match.term }}
         </li>
       </ul>
     </div>
@@ -33,21 +33,24 @@
             (click)="selectDefinition(definition)"
             [class.selected]="selectedDefinition === definition"
             [class.matched]="isAlreadyMatched(null, definition)"
-            style="cursor: pointer; transition: background 0.3s ease-in-out;">
-          {{ definition }}
+            [class.incorrect-selection-feedback]="isDefinitionIncorrectlySelected(definition)"
+            style="cursor: pointer;"> {{ definition }}
         </li>
       </ul>
     </div>
   </div>
 
   <div class="mt-4 text-center">
-    <p [ngClass]="{'correct': feedbackMessage.startsWith('¡Correcto!'), 'incorrect': feedbackMessage.startsWith('¡Incorrecto!')}"
+    <p [ngClass]="{
+        'correct': feedbackMessage.startsWith('¡Correcto!') || feedbackMessage.startsWith('Correct!'),
+        'incorrect': feedbackMessage.startsWith('¡Incorrecto!') || feedbackMessage.startsWith('Incorrect!'),
+        'show-feedback': feedbackMessage
+       }"
        class="feedback-message fw-bold fs-5">{{ feedbackMessage }}</p>
   </div>
 
-  <div class="congratulations-popup text-center" *ngIf="showCongratulations">
-    <div class="p-4 bg-success text-white rounded shadow-lg">
-      <h2>{{ 'CONGRATULATIONS' | translate }}</h2>
+  <div class="congratulations-popup text-center"
+      [class.show-popup]="showCongratulations"> <div class="popup-content-wrapper"> <h2>{{ 'CONGRATULATIONS' | translate }}</h2>
       <p>{{ 'CLOSING_IN' | translate }} {{ countdown }}...</p>
       <button (click)="goToLecciones()" class="btn btn-light fw-bold">{{ 'RETURN_TO_LESSONS' | translate }}</button>
     </div>

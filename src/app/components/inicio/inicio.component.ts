@@ -28,9 +28,6 @@ export class InicioComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    // --- Inicializar la URL del video ---
-    // Aquí saneamos la URL del video para evitar problemas de seguridad
-    // Esto es necesario para que Angular permita cargar videos locales
     this.sanitizedVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoPath);
 
     this.snackBar.open('¡Bienvenido a Palabras al poder! ¿Cúanto serás capaz de aprender? ', 'Cerrar', {
