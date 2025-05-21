@@ -1,0 +1,162 @@
+.crucigrama-grid-estilizado {
+    display: flex;
+    flex-direction: column;
+    gap: 3px; /* Reducimos el espacio entre filas */
+    margin-bottom: 30px;
+  }
+  
+  .crucigrama-row {
+    display: flex;
+    gap: 3px; /* Reducimos el espacio entre celdas */
+  }
+  
+  .celda-container {
+    position: relative;
+  }
+  
+  .numero-pista {
+    position: absolute;
+    top: -6px; /* Ajustamos la posición del número */
+    left: -6px; /* Ajustamos la posición del número */
+    font-size: 0.6em; /* Reducimos el tamaño del número */
+    font-weight: bold;
+    color: #555;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1px 3px; /* Reducimos el padding del número */
+  }
+  
+  .crucigrama-grid-estilizado input[type="text"],
+  .celda-vacia {
+    width: 25px; /* Reducimos el ancho de las celdas */
+    height: 25px; /* Reducimos la altura de las celdas */
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    text-transform: uppercase;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+  }
+  
+  .crucigrama-grid-estilizado input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 1px 1px 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  .crucigrama-grid-estilizado input[type="text"][readonly] {
+    background-color: #eee;
+    color: #aaa;
+    box-shadow: none;
+  }
+  
+  .crucigrama-grid-estilizado input[type="text"].celda-llena {
+    background-color: white;
+    color: black;
+  }
+  
+  .celda-vacia {
+    background-color: #f0f0f0; /* Color de fondo para indicar que no se puede rellenar */
+  }
+  
+  /* Estilos para las pistas y botones (se mantienen igual) */
+  .pistas {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  
+    h3 {
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+  
+    ol {
+      list-style-type: decimal;
+      padding-left: 20px;
+  
+      li {
+        margin-bottom: 10px;
+        color: #555;
+  
+        .ayuda {
+          font-size: 0.9em;
+          color: #777;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+  
+  button {
+    padding: 8px 16px; /* Reducimos el padding de los botones */
+    font-size: 0.9em; /* Reducimos el tamaño de la fuente de los botones */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007bff;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    margin-right: 5px; /* Reducimos el margen derecho de los botones */
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  p[ngIf="mensaje"] {
+    margin-top: 15px; /* Reducimos el margen superior del mensaje */
+    padding: 10px; /* Reducimos el padding del mensaje */
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em; /* Reducimos el tamaño de la fuente del mensaje */
+    &.correcto {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+  
+    &.incorrecto {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  }
+  
+  div > label[for="idioma"] {
+    display: inline-block;
+    margin-right: 5px; /* Reducimos el margen derecho de la etiqueta del idioma */
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9em; /* Reducimos el tamaño de la fuente de la etiqueta del idioma */
+  }
+  
+  div > select#idioma {
+    padding: 6px 8px; /* Reducimos el padding del selector del idioma */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em; /* Reducimos el tamaño de la fuente del selector del idioma */
+    color: #555;
+    cursor: pointer;
+  
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+  }

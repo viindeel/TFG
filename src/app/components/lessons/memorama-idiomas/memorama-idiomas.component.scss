@@ -1,0 +1,261 @@
+/* Importar una fuente moderna desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Estilos generales */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #eef1f5; /* Fondo suave y neutro */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #34495e; /* Azul oscuro/grisáceo */
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5em; /* Ligeramente más pequeño que el anterior, más adecuado para el juego */
+}
+
+.language-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Alinea el botón verticalmente con los selects */
+  gap: 25px; /* Más espacio */
+  margin-bottom: 35px;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap; /* Para que se adapte en pantallas pequeñas */
+}
+
+.language-selection div {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre label y select */
+}
+
+.language-selection label {
+  font-weight: 500;
+  color: #555;
+  font-size: 0.95em;
+}
+
+.language-selection select {
+  font-family: 'Poppins', sans-serif;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  background-color: #f8fafc;
+  color: #333;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.language-selection select:hover {
+  border-color: #4a90e2; /* Azul más brillante al pasar el ratón */
+}
+
+.language-selection select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.language-selection button {
+  font-family: 'Poppins', sans-serif;
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #5cb85c; /* Verde para el botón de acción principal */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.language-selection button:hover {
+  background-color: #4cae4c; /* Verde más oscuro al pasar el ratón */
+  transform: translateY(-1px);
+}
+
+.language-selection button:active {
+  transform: translateY(0px);
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); /* Tarjetas un poco más anchas */
+  gap: 15px; /* Más espacio entre tarjetas */
+  padding: 20px;
+  max-width: 900px; /* Un poco más de ancho para el tablero */
+  width: 100%;
+  margin: 0 auto 30px auto; /* Margen inferior */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card {
+  background-color: transparent; /* El color lo darán card-front y card-back */
+  border-radius: 10px; /* Bordes más redondeados */
+  height: 140px; /* Tarjetas un poco más altas */
+  cursor: pointer;
+  perspective: 1000px; /* Mantiene la perspectiva para el efecto 3D */
+  transition: transform 0.2s ease-out; /* Transición suave para hover (opcional) */
+}
+
+/* Efecto de elevación sutil al pasar el ratón sobre tarjetas no emparejadas */
+.card:not(.matched):not(.flipped):hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+.card:not(.matched).flipped:hover { /* Si ya está volteada pero no emparejada */
+   transform: rotateY(180deg) translateY(-5px) scale(1.03);
+   box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1); /* Transición de volteo más suave */
+  transform-style: preserve-3d;
+  border-radius: 10px; /* Para que la sombra no se corte feo */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card.flipped .card-inner,
+.card.matched .card-inner { /* Las tarjetas emparejadas también están volteadas */
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Esencial para el efecto de volteo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px; /* Bordes redondeados para ambas caras */
+  padding: 10px; /* Padding interno para el texto */
+  box-sizing: border-box; /* Para que el padding no afecte el tamaño */
+  overflow: hidden; /* Para asegurar que el contenido no se desborde */
+}
+
+.card-front {
+  background: linear-gradient(135deg, #6DD5FA, #2980B9); /* Un gradiente azul atractivo */
+  color: white;
+  font-size: 3em; /* Signo de interrogación más grande */
+  font-weight: bold;
+}
+
+.card-back {
+  background-color: #f0f4f8; /* Un fondo claro y limpio para el contenido */
+  color: #34495e; /* Color de texto oscuro */
+  transform: rotateY(180deg); /* Inicialmente volteada */
+  font-size: 0.95em; /* Ajustar según la cantidad de texto */
+  font-weight: 500;
+  display: flex;
+  flex-direction: column; /* Para palabra e idioma uno encima de otro */
+  line-height: 1.4;
+}
+
+.card-back span.word {
+  font-weight: 600;
+  font-size: 1.1em; /* Palabra un poco más grande */
+}
+.card-back span.language {
+  font-size: 0.8em;
+  color: #5c6770; /* Color más sutil para el idioma */
+  margin-top: 5px;
+}
+
+.card.matched .card-inner {
+  box-shadow: 0 0 0 3px #2ecc71, 0 4px 10px rgba(46, 204, 113, 0.3); /* Borde verde y sombra para emparejadas */
+  /* La opacidad y el line-through ya no son necesarios si el cambio es visualmente claro */
+}
+
+.card.matched {
+  cursor: default; /* No más interacción */
+}
+
+.card.matched .card-back {
+  /* Ya no necesitamos text-decoration u opacidad si el borde es suficiente */
+  /* Si aún quieres un efecto, puedes usar:
+  opacity: 0.85;
+  */
+}
+
+
+.game-over-message {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 30px;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #5cb85c; /* Un acento verde */
+}
+
+/* Animación para el mensaje de fin de juego (si usas Animate.css) */
+/* La clase animate__fadeIn ya debería estar definida por Animate.css */
+
+/* Ajustes responsivos */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+  .language-selection {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  .language-selection div {
+    width: 100%;
+    justify-content: space-between; /* Para que label y select ocupen el ancho */
+  }
+  .language-selection select {
+    flex-grow: 1; /* Para que el select ocupe el espacio restante */
+  }
+  .language-selection button {
+    width: 100%; /* Botón a todo lo ancho */
+  }
+  .game-board {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); /* Tarjetas más pequeñas */
+    gap: 10px;
+    padding: 15px;
+  }
+  .card {
+    height: 120px;
+  }
+  .card-front {
+    font-size: 2.5em;
+  }
+  .card-back {
+    font-size: 0.85em;
+  }
+  .card-back span.word {
+    font-size: 1em;
+  }
+  .game-over-message {
+    font-size: 1.3em;
+    padding: 20px;
+  }
+}

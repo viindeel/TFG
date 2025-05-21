@@ -1,0 +1,32 @@
+<h1>Sopa de Letras</h1>
+
+<div class="language-selector">
+  <label for="language">Idioma:</label>
+  <select id="language" [(ngModel)]="currentLanguage" (ngModelChange)="changeLanguage($event)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+    <option value="it">Italiano</option>
+    <option value="de">Deutsch</option>
+  </select>
+</div>
+
+<div class="game-container">
+  <div id="letter-grid" [ngStyle]="{'grid-template-columns': 'repeat(' + gridSize + ', 1fr)'}">
+    <div *ngFor="let cell of flatGrid; let i = index"
+         class="letter-cell"
+         [attr.data-row]="cell.rowIndex"
+         [attr.data-col]="cell.colIndex"
+         (click)="selectLetter(cell.rowIndex, cell.colIndex)"
+         [ngClass]="{ 'selected': cell.isSelected, 'found': cell.isFound }">
+      {{ cell.letter }}
+    </div>
+  </div>
+
+  <div class="word-list">
+    <h3>Palabras a Encontrar:</h3>
+    <ul id="words-to-find">
+      <li *ngFor="let word of wordsToFind" [ngClass]="{ 'found': foundWords.includes(word) }">{{ word }}</li>
+    </ul>
+    <p id="message">{{ message }}</p>
+  </div>
+</div>
