@@ -1,0 +1,134 @@
+{
+  "BRAINSTORMING_GAME_TITLE": "Brainstorming Match!",
+  "BRAINSTORMING_GAME_INSTRUCTIONS": "Match each brainstorming principle with its correct definition.",
+  "BRAINSTORMING_PRINCIPLES": "Brainstorming Principles",
+  "BRAINSTORMING_DEFINITIONS": "Definitions",
+  "TERM_GENERATE_IDEAS": "Generate as many ideas as possible",
+  "DEFINITION_GENERATE_IDEAS": "The main goal is quantity, not quality. Encourage everyone to share any idea that comes to mind, no matter how far-fetched it seems.",
+  "TERM_NO_JUDGE_IDEAS": "Don't judge ideas",
+  "DEFINITION_NO_JUDGE_IDEAS": "During the initial phase, all ideas are welcome. Avoid criticism and judgments to foster a free and creative environment.",
+  "TERM_ENCOURAGE_WILD_IDEAS": "Encourage wild ideas",
+  "DEFINITION_ENCOURAGE_WILD_IDEAS": "Ideas that seem strange or impossible can often be the starting point for innovative solutions. Encourage thinking outside the box!",
+  "TERM_BUILD_ON_OTHERS_IDEAS": "Build on others' ideas",
+  "DEFINITION_BUILD_ON_OTHERS_IDEAS": "Participants should listen carefully to each other's ideas and try to improve or combine them to create new ideas.",
+  "CONGRATULATIONS": "Congratulations! Game completed",
+  "CLOSING_IN": "Closing in",
+  "RETURN_TO_LESSONS": "Return to Lessons",
+  "SELECT_PRINCIPLE_FIRST": "Please select a principle first.",
+  "CORRECT_MATCH": "Correct! \"{{ term }}\" matches with \"{{ definition }}\".",
+  "INCORRECT_MATCH": "Incorrect! Try again.",
+
+  "PHRASAL_VERBS": {
+    "DEAL_WITH": "Deal with",
+    "SHUT_DOWN": "Shut down",
+    "COME_TOGETHER": "Come together",
+    "END_UP": "End up",
+    "THROW_UP": "Throw up",
+    "DAWN_ON": "Dawn on"
+  },
+  "DEFINITIONS": {
+    "DEAL_WITH": "To handle, manage, or take action on a problem or situation.",
+    "SHUT_DOWN": "To close or stop the operation of something (e.g., a factory, a computer).",
+    "COME_TOGETHER": "To join or meet for a common purpose; to cooperate.",
+    "END_UP": "To finally be in a particular place or situation, often unexpectedly.",
+    "THROW_UP": "To vomit.",
+    "DAWN_ON": "To begin to be understood or realized by someone."
+  },
+  "PHRASAL_VERB_FACTORY": {
+    "TITLE": "Phrasal Verb Factory!",
+    "INSTRUCTIONS": "Drag the correct phrasal verb onto its definition.",
+    "DEFINITIONS": "Definitions",
+    "VERBS": "Phrasal Verbs",
+    "DROP_HERE": "Drop verb here",
+    "ALL_USED": "All verbs placed!",
+    "SCORE": "Score"
+  },
+  "FEEDBACK": {
+    "CORRECT_TITLE": "Correct!",
+    "CORRECT_TEXT": "Good job!",
+    "INCORRECT_TITLE": "Incorrect",
+    "INCORRECT_TEXT": "Try again!",
+    "GAME_COMPLETE_TITLE": "Well Done!",
+    "GAME_COMPLETE_TEXT": "You matched all the phrasal verbs!",
+    "GAME_COMPLETE_BUTTON": "Play Again",
+    "GAME_OVER_TITLE": "Game Over"
+  },
+  "SCENARIOS": {
+    "MONOPOLY": {
+      "BUYOUT": "Your company acquires all small competitors in the region.",
+      "INNOVATION": "Your R&D team launches a groundbreaking, efficient product.",
+      "PRICE_FIXING": "Competitor A suggests coordinating prices with your company.",
+      "PREDATORY_PRICING": "Your company drastically lowers prices below cost to drive out Competitor A.",
+      "NEW_ENTRY": "A new startup enters the market with a competitive alternative.",
+      "LOBBYING": "Your company spends heavily lobbying against stricter environmental regulations.",
+      "PATENT_TROLL": "Your company buys patents just to sue smaller innovators using similar tech.",
+      "OPEN_SOURCE": "Your company open-sources a key internal tool, boosting industry collaboration.",
+      "GREEN_INVEST": "Your company invests significantly in renewable energy for its factories.",
+      "PRIVACY_FINE": "Your company faces a large fine for data privacy violations."
+    }
+  },
+  "MONOPOLY_GAME": {
+    "TITLE": "Monopoly Buster!",
+    "INSTRUCTIONS": "React quickly! Is the described action fair competition (Allow) or anti-competitive (Bust)?",
+    "MARKET_SHARE": "Market Share",
+    "SCENARIO": "Scenario",
+    "ALLOW_BUTTON": "Allow",
+    "BUST_BUTTON": "Bust",
+    "SCORE": "Score",
+    "START_BUTTON": "Start Game",
+    "SELECT_LANGUAGE": "Select Language:",
+    "TIME_LEFT": "Time Left",
+    "LOADING_SCENARIO": "Loading next scenario...",
+    "TIME_UP": "Time's Up!",
+    "END": {
+      "TITLE": "Game Over!",
+      "WINNER": "Winner",
+      "YOUR_RANK": "Your Rank",
+      "FINAL_SCORE": "Final Score",
+      "BUTTON": "Play Again"
+    }
+  },
+  "COMPANIES": {
+    "TU_EMPRESA": "Your Company",
+    "COMPETIDOR_A": "Competitor A",
+    "COMPETIDOR_B": "Competitor B",
+    "OTROS": "Others"
+  },
+  "WLB_GAME": {
+    "TITLE": "Work-Life Balance Manager",
+    "INSTRUCTIONS": "Drag tasks from the list to the days of the week. Complete required work tasks without letting Energy drop to 0 or Stress reach 100!",
+    "START_BUTTON": "Start Week",
+    "ENERGY": "Energy",
+    "STRESS": "Stress",
+    "WORK_TASKS": "Work Tasks Completed",
+    "AVAILABLE_TASKS": "Available Tasks",
+    "YOUR_WEEK": "Your Week",
+    "DAY": "Day",
+    "DROP_TASK_HERE": "Drop task here",
+    "NO_TASKS_LEFT": "No tasks left",
+    "WIN": "Congratulations! You managed your week successfully!",
+    "LOSE_ENERGY": "Oh no! You ran out of energy.",
+    "LOSE_STRESS": "Oh no! You are completely stressed out."
+  },
+  "TASKS": {
+    "WLB": {
+      "REPORT": "Urgent Report",
+      "MEETING": "Team Meeting",
+      "EMAILS": "Answer Emails",
+      "PROJECT_PLAN": "Project Planning",
+      "CODE_REVIEW": "Code Review",
+      "CLIENT_CALL": "Client Call",
+      "GYM": "Gym Session",
+      "FAMILY_DINNER": "Family Dinner",
+      "HOBBY": "Hobby Time",
+      "GROCERIES": "Groceries",
+      "SLEEP": "Sleep (7-8h)",
+      "RELAX": "Relax / Meditate",
+      "SHORT_BREAK": "Short Break"
+    }
+  },
+  "SNACKBAR.DISMISS": "Dismiss",
+  "SNACKBAR.CORRECT_MATCH": "Correct! '{{term}}' is the one!",
+  "SNACKBAR.INCORRECT_MATCH": "Oops! Not quite. Try that definition again!",
+  "SNACKBAR.SELECT_PRINCIPLE_FIRST_WARNING": "Hold on! Please select a principle first."
+}

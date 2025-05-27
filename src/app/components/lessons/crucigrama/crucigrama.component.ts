@@ -22,7 +22,7 @@ interface PalabraCrucigrama {
 })
 export class CrucigramaComponent implements OnInit {
   idiomaSeleccionado: string = 'es';
-  palabrasOriginales: PalabraCrucigrama[] = [ // Mantenemos el array original
+  palabrasOriginales: PalabraCrucigrama[] = [
     { palabra: 'SIETE', pista_es: 'Número después del seis', pista_en: 'Number after six', pista_de: 'Zahl nach sechs', pista_it: 'Numero dopo il sei', fila: 0, columna: 0, orientacion: 'horizontal' },
     { palabra: 'DOS', pista_es: 'Número entre uno y tres', pista_en: 'Number between one and three', pista_de: 'Zahl zwischen eins und drei', pista_it: 'Numero tra uno e tre', fila: 2, columna: 0, orientacion: 'horizontal' },
     { palabra: 'UNO', pista_es: 'Primer número', pista_en: 'First number', pista_de: 'Erste Zahl', pista_it: 'Primo numero', fila: 0, columna: 6, orientacion: 'vertical' },
@@ -40,7 +40,7 @@ export class CrucigramaComponent implements OnInit {
   cuadricula: (string | null)[][] = [];
   respuestasUsuario: { [key: string]: string[] } = {};
   mensaje: string = '';
-  numeroPalabrasAleatorias: number = 6; // Define cuántas palabras aleatorias quieres en cada juego
+  numeroPalabrasAleatorias: number = 6;
 
   ngOnInit(): void {
     this.seleccionarPalabrasAleatorias();
@@ -72,7 +72,7 @@ export class CrucigramaComponent implements OnInit {
           r += i;
         }
         if (r >= 0 && r < this.filasMaximas && c >= 0 && c < this.columnasMaximas) {
-          this.cuadricula[r][c] = ''; // Marca como celda activa
+          this.cuadricula[r][c] = '';
         }
       }
     });

@@ -20,8 +20,8 @@ export class RegistroComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private credentialsService: CredentialsService, // Descomentar cuando crees el servicio
-    private snackBar: MatSnackBar, // Usamos MatSnackBar
+    private credentialsService: CredentialsService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
@@ -41,20 +41,20 @@ export class RegistroComponent {
     }
 
     const registerData = this.registerForm.value;
-    console.log('Datos de registro:', registerData); // Por ahora, solo mostramos los datos en la consola
+    console.log('Datos de registro:', registerData);
 
   
     this.credentialsService.register(registerData as UserInterface).subscribe({
       next: (data) => {
         console.log('Registro exitoso:', data);
         this.snackBar.open('Registro completado con éxito. ¡Bienvenido!', 'Cerrar', { duration: 3000 });
-        this.router.navigate(['/login']); // Redirigir a la página de login
+        this.router.navigate(['/login']);
       },
       error: err => {
         console.error('Error durante el registro:', err);
         let message = 'Ha ocurrido un error durante el registro. Inténtelo de nuevo.';
         if (err?.error) {
-          message = err.error; // Puedes intentar mostrar un mensaje de error más específico del backend
+          message = err.error;
         }
         this.snackBar.open('Error de registro', message, {
           duration: 5000,
@@ -62,13 +62,6 @@ export class RegistroComponent {
         });
       }
     });
-
-    // Por ahora, como no tenemos backend, simulamos un registro exitoso después de 1 segundo
-    this.snackBar.open('Intentando registrar usuario...', 'Espere', { duration: 1000 });
-    setTimeout(() => {
-      this.snackBar.open('¡Simulación de registro exitosa!', 'Cerrar', { duration: 2000 });
-      this.router.navigate(['/login']); // Redirigimos a la página de login como ejemplo
-    }, 1500);
   }
 
 }

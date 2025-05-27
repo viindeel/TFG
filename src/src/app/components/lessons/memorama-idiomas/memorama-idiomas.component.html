@@ -1,0 +1,34 @@
+<h1>Memorama de Idiomas</h1>
+
+<div class="language-selection">
+  <div>
+    <label for="language1">Idioma 1:</label>
+    <select id="language1" [(ngModel)]="selectedLanguages[0]">
+      <option *ngFor="let lang of availableLanguages" [value]="lang">{{ lang }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="language2">Idioma 2:</label>
+    <select id="language2" [(ngModel)]="selectedLanguages[1]">
+      <option *ngFor="let lang of availableLanguages" [value]="lang">{{ lang }}</option>
+    </select>
+  </div>
+  <button (click)="startGame()">Iniciar Juego</button>
+</div>
+
+<div class="game-board">
+  <div *ngFor="let card of cards"
+       class="card"
+       [class.flipped]="card.isFlipped || card.isMatched"
+       [class.matched]="card.isMatched"
+       (click)="flipCard(card)">
+    <div class="card-inner">
+      <div class="card-front">?</div>
+      <div class="card-back">{{ card.word }} ({{ card.language }})</div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="gameOver" class="game-over-message animate__animated animate__fadeIn">
+  ¡Felicidades! ¡Has encontrado todas las parejas! 🎉
+</div>

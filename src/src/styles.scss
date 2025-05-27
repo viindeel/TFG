@@ -1,0 +1,38 @@
+/* src/styles.scss */
+
+// Define tus colores personalizados (azul y gris)
+$primary-color: #007bff; // Reemplaza con tu tono de azul preferido
+$secondary-color: #6c757d; // Reemplaza con tu tono de gris preferido
+
+// Sobreescribe las variables de color de Bootstrap
+$primary: $primary-color;
+$secondary: $secondary-color;
+
+// Puedes sobreescribir otros colores de Bootstrap si lo deseas
+//$success: tu-color-verde;
+//$danger: tu-color-rojo;
+
+// Importa el resto de Bootstrap
+// Estilos globales existentes (mantenemos tus estilos)
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  background-color: #f9f9f9; /* Un fondo claro */
+}
+
+.app-header {
+  background-color: lighten($primary-color, 40%); /* Un tono más claro del primario para el header */
+  /* ... otros estilos del header ... */
+}
+
+.app-nav a.active {
+  color: $primary-color; /* Usa el color primario para el enlace activo */
+  font-weight: bold;
+}
+
+button[mat-raised-button][color="primary"] {
+  background-color: $primary-color;
+  color: white;
+}
+
+/* ... otros estilos globales ... */

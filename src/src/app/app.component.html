@@ -1,0 +1,35 @@
+<div class="app-container d-flex flex-column min-vh-100">
+  <header class="app-header d-flex justify-content-between align-items-center py-4" style="background-color: #34495e; color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h1 class="titulooo mb-0" routerLink="/" routerLinkActive="active">Palabras al Poder</h1>
+    <nav class="app-nav">
+      <a routerLink="/inicio" routerLinkActive="active" class="nav-link">Inicio</a>
+      <a routerLink="/lecciones" routerLinkActive="active" class="nav-link">Lecciones</a>
+      <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
+
+      <ng-container *ngIf="!isLoggedIn">
+        <a class="nav-link" (click)="irAlLogin()">Login</a>
+        <a class="nav-link" (click)="irAlRegistro()">Registro</a>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <div class="user-dropdown nav-link">
+          <span (click)="toggleDropdown()" class="dropdown-toggle" style="cursor: pointer;">
+            Bienvenido, {{ username }}
+          </span>
+          <div class="dropdown-menu" *ngIf="isDropdownOpen">
+            <a (click)="logoutAndCloseDropdown()" class="dropdown-item">Cerrar Sesión</a>
+          </div>
+        </div>
+      </ng-container>
+
+    </nav>
+  </header>
+
+  <main class="app-main py-5 flex-grow-1">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="app-footer text-center py-3" style="background-color: #34495e; color: white;">
+    <p class="mb-0">&copy; 2025 Palabras al Poder</p>
+  </footer>
+</div>

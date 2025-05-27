@@ -1,0 +1,84 @@
+<div class="wlb-container">
+    <h2>{{ 'WLB_GAME.TITLE' | translate }}</h2>
+    <p>{{ 'WLB_GAME.INSTRUCTIONS' | translate }}</p>
+  
+    <div class="language-selector mb-3">
+        <span class="me-2">{{ 'Select Language:' | translate }}</span>
+        <button class="btn btn-sm me-1" [ngClass]="currentLang === 'en' ? 'btn-primary' : 'btn-outline-primary'" (click)="changeLanguage('en')">English</button>
+        <button class="btn btn-sm me-1" [ngClass]="currentLang === 'de' ? 'btn-primary' : 'btn-outline-primary'" (click)="changeLanguage('de')">Deutsch</button>
+        <button class="btn btn-sm" [ngClass]="currentLang === 'it' ? 'btn-primary' : 'btn-outline-primary'" (click)="changeLanguage('it')">Italiano</button>
+    </div>
+  
+    <div *ngIf="!gameStarted" class="start-button-container text-center mt-4">
+      <button class="btn btn-warning btn-lg" (click)="startGame()">
+        {{ 'WLB_GAME.START_BUTTON' | translate }}
+      </button>
+    </div>
+  
+    <div *ngIf="gameStarted">
+  
+      <div class="status-bars mb-3 row">
+        <div class="col-md-4 status-bar energy-bar">
+          <label>{{ 'WLB_GAME.ENERGY' | translate }}: {{ (energy$ | async) ?? 0 }}%</label>
+          <progress class="progress progress-info" max="100" [value]="energy$ | async"></progress>
+        </div>
+        <div class="col-md-4 status-bar stress-bar">
+          <label>{{ 'WLB_GAME.STRESS' | translate }}: {{ (stress$ | async) ?? 0 }}%</label>
+          <progress class="progress progress-danger" max="100" [value]="stress$ | async"></progress>
+        </div>
+         <div class="col-md-4 status-bar tasks-bar">
+          <label>{{ 'WLB_GAME.WORK_TASKS' | translate }}: {{ (workTasksCompleted$ | async) ?? 0 }} / {{ workTasksRequired }}</label>
+          <progress class="progress progress-success" max="{{ workTasksRequired }}" [value]="workTasksCompleted$ | async"></progress>
+        </div>
+      </div>
+  
+      <div class="game-board" cdkDropListGroup *ngIf="!(gameOver$ | async)">
+  
+        <div class="task-list available-tasks">
+          <h3>{{ 'WLB_GAME.AVAILABLE_TASKS' | translate }}</h3>
+          <div
+            id="available-tasks"
+            cdkDropList
+            [cdkDropListData]="availableTasks$ | async"
+            [cdkDropListConnectedTo]="dayDropLists"  
+            class="task-list-container"
+            (cdkDropListDropped)="drop($event)">
+            <div class="task-item" *ngFor="let task of availableTasks$ | async" cdkDrag [cdkDragData]="task" title="Energía: {{task.energyEffect}}, Estrés: {{task.stressEffect}}">
+              <span class="task-name">{{ task.nameText || task.nameKey }}</span>
+              <span class="task-category {{task.category}}">
+                  <i class="bi" [ngClass]="{'bi-briefcase-fill': task.category === 'work', 'bi-house-heart-fill': task.category === 'personal', 'bi-moon-stars-fill': task.category === 'rest'}"></i>
+              </span>
+            </div>
+             <div *ngIf="(availableTasks$ | async)?.length === 0" class="empty-list">
+                 {{ 'WLB_GAME.NO_TASKS_LEFT' | translate }}
+             </div>
+          </div>
+        </div>
+  
+        <div class="schedule-area">
+          <h3>{{ 'WLB_GAME.YOUR_WEEK' | translate }}</h3>
+          <div class="week-days">
+              <div *ngFor="let dayNum of [1, 2, 3, 4, 5]" class="day-column">
+                  <h4>{{ 'WLB_GAME.DAY' | translate }} {{ dayNum }}</h4>
+                  <div
+                      [id]="'day-' + dayNum"
+                      cdkDropList
+                      [cdkDropListData]="dayTasks[dayNum] ?? []"
+                      [cdkDropListConnectedTo]="['available-tasks']" 
+                      class="day-drop-list"
+                      (cdkDropListDropped)="drop($event)">
+                      <div class="task-item scheduled" *ngFor="let task of dayTasks[dayNum]">
+                         <span class="task-name">{{ task.nameText || task.nameKey }}</span>
+                          <span class="task-category {{task.category}}">
+                              <i class="bi" [ngClass]="{'bi-briefcase-fill': task.category === 'work', 'bi-house-heart-fill': task.category === 'personal', 'bi-moon-stars-fill': task.category === 'rest'}"></i>
+                          </span>
+                           </div>
+                      <div class="drop-placeholder" *ngIf="!dayTasks[dayNum] || dayTasks[dayNum].length === 0">
+                          {{ 'WLB_GAME.DROP_TASK_HERE' | translate }}
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+  
+      </div> </div> </div>

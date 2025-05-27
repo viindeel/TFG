@@ -1,0 +1,134 @@
+{
+  "BRAINSTORMING_GAME_TITLE": "Abbina le Idee!",
+  "BRAINSTORMING_GAME_INSTRUCTIONS": "Abbina ogni principio di brainstorming con la sua definizione corretta.",
+  "BRAINSTORMING_PRINCIPLES": "Principi di Brainstorming",
+  "BRAINSTORMING_DEFINITIONS": "Definizioni",
+  "TERM_GENERATE_IDEAS": "Generare quante più idee possibili",
+  "DEFINITION_GENERATE_IDEAS": "L'obiettivo principale è la quantità, non la qualità. Incoraggia tutti a condividere qualsiasi idea venga in mente, non importa quanto stravagante possa sembrare.",
+  "TERM_NO_JUDGE_IDEAS": "Non giudicare le idee",
+  "DEFINITION_NO_JUDGE_IDEAS": "Durante la fase iniziale, tutte le idee sono benvenute. Evita critiche e giudizi per favorire un ambiente creativo e libero.",
+  "TERM_ENCOURAGE_WILD_IDEAS": "Incoraggiare idee stravaganti",
+  "DEFINITION_ENCOURAGE_WILD_IDEAS": "Le idee che sembrano strane o impossibili possono spesso essere il punto di partenza per soluzioni innovative. Incoraggia a pensare fuori dagli schemi!",
+  "TERM_BUILD_ON_OTHERS_IDEAS": "Costruire sulle idee degli altri",
+  "DEFINITION_BUILD_ON_OTHERS_IDEAS": "I partecipanti dovrebbero ascoltare attentamente le idee degli altri e cercare di migliorarle o combinarle per creare nuove idee.",
+  "CONGRATULATIONS": "Congratulazioni! Gioco completato",
+  "CLOSING_IN": "Chiusura in",
+  "RETURN_TO_LESSONS": "Torna alle Lezioni",
+  "SELECT_PRINCIPLE_FIRST": "Per favore, seleziona prima un principio.",
+  "CORRECT_MATCH": "Corretto! \"{{ term }}\" corrisponde a \"{{ definition }}\".",
+  "INCORRECT_MATCH": "Errato! Riprova.",
+
+  "PHRASAL_VERBS": {
+    "DEAL_WITH": "Occuparsi di / Affrontare",
+    "SHUT_DOWN": "Chiudere / Spegnere",
+    "COME_TOGETHER": "Riunirsi / Unirsi",
+    "END_UP": "Finire / Trovarsi",
+    "THROW_UP": "Vomitare",
+    "DAWN_ON": "Rendersi conto / Capire improvvisamente"
+  },
+  "DEFINITIONS": {
+    "DEAL_WITH": "Gestire, trattare o agire riguardo a un problema o una situazione.",
+    "SHUT_DOWN": "Chiudere o interrompere il funzionamento di qualcosa (es. una fabbrica, un computer).",
+    "COME_TOGETHER": "Unirsi o incontrarsi per uno scopo comune; cooperare.",
+    "END_UP": "Trovarsi infine in un luogo o una situazione particolare, spesso inaspettatamente.",
+    "THROW_UP": "Vomitare.",
+    "DAWN_ON": "Iniziare ad essere capito o realizzato da qualcuno."
+  },
+  "PHRASAL_VERB_FACTORY": {
+    "TITLE": "Fabbrica di Phrasal Verb!",
+    "INSTRUCTIONS": "Trascina il phrasal verb corretto sulla sua definizione.",
+    "DEFINITIONS": "Definizioni",
+    "VERBS": "Phrasal Verbs",
+    "DROP_HERE": "Rilascia verbo qui",
+    "ALL_USED": "Tutti i verbi posizionati!",
+    "SCORE": "Punteggio"
+  },
+  "FEEDBACK": {
+    "CORRECT_TITLE": "Corretto!",
+    "CORRECT_TEXT": "Ben fatto!",
+    "INCORRECT_TITLE": "Errato",
+    "INCORRECT_TEXT": "Riprova!",
+    "GAME_COMPLETE_TITLE": "Ottimo Lavoro!",
+    "GAME_COMPLETE_TEXT": "Hai abbinato tutti i phrasal verbs!",
+    "GAME_COMPLETE_BUTTON": "Gioca Ancora",
+    "GAME_OVER_TITLE": "Fine Partita"
+  },
+  "SCENARIOS": {
+    "MONOPOLY": {
+      "BUYOUT": "La tua azienda acquisisce tutti i piccoli concorrenti nella regione.",
+      "INNOVATION": "Il tuo team R&S lancia un prodotto innovativo ed efficiente.",
+      "PRICE_FIXING": "Il Concorrente A suggerisce di coordinare i prezzi con la tua azienda.",
+      "PREDATORY_PRICING": "La tua azienda abbassa drasticamente i prezzi sotto costo per eliminare il Concorrente A.",
+      "NEW_ENTRY": "Una nuova startup entra nel mercato con un'alternativa competitiva.",
+      "LOBBYING": "La tua azienda spende molto in attività di lobbying contro normative ambientali più severe.",
+      "PATENT_TROLL": "La tua azienda acquista brevetti solo per citare in giudizio piccoli innovatori che utilizzano tecnologie simili.",
+      "OPEN_SOURCE": "La tua azienda rende open source uno strumento interno chiave, promuovendo la collaborazione nel settore.",
+      "GREEN_INVEST": "La tua azienda investe significativamente in energie rinnovabili per le sue fabbriche.",
+      "PRIVACY_FINE": "La tua azienda si trova ad affrontare una pesante multa per violazioni della privacy dei dati."
+    }
+  },
+  "MONOPOLY_GAME": {
+    "TITLE": "Cacciatore di Monopoli!",
+    "INSTRUCTIONS": "Reagisci velocemente! L'azione descritta è concorrenza leale (Consenti) o anticoncorrenziale (Blocca)?",
+    "MARKET_SHARE": "Quota di Mercato",
+    "SCENARIO": "Scenario",
+    "ALLOW_BUTTON": "Consenti",
+    "BUST_BUTTON": "Blocca",
+    "SCORE": "Punteggio",
+    "START_BUTTON": "Inizia Partita",
+    "SELECT_LANGUAGE": "Seleziona Lingua:",
+    "TIME_LEFT": "Tempo Rimanente",
+    "LOADING_SCENARIO": "Caricamento scenario successivo...",
+    "TIME_UP": "Tempo Scaduto!",
+    "END": {
+      "TITLE": "Fine Partita!",
+      "WINNER": "Vincitore",
+      "YOUR_RANK": "Tuo Rango",
+      "FINAL_SCORE": "Punteggio Finale",
+      "BUTTON": "Gioca Ancora"
+    }
+  },
+  "COMPANIES": {
+    "TU_EMPRESA": "Tua Azienda",
+    "COMPETIDOR_A": "Concorrente A",
+    "COMPETIDOR_B": "Concorrente B",
+    "OTROS": "Altri"
+  },
+  "WLB_GAME": {
+    "TITLE": "Gestore Equilibrio Vita-Lavoro",
+    "INSTRUCTIONS": "Trascina le attività dalla lista ai giorni della settimana. Completa le attività lavorative richieste senza far scendere l'Energia a 0 o salire lo Stress a 100!",
+    "START_BUTTON": "Inizia Settimana",
+    "ENERGY": "Energia",
+    "STRESS": "Stress",
+    "WORK_TASKS": "Compiti Lavorativi Completati",
+    "AVAILABLE_TASKS": "Attività Disponibili",
+    "YOUR_WEEK": "La Tua Settimana",
+    "DAY": "Giorno",
+    "DROP_TASK_HERE": "Rilascia attività qui",
+    "NO_TASKS_LEFT": "Nessuna attività rimasta",
+    "WIN": "Congratulazioni! Hai gestito la tua settimana con successo!",
+    "LOSE_ENERGY": "Oh no! Hai esaurito l'energia.",
+    "LOSE_STRESS": "Oh no! Sei completamente stressato."
+  },
+  "TASKS": {
+    "WLB": {
+      "REPORT": "Report Urgente",
+      "MEETING": "Riunione Team",
+      "EMAILS": "Rispondere Email",
+      "PROJECT_PLAN": "Pianificazione Progetto",
+      "CODE_REVIEW": "Revisione Codice",
+      "CLIENT_CALL": "Chiamata Cliente",
+      "GYM": "Sessione Palestra",
+      "FAMILY_DINNER": "Cena in Famiglia",
+      "HOBBY": "Tempo per Hobby",
+      "GROCERIES": "Spesa",
+      "SLEEP": "Dormire (7-8h)",
+      "RELAX": "Relax / Meditazione",
+      "SHORT_BREAK": "Pausa Breve"
+    }
+  },
+  "SNACKBAR.DISMISS": "Ignora",
+  "SNACKBAR.CORRECT_MATCH": "Corretto! '{{term}}' è quello giusto!",
+  "SNACKBAR.INCORRECT_MATCH": "Oops! Non proprio. Riprova quella definizione!",
+  "SNACKBAR.SELECT_PRINCIPLE_FIRST_WARNING": "Aspetta! Per favore, seleziona prima un principio."
+}

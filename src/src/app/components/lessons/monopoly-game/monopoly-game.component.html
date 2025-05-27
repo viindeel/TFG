@@ -1,0 +1,68 @@
+<div class="monopoly-game-container">
+  <h2>{{ 'MONOPOLY_GAME.TITLE' | translate }}</h2>
+
+  <p>{{ 'MONOPOLY_GAME.INSTRUCTIONS' | translate }}</p>
+  <div class="language-selector mb-3">
+      <span class="me-2">{{ 'MONOPOLY_GAME.SELECT_LANGUAGE' | translate }}</span>
+      <button class="btn btn-sm me-1" [ngClass]="currentLang === 'en' ? 'btn-primary' : 'btn-outline-primary'" (click)="changeLanguage('en')">English</button>
+      <button class="btn btn-sm me-1" [ngClass]="currentLang === 'de' ? 'btn-primary' : 'btn-outline-primary'" (click)="changeLanguage('de')">Deutsch</button>
+      <button class="btn btn-sm" [ngClass]="currentLang === 'it' ? 'btn-primary' : 'btn-outline-primary'" (click)="changeLanguage('it')">Italiano</button>
+  </div>
+
+  <div *ngIf="!gameActive" class="start-button-container text-center mt-4">
+      <button class="btn btn-warning btn-lg" (click)="startGame()">
+          {{ (gameResult ? 'MONOPOLY_GAME.END.BUTTON' : 'MONOPOLY_GAME.START_BUTTON') | translate }}
+      </button>
+  </div>
+
+  <div *ngIf="!gameActive && gameResult" class="results-container card mt-4 mb-4 p-3">
+      <h3 class="text-center">{{ 'MONOPOLY_GAME.END.TITLE' | translate }}</h3>
+      <ul class="list-unstyled text-center">
+          <li><strong>{{ 'MONOPOLY_GAME.END.WINNER' | translate }}:</strong> {{ gameResult.winner }} ({{ marketShares[companyLabels.indexOf(gameResult.winner)] }}%)</li>
+          <li><strong>{{ 'MONOPOLY_GAME.END.YOUR_RANK' | translate }}:</strong> {{ gameResult.playerRank }}</li>
+          <li><strong>{{ 'MONOPOLY_GAME.END.FINAL_SCORE' | translate }}:</strong> {{ gameResult.finalScore }}</li>
+      </ul>
+  </div>
+
+  <div *ngIf="gameActive" class="game-content">
+      <div class="chart-area">
+          <h3>{{ 'MONOPOLY_GAME.MARKET_SHARE' | translate }}</h3>
+          <div class="chart-container">
+              <canvas #marketShareCanvas id="marketShareChart"></canvas>
+          </div>
+      </div>
+
+      <div class="scenario-area">
+           <h3>{{ 'MONOPOLY_GAME.SCENARIO' | translate }} ({{ scenarioCount }} / {{ maxScenarios }})</h3>
+
+          <div class="scenario-box" *ngIf="currentScenario; else loadingScenario">
+              <p>{{ currentScenarioText }}</p>
+              <div class="timer">
+                  {{ 'MONOPOLY_GAME.TIME_LEFT' | translate }}: {{ timeLeft }}s
+                  <progress max="{{ reactionTime }}" [value]="timeLeft"></progress>
+              </div>
+          </div>
+          <ng-template #loadingScenario>
+              <div class="scenario-box">
+                  <p>{{ 'MONOPOLY_GAME.LOADING_SCENARIO' | translate }}</p>
+              </div>
+          </ng-template>
+
+          <div class="action-buttons" *ngIf="currentScenario && timeLeft > 0">
+              <button class="btn btn-success me-2" (click)="playerAction('allow')">
+                  {{ 'MONOPOLY_GAME.ALLOW_BUTTON' | translate }} 👍
+              </button>
+              <button class="btn btn-danger" (click)="playerAction('bust')">
+                  {{ 'MONOPOLY_GAME.BUST_BUTTON' | translate }} 🚫
+              </button>
+          </div>
+          <div class="action-buttons" *ngIf="currentScenario && timeLeft <= 0">
+               <p class="text-danger fw-bold">{{ 'MONOPOLY_GAME.TIME_UP' | translate }}</p>
+           </div>
+      </div>
+
+      <div class="score-area">
+          <h3>{{ 'MONOPOLY_GAME.SCORE' | translate }}: {{ playerScore }}</h3>
+       </div>
+  </div>
+</div>

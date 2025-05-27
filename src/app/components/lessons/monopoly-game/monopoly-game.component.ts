@@ -6,14 +6,13 @@ import Swal from 'sweetalert2';
 import { Subscription, forkJoin, interval, timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-// --- Interfaces ---
+
 interface MonopolyScenario {
   id: number;
   textKey: string;
   type: 'good' | 'bad' | 'neutral';
   effect: { [companyIndex: number]: number };
 }
-// --- Fin Interfaces ---
 
 @Component({
   selector: 'app-monopoly-game',

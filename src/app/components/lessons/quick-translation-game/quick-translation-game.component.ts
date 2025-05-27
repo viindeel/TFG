@@ -20,8 +20,7 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
   selectedSourceLanguage: string = 'es';
   selectedTargetLanguage: string = 'en';
 
-  // Un diccionario más robusto para que las palabras tengan equivalentes
-  // Se asume que las palabras en la misma posición en el array de cada idioma se corresponden
+
     languageDictionary: { [key: string]: string[] } = {
     es: [
       'VARIABLE', 'FUNCIÓN', 'BUCLE', 'OBJETO', 'CLASE',
@@ -41,7 +40,7 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
     ]
   };
 
-  wordPairs: WordPair[] = []; // Pares de palabras para el juego
+  wordPairs: WordPair[] = []; 
   currentWordPair: WordPair | null = null;
   currentSourceWord: string = '';
   userTranslation: string = '';
@@ -49,16 +48,14 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
   feedbackClass: string = ''; // 'correct' o 'incorrect'
 
   score: number = 0;
-  timeLeft: number = 10; // Segundos por palabra
+  timeLeft: number = 10;
   timerSubscription: Subscription | undefined;
   gameStarted: boolean = false;
   gameOver: boolean = false;
-  totalWordsToPlay: number = 10; // Cuántas palabras se mostrarán en total
+  totalWordsToPlay: number = 10;
   wordsPlayed: number = 0;
-  inputDisabled: boolean = false; // <-- Propiedad para controlar si el input está deshabilitado
-
+  inputDisabled: boolean = false;
   ngOnInit(): void {
-    // Inicialización al cargar el componente
   }
 
   ngOnDestroy(): void {
@@ -72,7 +69,7 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
     this.gameStarted = true;
     this.feedbackMessage = '';
     this.userTranslation = '';
-    this.inputDisabled = false; // <-- Habilitar el input al inicio del juego
+    this.inputDisabled = false;
     this.generateWordPairs();
     this.nextWord();
   }
@@ -88,7 +85,6 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
     }
 
     this.wordPairs = [];
-    // Crear pares basados en la posición en el array (asumiendo que son traducciones directas)
     for (let i = 0; i < sourceWords.length; i++) {
       this.wordPairs.push({
         [this.selectedSourceLanguage]: sourceWords[i],
@@ -110,25 +106,25 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
     this.currentWordPair = this.wordPairs[this.wordsPlayed];
     if (this.currentWordPair) {
       this.currentSourceWord = this.currentWordPair[this.selectedSourceLanguage];
-      this.timeLeft = 10; // Reiniciar tiempo
-      this.userTranslation = ''; // Limpiar campo de traducción
+      this.timeLeft = 10;
+      this.userTranslation = '';
       this.feedbackMessage = '';
       this.feedbackClass = '';
-      this.inputDisabled = false; // <-- Habilitar input para la nueva palabra
+      this.inputDisabled = false;
       this.startTimer();
     } else {
-      this.endGame(); // En caso de que no haya más palabras
+      this.endGame();
     }
   }
 
   startTimer(): void {
-    this.stopTimer(); // Asegurarse de que no haya múltiples timers
+    this.stopTimer();
     this.timerSubscription = interval(1000).pipe(
       takeWhile(() => this.timeLeft >= 0 && this.gameStarted)
     ).subscribe(() => {
       this.timeLeft--;
       if (this.timeLeft < 0) {
-        this.checkTranslation(true); // Se acabó el tiempo
+        this.checkTranslation(true);
       }
     });
   }
@@ -141,7 +137,7 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
 
   checkTranslation(timedOut: boolean = false): void {
     this.stopTimer();
-    this.inputDisabled = true; // <-- Deshabilitar input mientras se procesa la traducción
+    this.inputDisabled = true;
     this.wordsPlayed++;
 
     if (!this.currentWordPair) {
@@ -149,7 +145,6 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
       this.feedbackClass = 'incorrect';
       setTimeout(() => {
         this.nextWord();
-        // nextWord ya maneja this.inputDisabled = false;
       }, 1500);
       return;
     }
@@ -171,18 +166,16 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.nextWord();
-      // nextWord ya maneja this.inputDisabled = false;
-    }, 1500); // Esperar un poco antes de la siguiente palabra
+    }, 1500);
   }
 
   endGame(): void {
     this.gameStarted = false;
     this.gameOver = true;
     this.stopTimer();
-    this.inputDisabled = true; // <-- Deshabilitar input al final del juego
+    this.inputDisabled = true;
   }
 
-  // Utilidad para mezclar arrays
   shuffleArray<T>(array: T[]): T[] {
     let currentIndex = array.length, randomIndex;
     while (currentIndex !== 0) {

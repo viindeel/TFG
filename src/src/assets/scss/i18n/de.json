@@ -1,0 +1,134 @@
+{
+  "BRAINSTORMING_GAME_TITLE": "Brainstorming-Zuordnung!",
+  "BRAINSTORMING_GAME_INSTRUCTIONS": "Ordne jedes Brainstorming-Prinzip seiner korrekten Definition zu.",
+  "BRAINSTORMING_PRINCIPLES": "Brainstorming-Prinzipien",
+  "BRAINSTORMING_DEFINITIONS": "Definitionen",
+  "TERM_GENERATE_IDEAS": "So viele Ideen wie möglich generieren",
+  "DEFINITION_GENERATE_IDEAS": "Das Hauptziel ist die Quantität, nicht die Qualität. Ermutige jeden, jede Idee zu teilen, die ihm in den Sinn kommt, egal wie abwegig sie erscheint.",
+  "TERM_NO_JUDGE_IDEAS": "Ideen nicht bewerten",
+  "DEFINITION_NO_JUDGE_IDEAS": "Während der Anfangsphase sind alle Ideen willkommen. Vermeide Kritik und Urteile, um ein freies und kreatives Umfeld zu fördern.",
+  "TERM_ENCOURAGE_WILD_IDEAS": "Verrückte Ideen fördern",
+  "DEFINITION_ENCOURAGE_WILD_IDEAS": "Ideen, die seltsam oder unmöglich erscheinen, können oft der Ausgangspunkt für innovative Lösungen sein. Ermutige zum Umdenken!",
+  "TERM_BUILD_ON_OTHERS_IDEAS": "Auf den Ideen anderer aufbauen",
+  "DEFINITION_BUILD_ON_OTHERS_IDEAS": "Die Teilnehmer sollten aufmerksam den Ideen der anderen zuhören und versuchen, sie zu verbessern oder zu kombinieren, um neue Ideen zu schaffen.",
+  "CONGRATULATIONS": "Herzlichen Glückwunsch! Spiel abgeschlossen",
+  "CLOSING_IN": "Schließt in",
+  "RETURN_TO_LESSONS": "Zurück zu den Lektionen",
+  "SELECT_PRINCIPLE_FIRST": "Bitte wähle zuerst ein Prinzip aus.",
+  "CORRECT_MATCH": "Richtig! \"{{ term }}\" stimmt mit \"{{ definition }}\" überein.",
+  "INCORRECT_MATCH": "Falsch! Versuche es noch einmal.",
+
+  "PHRASAL_VERBS": {
+    "DEAL_WITH": "Umgehen mit",
+    "SHUT_DOWN": "Abschalten / Schließen",
+    "COME_TOGETHER": "Zusammenkommen",
+    "END_UP": "Enden / Landen",
+    "THROW_UP": "Sich übergeben",
+    "DAWN_ON": "Jemandem dämmern / klar werden"
+  },
+  "DEFINITIONS": {
+    "DEAL_WITH": "Ein Problem oder eine Situation handhaben, verwalten oder Maßnahmen ergreifen.",
+    "SHUT_DOWN": "Den Betrieb von etwas schließen oder stoppen (z.B. eine Fabrik, ein Computer).",
+    "COME_TOGETHER": "Sich für einen gemeinsamen Zweck zusammenschließen oder treffen; kooperieren.",
+    "END_UP": "Schließlich an einem bestimmten Ort oder in einer bestimmten Situation sein, oft unerwartet.",
+    "THROW_UP": "Sich übergeben; erbrechen.",
+    "DAWN_ON": "Jemandem allmählich bewusst oder klar werden."
+  },
+  "PHRASAL_VERB_FACTORY": {
+    "TITLE": "Phrasal Verb Fabrik!",
+    "INSTRUCTIONS": "Ziehe das richtige Phrasal Verb auf seine Definition.",
+    "DEFINITIONS": "Definitionen",
+    "VERBS": "Phrasal Verbs",
+    "DROP_HERE": "Verb hier ablegen",
+    "ALL_USED": "Alle Verben platziert!",
+    "SCORE": "Punktestand"
+  },
+  "FEEDBACK": {
+    "CORRECT_TITLE": "Richtig!",
+    "CORRECT_TEXT": "Gut gemacht!",
+    "INCORRECT_TITLE": "Falsch",
+    "INCORRECT_TEXT": "Versuch es nochmal!",
+    "GAME_COMPLETE_TITLE": "Sehr gut!",
+    "GAME_COMPLETE_TEXT": "Du hast alle Phrasal Verbs zugeordnet!",
+    "GAME_COMPLETE_BUTTON": "Nochmal spielen",
+    "GAME_OVER_TITLE": "Spielende"
+  },
+  "SCENARIOS": {
+    "MONOPOLY": {
+      "BUYOUT": "Dein Unternehmen übernimmt alle kleinen Konkurrenten in der Region.",
+      "INNOVATION": "Dein F&E-Team bringt ein bahnbrechendes, effizientes Produkt auf den Markt.",
+      "PRICE_FIXING": "Konkurrent A schlägt vor, die Preise mit deinem Unternehmen abzustimmen.",
+      "PREDATORY_PRICING": "Dein Unternehmen senkt die Preise drastisch unter die Kosten, um Konkurrent A zu verdrängen.",
+      "NEW_ENTRY": "Ein neues Startup betritt den Markt mit einer wettbewerbsfähigen Alternative.",
+      "LOBBYING": "Dein Unternehmen gibt viel Geld für Lobbyarbeit gegen strengere Umweltvorschriften aus.",
+      "PATENT_TROLL": "Dein Unternehmen kauft Patente nur, um kleinere Innovatoren zu verklagen, die ähnliche Technologien verwenden.",
+      "OPEN_SOURCE": "Dein Unternehmen stellt ein wichtiges internes Werkzeug als Open Source zur Verfügung und fördert so die Branchenzusammenarbeit.",
+      "GREEN_INVEST": "Dein Unternehmen investiert erheblich in erneuerbare Energien für seine Fabriken.",
+      "PRIVACY_FINE": "Dein Unternehmen muss wegen Datenschutzverletzungen eine hohe Geldstrafe zahlen."
+    }
+  },
+  "MONOPOLY_GAME": {
+    "TITLE": "Monopoly-Jäger!",
+    "INSTRUCTIONS": "Reagiere schnell! Ist die beschriebene Aktion fairer Wettbewerb (Erlauben) oder wettbewerbswidrig (Verbieten)?",
+    "MARKET_SHARE": "Marktanteil",
+    "SCENARIO": "Szenario",
+    "ALLOW_BUTTON": "Erlauben",
+    "BUST_BUTTON": "Verbieten",
+    "SCORE": "Punktestand",
+    "START_BUTTON": "Spiel starten",
+    "SELECT_LANGUAGE": "Sprache wählen:",
+    "TIME_LEFT": "Verbleibende Zeit",
+    "LOADING_SCENARIO": "Nächstes Szenario wird geladen...",
+    "TIME_UP": "Zeit abgelaufen!",
+    "END": {
+      "TITLE": "Spielende!",
+      "WINNER": "Gewinner",
+      "YOUR_RANK": "Dein Rang",
+      "FINAL_SCORE": "Endpunktestand",
+      "BUTTON": "Nochmal spielen"
+    }
+  },
+  "COMPANIES": {
+    "TU_EMPRESA": "Deine Firma",
+    "COMPETIDOR_A": "Wettbewerber A",
+    "COMPETIDOR_B": "Wettbewerber B",
+    "OTROS": "Andere"
+  },
+  "WLB_GAME": {
+    "TITLE": "Work-Life-Balance Manager",
+    "INSTRUCTIONS": "Ziehe Aufgaben aus der Liste auf die Wochentage. Erledige die erforderlichen Arbeitsaufgaben, ohne dass die Energie auf 0 fällt oder der Stress 100 erreicht!",
+    "START_BUTTON": "Woche starten",
+    "ENERGY": "Energie",
+    "STRESS": "Stress",
+    "WORK_TASKS": "Erledigte Arbeitsaufgaben",
+    "AVAILABLE_TASKS": "Verfügbare Aufgaben",
+    "YOUR_WEEK": "Deine Woche",
+    "DAY": "Tag",
+    "DROP_TASK_HERE": "Aufgabe hier ablegen",
+    "NO_TASKS_LEFT": "Keine Aufgaben übrig",
+    "WIN": "Glückwunsch! Du hast deine Woche erfolgreich gemanagt!",
+    "LOSE_ENERGY": "Oh nein! Dir ist die Energie ausgegangen.",
+    "LOSE_STRESS": "Oh nein! Du bist völlig gestresst."
+  },
+  "TASKS": {
+    "WLB": {
+      "REPORT": "Dringender Bericht",
+      "MEETING": "Teambesprechung",
+      "EMAILS": "E-Mails beantworten",
+      "PROJECT_PLAN": "Projektplanung",
+      "CODE_REVIEW": "Code-Überprüfung",
+      "CLIENT_CALL": "Kundenanruf",
+      "GYM": "Fitnessstudio",
+      "FAMILY_DINNER": "Abendessen mit Familie",
+      "HOBBY": "Hobbyzeit",
+      "GROCERIES": "Einkäufe",
+      "SLEEP": "Schlafen (7-8h)",
+      "RELAX": "Entspannen / Meditieren",
+      "SHORT_BREAK": "Kurze Pause"
+    }
+  },
+  "SNACKBAR.DISMISS": "Schließen",
+  "SNACKBAR.CORRECT_MATCH": "Richtig! '{{term}}' ist es!",
+  "SNACKBAR.INCORRECT_MATCH": "Hoppla! Nicht ganz. Versuch die Definition nochmal!",
+  "SNACKBAR.SELECT_PRINCIPLE_FIRST_WARNING": "Moment! Bitte wähle zuerst ein Prinzip aus."
+}

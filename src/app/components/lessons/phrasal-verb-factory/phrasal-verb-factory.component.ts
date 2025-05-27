@@ -5,10 +5,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { Subscription, forkJoin } from 'rxjs';
 
-// Declarar anime globalmente para usar su tipo si es necesario, o simplemente usar 'any' más adelante
 declare let anime: any;
 
-// --- Interfaces ---
 interface PhrasalVerbItem {
   id: string;
   verbKey: string;
@@ -25,7 +23,6 @@ interface VerbOption {
   id: string;
   verbText: string;
 }
-// --- Fin Interfaces ---
 
 @Component({
   selector: 'app-phrasal-verb-factory',
@@ -33,7 +30,7 @@ interface VerbOption {
   imports: [
     CommonModule,
     NgFor,
-    NgClass, // Necesario para los botones de idioma activos
+    NgClass,
     DragDropModule,
     TranslateModule
   ],
@@ -60,7 +57,7 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
   verbOptions: VerbOption[] = [];
   matchedCount = 0;
   totalVerbs = this.phrasalVerbsData.length;
-  currentLang = 'es'; // Idioma actual, por defecto 'es' (español)
+  currentLang = 'es';
 
   private langChangeSubscription: Subscription | undefined;
 
@@ -82,7 +79,6 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
         this.prepareGameDataAsync(); // Recargar datos para el nuevo idioma
     });
 
-    // Lógica para la carga inicial de datos
      this.loadInitialData();
   }
 
@@ -103,7 +99,6 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
         // onLangChange se encargará de llamar a prepareGameDataAsync cuando estén listas
         console.log(`PhrasalVerbFactory: Initial translations for ${this.currentLang} not found, calling use()...`);
         this.translate.use(this.currentLang).subscribe({
-            // next:() => {}, // No necesita hacer nada aquí, onLangChange actúa
             error: (err) => console.error(`PhrasalVerbFactory: Error explicitly calling use(${this.currentLang})`, err)
         });
      } else {

@@ -1,0 +1,49 @@
+<div class="quick-translation-container">
+  <h1>Juego de Traducción Rápida</h1>
+
+  <div class="controls" *ngIf="!gameStarted && !gameOver">
+    <div class="language-selection">
+      <div>
+        <label for="sourceLang">Traducir de:</label>
+        <select id="sourceLang" [(ngModel)]="selectedSourceLanguage">
+          <option *ngFor="let lang of availableLanguages" [value]="lang">{{ lang.toUpperCase() }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="targetLang">Traducir a:</label>
+        <select id="targetLang" [(ngModel)]="selectedTargetLanguage">
+          <option *ngFor="let lang of availableLanguages" [value]="lang">{{ lang.toUpperCase() }}</option>
+        </select>
+      </div>
+    </div>
+    <button (click)="startGame()">Comenzar Juego</button>
+  </div>
+
+  <div class="game-area" *ngIf="gameStarted && !gameOver">
+    <div class="timer">Tiempo restante: {{ timeLeft }}s</div>
+    <div class="score">Puntuación: {{ score }}</div>
+    <div class="word-display">
+      <p class="source-word">{{ currentSourceWord }}</p>
+    </div>
+
+    <div class="translation-input">
+      <input
+        type="text"
+        [(ngModel)]="userTranslation"
+        (keyup.enter)="checkTranslation()"
+        placeholder="Escribe tu traducción aquí..."
+        [disabled]="inputDisabled" />
+      <button (click)="checkTranslation()">Enviar</button>
+    </div>
+
+    <div class="feedback" [ngClass]="feedbackClass" *ngIf="feedbackMessage">
+      {{ feedbackMessage }}
+    </div>
+  </div>
+
+  <div class="game-over-screen" *ngIf="gameOver">
+    <h2>¡Juego Terminado!</h2>
+    <p>Tu puntuación final: {{ score }} / {{ totalWordsToPlay }}</p>
+    <button (click)="startGame()">Jugar de Nuevo</button>
+  </div>
+</div>

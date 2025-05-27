@@ -43,11 +43,9 @@ export class LoginComponent {
 
     const loginData = this.loginForm.value as LoginInterface;
 
-    // No es necesario el snackBar "Cargando..." aquí, ya que el feedback visual
-    // de la navegación o el cambio en el header será más inmediato.
 
     this.credentialsService.login(loginData).subscribe({
-      next: (response: BackendLoginResponse) => { // Tipa la respuesta
+      next: (response: BackendLoginResponse) => {
         console.log('Login exitoso:', response);
 
         // AuthService se encarga de guardar token y actualizar el estado del usuario
@@ -55,7 +53,7 @@ export class LoginComponent {
 
         this.snackBar.open(`¡Bienvenido, ${response.username}!`, 'Cerrar', { duration: 3000 });
 
-        // Redirigir según el rol. El app.component reaccionará al cambio en currentUser$
+        // Redirigir según el rol. El app.component reaccionará al cambio en currentUser$ aun que aqui tenemos la misma
         if (response.role === "ADMIN") {
           this.router.navigate(['/']); // O a una ruta específica de admin
         } else if (response.role === "CLIENT") {
@@ -79,7 +77,7 @@ export class LoginComponent {
         console.error("Error en login:", err);
         this.snackBar.open(message, 'Cerrar', {
           duration: 5000,
-          panelClass: ['error-snackbar'] // Asegúrate que este estilo está definido
+          panelClass: ['error-snackbar']
         });
       }
     });

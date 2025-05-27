@@ -1,0 +1,61 @@
+<div class="factory-container">
+  <h1>{{ 'PHRASAL_VERB_FACTORY.TITLE' | translate }}</h1>
+  <p>{{ 'PHRASAL_VERB_FACTORY.INSTRUCTIONS' | translate }}</p>
+
+  <select #languageSelect (change)="changeLanguage(languageSelect.value)" class="language-select">
+    <option value="de">Deutsch</option>
+    <option value="it">Italiano</option>
+    <option value="en">English</option>
+  </select>
+
+  <div class="game-area" cdkDropListGroup>
+    <div class="definitions-column">
+      <h2>{{ 'PHRASAL_VERB_FACTORY.DEFINITIONS' | translate }}</h2>
+      <div
+        *ngFor="let definition of definitions; let i = index"
+        #dropZone
+        cdkDropList
+        [cdkDropListData]="definition"
+        class="definition-box"
+        [class.correct]="definition.isCorrect === true"
+        [class.incorrect]="definition.isCorrect === false"
+        [cdkDropListDisabled]="isDropZoneDisabled(definition)"
+        (cdkDropListDropped)="drop($event)">
+
+        <span class="definition-text">{{ definition.definitionText }}</span>
+
+        <div *ngIf="definition.droppedVerb" class="dropped-verb">
+          {{ definition.droppedVerb.verbText }}
+        </div>
+        <div *ngIf="!definition.droppedVerb" class="drop-placeholder">
+          {{ 'PHRASAL_VERB_FACTORY.DROP_HERE' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="verbs-column">
+      <h2>{{ 'PHRASAL_VERB_FACTORY.VERBS' | translate }}</h2>
+      <div
+        cdkDropList
+        [cdkDropListData]="verbOptions"
+        class="verb-options-list"
+        (cdkDropListDropped)="drop($event)">
+
+        <div
+          *ngFor="let verb of verbOptions"
+          cdkDrag
+          [cdkDragData]="verb"
+          class="verb-option">
+          {{ verb.verbText }}
+        </div>
+        <div *ngIf="verbOptions.length === 0" class="empty-list-message">
+          {{ 'PHRASAL_VERB_FACTORY.ALL_USED' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-area">
+    <h3>{{ 'PHRASAL_VERB_FACTORY.SCORE' | translate }}: {{ matchedCount }} / {{ totalVerbs }}</h3>
+  </div>
+</div>
