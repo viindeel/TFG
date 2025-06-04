@@ -1,162 +1,353 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #3a3a7c;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  animation: fadeInDown 1s;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.crucigrama-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2vw;
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0 2vw;
+  box-sizing: border-box;
+  min-height: 70vh;
+}
+
+.pistas-col {
+  flex: 1 1 220px;
+  min-width: 180px;
+  max-width: 260px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1.5px solid #6dd5ed;
+  box-shadow: 0 4px 18px rgba(106, 90, 205, 0.07);
+  padding: 16px 10px 16px 18px;
+  margin-top: 0;
+  animation: fadeInUp 1.2s;
+  overflow: auto;
+  max-height: 65vh;
+}
+
+.pistas-col h3 {
+  color: #3a3a7c;
+  margin-top: 0;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #6dd5ed;
+  padding-bottom: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.pistas-col ol {
+  list-style-type: decimal;
+  padding-left: 18px;
+  margin-bottom: 0;
+}
+
+.pistas-col li {
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 0.98em;
+  transition: color 0.3s;
+  position: relative;
+  animation: fadeIn 1s;
+  word-break: break-word;
+}
+
+.pistas-col li:hover {
+  color: #2193b0;
+  cursor: pointer;
+  text-shadow: 0 2px 8px #6dd5ed33;
+  transform: scale(1.03);
+}
+
+.ayuda {
+  font-size: 0.93em;
+  color: #6dd5ed;
+  margin-top: 2px;
+  font-style: italic;
+  transition: color 0.3s;
+}
+
+.crucigrama-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 0;
+  flex: 2 1 400px;
+  max-width: 600px;
+}
+
 .crucigrama-grid-estilizado {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  padding: 18px 8px 12px 8px;
+  animation: popIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+  margin: 0 auto 18px auto;
+  max-width: 100vw;
+  overflow-x: auto;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.7) rotate(-5deg); opacity: 0; }
+  80% { transform: scale(1.05) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.crucigrama-row {
+  display: flex;
+  gap: 5px;
+}
+
+.celda-container {
+  position: relative;
+}
+
+.numero-pista {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #3a3a7c 60%, #6dd5ed 100%);
+  border: 1.5px solid #6dd5ed;
+  border-radius: 6px;
+  padding: 2px 6px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(106, 90, 205, 0.15);
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+
+.crucigrama-grid-estilizado input[type="text"],
+.celda-vacia {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 2px solid #b2bec3;
+  text-transform: uppercase;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #3a3a7c;
+  box-shadow: 0 2px 8px rgba(106, 90, 205, 0.08);
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s, transform 0.2s;
+  outline: none;
+  margin: 0;
+}
+
+.crucigrama-grid-estilizado input[type="text"]:focus {
+  border-color: #6dd5ed;
+  background: #e0f7fa;
+  color: #1976d2;
+  box-shadow: 0 0 12px #6dd5ed99;
+  animation: pulse 0.7s;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 #6dd5ed99; }
+  70% { box-shadow: 0 0 12px 8px #6dd5ed44; }
+  100% { box-shadow: 0 0 0 0 #6dd5ed99; }
+}
+
+.crucigrama-grid-estilizado input[type="text"]:hover {
+  border-color: #3a3a7c;
+  background: #f0f4ff;
+  transform: scale(1.08) rotate(-2deg);
+  color: #3a3a7c;
+  z-index: 2;
+}
+
+.crucigrama-grid-estilizado input[type="text"][readonly] {
+  background-color: #e0e0e0;
+  color: #aaa;
+  box-shadow: none;
+  border-style: dashed;
+}
+
+.crucigrama-grid-estilizado input[type="text"].celda-llena {
+  background: linear-gradient(135deg, #6dd5ed 60%, #2193b0 100%);
+  color: #fff;
+  border-color: #2193b0;
+  animation: filledCell 0.5s;
+}
+
+@keyframes filledCell {
+  0% { background: #f8fafc; color: #3a3a7c;}
+  100% { background: linear-gradient(135deg, #6dd5ed 60%, #2193b0 100%); color: #fff;}
+}
+
+.celda-vacia {
+  background: repeating-linear-gradient(
+    135deg,
+    #e0e0e0,
+    #e0e0e0 10px,
+    #f8fafc 10px,
+    #f8fafc 20px
+  );
+  border: none;
+  box-shadow: none;
+}
+
+.crucigrama-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 18px 0 0 0;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 12px 28px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(106, 90, 205, 0.13);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  font-weight: 600;
+  letter-spacing: 1px;
+  animation: fadeInUp 1.2s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%);
+  transform: scale(1.07) translateY(-2px);
+  box-shadow: 0 8px 24px #6dd5ed55;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+p[ngIf="mensaje"], .mensaje-crucigrama {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 7px;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  box-shadow: 0 2px 8px #6dd5ed22;
+  animation: fadeIn 0.7s;
+  &.correcto {
+    background: linear-gradient(90deg, #d4fc79 0%, #96e6a1 100%);
+    color: #155724;
+    border: 1.5px solid #96e6a1;
+  }
+  &.incorrecto {
+    background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    border: 1.5px solid #f5c6cb;
+  }
+}
+
+div > label[for="idioma"] {
+  display: inline-block;
+  margin-right: 8px;
+  font-weight: bold;
+  color: #3a3a7c;
+  font-size: 1.05em;
+  letter-spacing: 0.5px;
+}
+
+div > select#idioma {
+  padding: 8px 14px;
+  border: 1.5px solid #6dd5ed;
+  border-radius: 6px;
+  font-size: 1em;
+  color: #3a3a7c;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+div > select#idioma:focus {
+  outline: none;
+  border-color: #2193b0;
+  box-shadow: 0 0 8px #6dd5ed55;
+}
+
+@media (max-width: 1100px) {
+  .crucigrama-layout {
     flex-direction: column;
-    gap: 3px; /* Reducimos el espacio entre filas */
-    margin-bottom: 30px;
+    align-items: stretch;
+    gap: 18px;
+    min-height: unset;
+    max-width: 100vw;
   }
-  
+  .pistas-col {
+    max-width: 100vw;
+    margin: 0 auto;
+    min-width: 0;
+    width: 95vw;
+    max-height: 180px;
+  }
+  .crucigrama-main-container {
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .crucigrama-grid-estilizado {
+    padding: 8px 0 6px 0;
+  }
   .crucigrama-row {
-    display: flex;
-    gap: 3px; /* Reducimos el espacio entre celdas */
+    gap: 2px;
   }
-  
-  .celda-container {
-    position: relative;
-  }
-  
-  .numero-pista {
-    position: absolute;
-    top: -6px; /* Ajustamos la posición del número */
-    left: -6px; /* Ajustamos la posición del número */
-    font-size: 0.6em; /* Reducimos el tamaño del número */
-    font-weight: bold;
-    color: #555;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 1px 3px; /* Reducimos el padding del número */
-  }
-  
   .crucigrama-grid-estilizado input[type="text"],
   .celda-vacia {
-    width: 25px; /* Reducimos el ancho de las celdas */
-    height: 25px; /* Reducimos la altura de las celdas */
-    text-align: center;
+    width: 22px;
+    height: 22px;
     font-size: 0.9em;
-    font-weight: bold;
-    border: 1px solid #ddd;
-    text-transform: uppercase;
-    border-radius: 4px;
-    background-color: white;
-    color: #333;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
   }
-  
-  .crucigrama-grid-estilizado input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 1px 1px 5px rgba(0, 123, 255, 0.3);
+  .pistas-col {
+    padding: 8px 4px 8px 8px;
+    font-size: 0.93em;
+    max-height: 120px;
   }
-  
-  .crucigrama-grid-estilizado input[type="text"][readonly] {
-    background-color: #eee;
-    color: #aaa;
-    box-shadow: none;
+  .crucigrama-main-container {
+    padding: 0;
   }
-  
-  .crucigrama-grid-estilizado input[type="text"].celda-llena {
-    background-color: white;
-    color: black;
+  .crucigrama-actions {
+    gap: 8px;
   }
-  
-  .celda-vacia {
-    background-color: #f0f0f0; /* Color de fondo para indicar que no se puede rellenar */
-  }
-  
-  /* Estilos para las pistas y botones (se mantienen igual) */
-  .pistas {
-    margin-bottom: 30px;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
-  
-    h3 {
-      color: #333;
-      margin-top: 0;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
-    }
-  
-    ol {
-      list-style-type: decimal;
-      padding-left: 20px;
-  
-      li {
-        margin-bottom: 10px;
-        color: #555;
-  
-        .ayuda {
-          font-size: 0.9em;
-          color: #777;
-          margin-top: 5px;
-        }
-      }
-    }
-  }
-  
-  button {
-    padding: 8px 16px; /* Reducimos el padding de los botones */
-    font-size: 0.9em; /* Reducimos el tamaño de la fuente de los botones */
-    border: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #007bff;
-    cursor: pointer;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-    margin-right: 5px; /* Reducimos el margen derecho de los botones */
-  
-    &:hover {
-      background-color: #0056b3;
-    }
-  
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  
-  p[ngIf="mensaje"] {
-    margin-top: 15px; /* Reducimos el margen superior del mensaje */
-    padding: 10px; /* Reducimos el padding del mensaje */
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.9em; /* Reducimos el tamaño de la fuente del mensaje */
-    &.correcto {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-  
-    &.incorrecto {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-  }
-  
-  div > label[for="idioma"] {
-    display: inline-block;
-    margin-right: 5px; /* Reducimos el margen derecho de la etiqueta del idioma */
-    font-weight: bold;
-    color: #333;
-    font-size: 0.9em; /* Reducimos el tamaño de la fuente de la etiqueta del idioma */
-  }
-  
-  div > select#idioma {
-    padding: 6px 8px; /* Reducimos el padding del selector del idioma */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.9em; /* Reducimos el tamaño de la fuente del selector del idioma */
-    color: #555;
-    cursor: pointer;
-  
-    &:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-    }
-  }
+}

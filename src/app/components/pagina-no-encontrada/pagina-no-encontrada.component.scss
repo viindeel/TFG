@@ -1,18 +1,17 @@
-/* pagina-no-encontrada.component.scss */
 .not-found-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; /* O la altura que necesites */
+    height: 100%;
     text-align: center;
-    font-family: 'Roboto', sans-serif; /* Usamos la fuente Roboto */
+    font-family: 'Roboto', sans-serif;
   }
   
   .not-found-icon {
-    color: #f39c12; /* Usamos el color secundario para el icono */
-    margin-bottom: 1.5rem; /* Aumentamos un poco el margen */
-    animation: pulse 2s infinite alternate; /* Animación de pulsación */
+    color: #f39c12;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite alternate;
   }
   
   @keyframes pulse {
@@ -27,22 +26,22 @@
   }
   
   .not-found-title {
-    color: #3498db; /* Usamos el color primario para el título */
-    font-size: 2.5rem; /* Aumentamos el tamaño de la fuente */
-    font-weight: 500; /* Un peso de fuente más ligero */
-    margin-bottom: 1rem; /* Aumentamos un poco el margen */
+    color: #3498db;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
     opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards 0.5s; /* Animación de aparición gradual */
+    animation: fadeIn 1s ease-in-out forwards 0.5s;
   }
   
   .not-found-message {
-    color: #555; /* Un gris un poco más oscuro y elegante */
-    font-size: 1.1rem; /* Un tamaño de fuente ligeramente mayor */
-    line-height: 1.6; /* Mejora la legibilidad */
-    margin-bottom: 2rem; /* Aumentamos el margen */
-    padding: 0 3rem; /* Aumentamos el padding lateral */
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding: 0 3rem;
     opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards 1s; /* Animación de aparición gradual con retraso */
+    animation: fadeIn 1s ease-in-out forwards 1s;
   }
   
   @keyframes fadeIn {
@@ -55,18 +54,18 @@
   }
   
   button {
-    font-size: 1.1rem; /* Aumentamos el tamaño de la fuente del botón */
-    padding: 1rem 2.5rem; /* Aumentamos el padding del botón */
-    border-radius: 5px; /* Añadimos bordes redondeados */
-    font-weight: 400; /* Peso de fuente normal */
-    letter-spacing: 0.5px; /* Un pequeño espaciado entre letras */
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
     opacity: 0;
-    animation: slideInUp 0.8s ease-out forwards 1.5s; /* Animación de deslizamiento hacia arriba */
-    transition: background-color 0.3s ease; /* Transición suave para el hover */
+    animation: slideInUp 0.8s ease-out forwards 1.5s;
+    transition: background-color 0.3s ease;
   
     &:hover {
-      background-color: darken(#3498db, 10%); /* Oscurecemos un poco el color al pasar el ratón */
-      cursor: pointer; /* Cambiamos el cursor al pasar por encima */
+      background-color: darken(#3498db, 10%);
+      cursor: pointer;
     }
   }
   

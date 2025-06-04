@@ -1,25 +1,23 @@
-// src/app/models/user-progress.model.ts
-
-// Corresponde a UserProgressResponseDto del backend
+// Respuesta de progreso de usuario
 export interface UserProgressResponse {
   userId: number;
   username: string;
   preferredLanguage: string;
   overallScore: number;
-  lastActivityAt?: string; // Las fechas suelen venir como string ISO
+  lastActivityAt?: string; // Fecha ISO
   gameSessions: GameSessionResponse[];
   lessonCompletions: LessonCompletionResponse[];
 }
 
-// Corresponde a GameSessionRequestDto del backend
+// Petición de sesión de juego
 export interface GameSessionRequest {
   gameType: string;
   score: number;
   levelCompleted?: string;
-  gameSpecificData?: string; // JSON como string
+  gameSpecificData?: string; // JSON string
 }
 
-// Corresponde a GameSessionResponseDto del backend
+// Respuesta de sesión de juego
 export interface GameSessionResponse {
   id: number;
   gameType: string;
@@ -29,13 +27,13 @@ export interface GameSessionResponse {
   gameSpecificData?: string;
 }
 
-// Corresponde a LessonCompletionRequestDto del backend
+// Petición de lección completada
 export interface LessonCompletionRequest {
   lessonIdentifier: string;
   score?: number;
 }
 
-// Corresponde a LessonCompletionResponseDto del backend
+// Respuesta de lección completada
 export interface LessonCompletionResponse {
   id: number;
   lessonIdentifier: string;
@@ -43,7 +41,7 @@ export interface LessonCompletionResponse {
   score?: number;
 }
 
-// Corresponde a PreferredLanguageDto del backend
+// Petición para cambiar idioma preferido
 export interface PreferredLanguageRequest {
   preferredLanguage: string;
 }

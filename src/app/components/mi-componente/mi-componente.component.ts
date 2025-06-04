@@ -2,12 +2,12 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CommonModule } from '@angular/common'; // Importa CommonModule si usas directivas como *ngIf, *ngFor
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mi-componente',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule], // Importa los módulos de Material que uses
+  imports: [MatButtonModule, MatCardModule, CommonModule],
   template: `
     <button mat-raised-button color="primary">Botón Primario</button>
     <mat-card>

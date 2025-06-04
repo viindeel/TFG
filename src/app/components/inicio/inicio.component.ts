@@ -20,7 +20,6 @@ export class InicioComponent implements OnInit {
 
   showVideoModal: boolean = false;
 
-  // --- Propiedad para la URL del video saneada ---
   sanitizedVideoUrl: SafeResourceUrl | undefined;
 
   private videoPath: string = 'assets/videos/video_tfg.mp4';

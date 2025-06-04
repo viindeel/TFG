@@ -17,7 +17,7 @@ import { SopaDeLetrasComponent } from './components/lessons/sopa-de-letras/sopa-
 
 export const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
-  { path: 'lecciones', component: LeccionesComponent, canActivate: [authGuard] }, // Añadir guardia de autenticación para que no puedan acceder sin iniciar sesión
+  { path: 'lecciones', component: LeccionesComponent, canActivate: [authGuard] }, // Añadir guard de autenticación para que no puedan acceder sin iniciar sesión
   { path: 'lecciones/brainstorming', component: BrainstormingLessonComponent, canActivate: [authGuard]  },
   { path: 'lecciones/phrasal-verb-factory', component: PhrasalVerbFactoryComponent, canActivate: [authGuard] },
   {path: 'lecciones/monopoly-game', component: MonopolyGameComponent, canActivate: [authGuard]},

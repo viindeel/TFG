@@ -72,11 +72,10 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Forzar carga inicial en inglés
     this.currentLang = 'en';
-    this.translate.use('en').subscribe({ // Forzar la carga del inglés
+    this.translate.use('en').subscribe({
         next: () => {
             console.log("MonopolyGame: Forced English language loaded.");
-            this.loadInitialData(); // Cargar etiquetas AHORA que inglés está listo
-            // Suscribirse a cambios futuros DESPUÉS de forzar el inicial
+            this.loadInitialData();
             this.subscribeToLangChanges();
         },
         error: (err) => {
@@ -102,7 +101,6 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     console.log("MonopolyGame: ngAfterViewInit completed.");
-    // Gráfico se inicializa en startGame después de que el canvas es visible
   }
 
   ngOnDestroy(): void {
@@ -117,14 +115,12 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadInitialData() {
-    // Traducir etiquetas del gráfico
     const companyLabelTranslationKeys = this.companyLabelsKeys.map(l => `COMPANIES.${l.replace(/\s+/g, '_').toUpperCase()}`);
     this.translate.get(companyLabelTranslationKeys).subscribe(translations => {
         this.companyLabels = this.companyLabelsKeys.map(l => {
             const key = `COMPANIES.${l.replace(/\s+/g, '_').toUpperCase()}`;
             return translations[key] || l;
         });
-        // Si el gráfico ya existe, actualizar etiquetas (necesario por si cambia idioma y recarga)
         if (this.marketShareChart) {
             this.marketShareChart.data.labels = this.companyLabels;
             this.marketShareChart.update('none');
@@ -139,8 +135,8 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
     // Destruir gráfico anterior si existe
     if (isPlatformBrowser(this.platformId)) {
          if (this.marketShareChart) {
-             this.marketShareChart.destroy(); // Destruir instancia Chart.js
-             this.marketShareChart = null;    // Poner la variable a null
+             this.marketShareChart.destroy();
+             this.marketShareChart = null;
              console.log("MonopolyGame: Previous chart instance destroyed for restart.");
          }
     }
@@ -162,9 +158,9 @@ export class MonopolyGameComponent implements OnInit, AfterViewInit, OnDestroy {
             // Como this.marketShareChart es null, esta llamada creará la instancia
             this.initializeChart();
         }
-    }, 0); // Timeout 0 ejecuta esto en el siguiente ciclo de eventos, después del renderizado
+    }, 0);
 
-    this.nextScenario(); // Lanzar el primer escenario
+    this.nextScenario();
   }
 
   initializeChart(): void {

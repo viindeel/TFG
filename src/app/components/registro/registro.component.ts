@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatSnackBar } from '@angular/material/snack-bar'; // Usaremos MatSnackBar
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
  import { CredentialsService } from '../../services/auth/credentials.service';
  import { UserInterface } from '../../services/auth/interfaces';

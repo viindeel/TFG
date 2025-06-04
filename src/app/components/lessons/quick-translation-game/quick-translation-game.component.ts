@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { interval, Subscription } from 'rxjs'; // Importar interval y Subscription
-import { takeWhile } from 'rxjs/operators'; // Importar takeWhile
+import { interval, Subscription } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 
 interface WordPair {
-  [key: string]: string; // e.g., { es: 'GATO', en: 'CAT' }
+  [key: string]: string;
 }
 
 @Component({
@@ -45,7 +45,7 @@ export class QuickTranslationGameComponent implements OnInit, OnDestroy {
   currentSourceWord: string = '';
   userTranslation: string = '';
   feedbackMessage: string = '';
-  feedbackClass: string = ''; // 'correct' o 'incorrect'
+  feedbackClass: string = '';
 
   score: number = 0;
   timeLeft: number = 10;

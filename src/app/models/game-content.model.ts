@@ -1,5 +1,3 @@
-// src/app/models/game-content.model.ts
-
 // Corresponde a WordItemDto del backend
 export interface WordItem {
   id?: number;
@@ -22,20 +20,20 @@ export interface CrosswordPuzzle {
   language: string;
   difficultyLevel?: number;
   theme?: string;
-  gridDataJson: string; // El frontend parseará este JSON
+  gridDataJson: string; // El frontend parsea este JSON
 }
 
 // Corresponde a GameScenarioDto del backend
 export interface GameScenario {
   id?: number;
-  gameType: string; // "MONOPOLY_GAME", "WORK_LIFE_BALANCE_GAME"
+  gameType: string; // Tipo de juego
   scenarioName: string;
   language: string;
   version?: number;
-  contentDataJson: string; // El frontend parseará este JSON
+  contentDataJson: string; // El frontend parsea este JSON
 }
 
-// Para parámetros de consulta opcionales en getWordItems
+// Parámetros opcionales para consultar WordItems
 export interface WordItemParams {
   language: string;
   category?: string;

@@ -1,9 +1,8 @@
-// src/app/services/game-content.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Ajusta si tu ruta es diferente
-import { WordItem, CrosswordPuzzle, GameScenario, WordItemParams } from '../models/game-content.model'; // Ajusta si tu ruta es diferente
+import { environment } from '../../environments/environment';
+import { WordItem, CrosswordPuzzle, GameScenario, WordItemParams } from '../models/game-content.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +41,7 @@ export class GameContentService {
     return this.http.post<WordItem>(`${this.apiUrl}/words`, wordItemData);
   }
 
-  // Para POST, usualmente no envías el ID ya que lo genera el backend
+  // Para POST
   addCrosswordPuzzle(puzzleData: Omit<CrosswordPuzzle, 'id'>): Observable<CrosswordPuzzle> {
     return this.http.post<CrosswordPuzzle>(`${this.apiUrl}/crossword`, puzzleData);
   }

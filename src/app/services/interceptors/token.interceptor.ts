@@ -3,25 +3,7 @@ import {TokenService} from '../auth/token.service';
 import {inject} from '@angular/core';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-
-  /*
-
-  a = {
-  name: camilo
-  }
-  {...a, age: 27}
-
-
-  header = {
-  'Content-Type': 'application/json',
-  }
-  {
-  ...header,
-  'Authentication': 'Bearer ' + accessToken -> if accessToken
-  }
-
-   */
-
+  // Inyecta el TokenService para acceder al token de acceso
   const tokenService = inject(TokenService);
   const accessToken = tokenService.getAccessToken();
 

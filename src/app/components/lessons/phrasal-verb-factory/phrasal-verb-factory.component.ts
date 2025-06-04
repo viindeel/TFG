@@ -42,7 +42,6 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
   // Referencias a los elementos DOM para animación
   @ViewChildren('dropZone') dropZoneElements!: QueryList<ElementRef>;
 
-  // Datos base del juego
   phrasalVerbsData: PhrasalVerbItem[] = [
     { id: 'DEAL_WITH', verbKey: 'PHRASAL_VERBS.DEAL_WITH', definitionKey: 'DEFINITIONS.DEAL_WITH' },
     { id: 'SHUT_DOWN', verbKey: 'PHRASAL_VERBS.SHUT_DOWN', definitionKey: 'DEFINITIONS.SHUT_DOWN' },
@@ -52,12 +51,11 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
     { id: 'DAWN_ON', verbKey: 'PHRASAL_VERBS.DAWN_ON', definitionKey: 'DEFINITIONS.DAWN_ON' },
   ];
 
-  // Estado dinámico del juego
   definitions: DefinitionTarget[] = [];
   verbOptions: VerbOption[] = [];
   matchedCount = 0;
   totalVerbs = this.phrasalVerbsData.length;
-  currentLang = 'es';
+  currentLang = 'en';
 
   private langChangeSubscription: Subscription | undefined;
 
@@ -68,22 +66,19 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Obtener idioma inicial
-    this.currentLang = this.translate.currentLang || this.translate.defaultLang || 'es';
+    this.currentLang = this.translate.currentLang || this.translate.defaultLang || 'de';
     console.log(`PhrasalVerbFactory: Initial language is ${this.currentLang}`);
 
-    // Suscribirse a cambios futuros de idioma
     this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
         console.log(`PhrasalVerbFactory: Language changed via event to ${event.lang}, preparing data...`);
-        this.currentLang = event.lang; // Actualizar idioma actual
-        this.prepareGameDataAsync(); // Recargar datos para el nuevo idioma
+        this.currentLang = event.lang;
+        this.prepareGameDataAsync();
     });
 
      this.loadInitialData();
   }
 
   ngOnDestroy(): void {
-    // Limpiar suscripción
     if (this.langChangeSubscription) {
         this.langChangeSubscription.unsubscribe();
     }
@@ -96,7 +91,6 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
         this.prepareGameDataAsync();
      } else if (isPlatformBrowser(this.platformId)) {
         // Si no están cargadas y estamos en el navegador, intentar cargarlas con use()
-        // onLangChange se encargará de llamar a prepareGameDataAsync cuando estén listas
         console.log(`PhrasalVerbFactory: Initial translations for ${this.currentLang} not found, calling use()...`);
         this.translate.use(this.currentLang).subscribe({
             error: (err) => console.error(`PhrasalVerbFactory: Error explicitly calling use(${this.currentLang})`, err)
@@ -126,7 +120,7 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
   }
 
   prepareGameDataAsync(): void {
-    this.matchedCount = 0; // Reiniciar contador
+    this.matchedCount = 0;
     const verbKeys = this.phrasalVerbsData.map(item => item.verbKey);
     const definitionKeys = this.phrasalVerbsData.map(item => item.definitionKey);
     const allKeys = [...verbKeys, ...definitionKeys];
@@ -140,19 +134,19 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
             currentDefinitions.push({
                 id: index,
                 targetVerbId: item.id,
-                definitionText: translations[item.definitionKey] || `[!${item.definitionKey}!]`, // Fallback con marcador
+                definitionText: translations[item.definitionKey] || `[!${item.definitionKey}!]`,
                 droppedVerb: null,
                 isCorrect: null
             });
             currentVerbOptions.push({
                 id: item.id,
-                verbText: translations[item.verbKey] || `[!${item.verbKey}!]` // Fallback con marcador
+                verbText: translations[item.verbKey] || `[!${item.verbKey}!]`
             });
         });
 
         this.definitions = this.shuffleArray(currentDefinitions);
         this.verbOptions = this.shuffleArray(currentVerbOptions);
-        this.cdr.detectChanges(); // Forzar actualización de la vista
+        this.cdr.detectChanges();
         console.log("PhrasalVerbFactory: Game data prepared and shuffled.");
     }, error => {
         console.error("PhrasalVerbFactory: Error getting translations", error);
@@ -176,8 +170,6 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
     const definitionContainer = event.container.data as DefinitionTarget;
     const verbItem = event.item?.data as VerbOption;
 
-    // Comprobar si se soltó en una zona de definición válida
-    // y si el item arrastrado tiene los datos esperados
     if (definitionContainer?.targetVerbId && verbItem?.id) {
 
         // Evitar acción si la zona ya está resuelta correctamente
@@ -215,11 +207,9 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
             // --- INCORRECTO ---
             definitionContainer.isCorrect = false;
             // No asignamos el verbo incorrecto a la zona (definitionContainer.droppedVerb = null;)
-            // Simplemente mostramos feedback
             this.showFeedback(false);
-            // Podrías añadir animación de error si quieres
         }
-        this.cdr.detectChanges(); // Actualizar la vista
+        this.cdr.detectChanges();
 
     } else if (event.previousContainer !== event.container) {
         // Se soltó fuera de una zona válida (CDK lo devolverá si no hubo transferencia)
@@ -267,7 +257,7 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
             confirmButtonText: results.btn || 'Play Again'
         }).then((result) => {
             if (result.isConfirmed) {
-                this.prepareGameDataAsync(); // Reiniciar juego
+                this.prepareGameDataAsync();
             }
         });
      });
@@ -280,23 +270,19 @@ export class PhrasalVerbFactoryComponent implements OnInit, OnDestroy {
         const anime = (await import('animejs/lib/anime.es.js')).default;
         anime({
           targets: element,
-          scale: [1, 1.05, 1], // Pulso más sutil
+          scale: [1, 1.05, 1],
           duration: 300,
           easing: 'easeOutExpo',
-          // Usar clases CSS podría ser más limpio que cambiar backgroundColor directamente
-          // element.classList.add('correct-flash');
-          // setTimeout(() => element.classList.remove('correct-flash'), 300);
            backgroundColor: [
-                { value: '#d4edda', duration: 150 }, // Verde claro rápido
-                { value: '#f9f9f9', duration: 150, delay: 50 } // Volver al fondo original
+                { value: '#d4edda', duration: 150 },
+                { value: '#f9f9f9', duration: 150, delay: 50 }
             ]
         });
       } catch (error) {
         console.error("Error loading or using animejs:", error);
-        // Fallback simple con clase CSS
         element.classList.add('animate-success-fallback');
         setTimeout(() => element.classList.remove('animate-success-fallback'), 400);
       }
     }
   }
-} // Fin de la clase PhrasalVerbFactoryComponent
+}

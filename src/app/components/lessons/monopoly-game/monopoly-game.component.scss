@@ -44,12 +44,12 @@
         }
   
         .chart-container {
-          max-width: 250px;  // Gráfico más pequeño
+          max-width: 250px;
           margin: auto;
   
           canvas {
             width: 100% !important;
-            height: 180px !important; // Ajusta altura del gráfico
+            height: 180px !important;
           }
         }
       }
@@ -106,4 +106,3 @@
       }
     }
   }
-  

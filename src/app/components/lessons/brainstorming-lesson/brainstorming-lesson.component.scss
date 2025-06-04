@@ -1,193 +1,263 @@
-// --- Animaciones ---
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
-  20%, 40%, 60%, 80% { transform: translateX(6px); }
+// --- Fuentes ---
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+// --- Animate.css (opcional para animaciones extra) ---
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+// --- Animaciones Mejoradas ---
+@keyframes enhanced-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px) rotate(-2deg); }
+  20%, 40%, 60%, 80% { transform: translateX(8px) rotate(2deg); }
 }
 
-@keyframes pulse-green {
-  0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
-  70% { box-shadow: 0 0 0 12px rgba(40, 167, 69, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+@keyframes neon-pulse-correct {
+  0% { box-shadow: 0 0 5px rgba(0, 242, 234, 0.5), 0 0 10px rgba(0, 242, 234, 0.4), 0 0 15px rgba(0, 242, 234, 0.3), 0 0 20px rgba(0, 242, 234, 0.2); }
+  70% { box-shadow: 0 0 10px rgba(0, 242, 234, 0.8), 0 0 20px rgba(0, 242, 234, 0.7), 0 0 30px rgba(0, 242, 234, 0.5), 0 0 40px rgba(0, 242, 234, 0.3); }
+  100% { box-shadow: 0 0 5px rgba(0, 242, 234, 0.5), 0 0 10px rgba(0, 242, 234, 0.4), 0 0 15px rgba(0, 242, 234, 0.3), 0 0 20px rgba(0, 242, 234, 0.2); }
 }
 
-@keyframes pulse-red {
-  0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-  70% { box-shadow: 0 0 0 12px rgba(220, 53, 69, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+@keyframes neon-pulse-error {
+  0% { box-shadow: 0 0 5px rgba(255, 0, 85, 0.5), 0 0 10px rgba(255, 0, 85, 0.4), 0 0 15px rgba(255, 0, 85, 0.3), 0 0 20px rgba(255, 0, 85, 0.2); }
+  70% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.8), 0 0 20px rgba(255, 0, 85, 0.7), 0 0 30px rgba(255, 0, 85, 0.5), 0 0 40px rgba(255, 0, 85, 0.3); }
+  100% { box-shadow: 0 0 5px rgba(255, 0, 85, 0.5), 0 0 10px rgba(255, 0, 85, 0.4), 0 0 15px rgba(255, 0, 85, 0.3), 0 0 20px rgba(255, 0, 85, 0.2); }
 }
 
-// --- Estilos Base ---
-.btn:hover {
-  transform: scale(1.05);
-  // Si quitaste la transición del style inline en el HTML, añádela aquí:
-  // transition: transform 0.3s ease-in-out;
+@keyframes popup-entry {
+  0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+// --- Botón base ---
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #f0f0f0;
+  background: linear-gradient(145deg, #3d3d5c, #2c2c44);
+  border: 1px solid #00f2ea;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 0 5px #00f2ea inset;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(145deg, #00f2ea, #00c1b8);
+    color: #1a1a2d;
+    box-shadow: 0 8px 15px rgba(0, 242, 234, 0.4), 0 0 10px #00f2ea inset, 0 0 20px #00f2ea;
+  }
+
+  &:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 242, 234, 0.3), 0 0 5px #00f2ea inset;
+  }
+}
+
+// --- Lista de opciones ---
 .list-group-item {
-  // cursor: pointer; // Si lo quitas del style inline del HTML
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; // Añade transiciones aquí
-  border-width: 2px;
-  border-style: solid;
-  border-color: transparent;
-  margin-bottom: 8px;
-  border-radius: 0.375rem;
+  font-family: 'Poppins', sans-serif;
+  background-color: #2c2c44;
+  color: #f0f0f0;
+  border: 2px solid transparent;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
 
   &:hover:not(.matched):not(.selected):not(.incorrect-selection-feedback) {
-    background-color: #e9ecef;
-    border-color: #adb5bd;
+    background-color: #3d3d5c;
+    border-color: #00f2ea;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 242, 234, 0.3), 0 0 10px #00f2ea;
   }
 
   &.selected {
-    background-color: #cfe2ff !important;
-    color: #07408c !important;
-    border-color: #9ec5fe !important;
-    font-weight: bold;
+    background-color: #00f2ea !important;
+    color: #1a1a2d !important;
+    border-color: #00f2ea !important;
+    font-weight: 700;
+    box-shadow: 0 0 15px #00f2ea, 0 0 25px #00f2ea, 0 3px 5px rgba(0,0,0,0.3);
+    transform: scale(1.05);
   }
 
   &.matched {
-    background-color: #d1e7dd !important;
-    color: #0f5132 !important;
-    border-color: #a3cfbb !important;
+    background-color: #2c2c44 !important;
+    color: #a0a0c0 !important;
+    border: 2px dashed #00f2ea !important;
     cursor: not-allowed !important;
-    opacity: 0.75;
-
+    opacity: 0.7;
+    box-shadow: none;
     &:hover {
-      background-color: #d1e7dd !important;
-      border-color: #a3cfbb !important;
+      transform: none;
+      box-shadow: none;
+      background-color: #2c2c44 !important;
+      border-color: #00f2ea !important;
     }
   }
 
   &.incorrect-selection-feedback {
-    animation: shake 0.4s ease-in-out;
-    background-color: #f8d7da !important;
-    color: #58151c !important;
-    border-color: #f1aeb5 !important;
+    animation: enhanced-shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    background-color: #ff0055 !important;
+    color: #f0f0f0 !important;
+    border-color: #ff0055 !important;
+    box-shadow: 0 0 15px #ff0055, 0 0 25px #ff0055;
   }
 }
 
+// --- Mensajes de Feedback ---
 .feedback-message {
-  padding: 15px;
-  font-size: 1.1rem;
-  border-radius: 0.375rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+  padding: 18px 25px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 
   &.show-feedback {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   &.correct {
-    background-color: #d1e7dd;
-    color: #0f5132; // Tu color original para texto correcto
-    border: 1px solid #a3cfbb;
-    animation: pulse-green 1.5s 1;
+    background: linear-gradient(135deg, #2c2c44, #1a1a2d);
+    color: #00f2ea;
+    border: 2px solid #00f2ea;
+    animation: neon-pulse-correct 2s infinite;
+    box-shadow: 0 0 20px rgba(0, 242, 234, 0.3), 0 5px 15px rgba(0,0,0,0.3);
   }
 
   &.incorrect {
-    background-color: #f8d7da;
-    color: #58151c; // Tu color original para texto incorrecto
-    border: 1px solid #f1aeb5;
-    animation: pulse-red 1.5s 1;
+    background: linear-gradient(135deg, #2c2c44, #1a1a2d);
+    color: #ff0055;
+    border: 2px solid #ff0055;
+    animation: neon-pulse-error 2s infinite;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.3), 0 5px 15px rgba(0,0,0,0.3);
   }
 }
 
-// Pop-up de felicitaciones
+// --- Popup de Felicitaciones ---
 .congratulations-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(26, 26, 45, 0.85);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1050;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s 0.3s; // Oculta el overlay
+  pointer-events: none; // <--- Esto evita que se pueda clicar cuando está oculto
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   &.show-popup {
     opacity: 1;
     visibility: visible;
-    transition-delay: 0s;
+    pointer-events: auto; // <--- Permite interacción cuando está visible
 
-    div.popup-content-wrapper { // Asegúrate que este selector coincide con tu HTML
-      transform: scale(1);
+    div.popup-content-wrapper {
+      animation: popup-entry 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s backwards;
       opacity: 1;
+      transform: scale(1) translateY(0);
     }
   }
 
-  div.popup-content-wrapper { // Estilos para el contenido del popup
-    background-color: #198754;
-    color: white;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  div.popup-content-wrapper {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(160deg, #2c2c44, #1a1a2d);
+    color: #f0f0f0;
+    padding: 40px 50px;
+    border-radius: 20px;
+    border: 2px solid #00f2ea;
+    box-shadow: 0 0 30px rgba(0, 242, 234, 0.5), 0 0 50px rgba(0, 242, 234, 0.3), 0 10px 40px rgba(0,0,0,0.5);
     text-align: center;
-    transform: scale(0.9);
-    opacity: 0;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s, opacity 0.3s ease-out 0.1s;
     width: 90%;
-    max-width: 550px;
+    max-width: 600px;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
 
     h2 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      font-size: 3rem;
+      font-weight: 700;
+      color: #00f2ea;
+      margin-bottom: 1.8rem;
+      text-shadow: 0 0 8px rgba(0, 242, 234, 0.7), 1px 1px 3px rgba(0,0,0,0.3);
     }
     p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      color: #e0e0e0;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
     }
     .btn-light {
-      font-size: 1.2rem;
-      padding: 0.8rem 2rem;
-      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      padding: 15px 35px;
+      font-weight: 600;
       border-radius: 50px;
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      background: linear-gradient(145deg, #00f2ea, #00c1b8);
+      color: #1a1a2d;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 242, 234, 0.3);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
       &:hover {
-        transform: scale(1.05);
-        background-color: #f8f9fa;
+        transform: translateY(-3px) scale(1.08);
+        background: linear-gradient(145deg, #1cfffa, #00e5ff);
+        box-shadow: 0 10px 25px rgba(0, 242, 234, 0.5), 0 0 15px #00f2ea;
+      }
+      &:active {
+        transform: translateY(-1px) scale(1.05);
       }
     }
   }
 }
 
-// Media queries
+// --- Media Queries ---
 @media (max-width: 768px) {
   .container {
-    padding: 10px;
+    padding: 15px;
   }
 }
 
 @media (max-width: 576px) {
-  .display-4 {
-    font-size: 1.8rem;
-  }
-  .lead {
-    font-size: 1rem;
-  }
   .btn {
     font-size: 0.9rem;
+    padding: 10px 20px;
   }
   .list-group-item {
     font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
+    padding: 12px 15px;
+    margin-bottom: 8px;
   }
   .feedback-message {
     font-size: 1rem;
+    padding: 15px 20px;
   }
   .congratulations-popup div.popup-content-wrapper {
-    padding: 20px 25px;
-    h2 { font-size: 1.8rem; }
-    p { font-size: 1.1rem; }
-    .btn-light { font-size: 1rem; padding: 0.7rem 1.5rem;}
+    padding: 25px 30px;
+    border-radius: 15px;
+    max-width: 90%;
+    h2 { font-size: 2rem; margin-bottom: 1rem; }
+    p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .btn-light { font-size: 1rem; padding: 12px 25px;}
   }
 }

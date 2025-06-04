@@ -1,6 +1,3 @@
-/* inicio.component.scss */
-
-/* --- Estilos Base con Transiciones (mantienes esto) --- */
 .btn {
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   will-change: transform;
@@ -51,14 +48,14 @@
 
 .video-modal-content {
   position: relative;
-  background-color: #fff; /* Fondo blanco para el contenedor del video (opcional, puede ser transparente) */
-  padding: 10px; /* Espacio alrededor del video */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra */
-  max-width: 90%; /* Ancho máximo relativo */
-  width: 800px; /* Ancho fijo deseado */
-  transform: scale(1); /* Escala inicial */
-  // Puedes añadir transiciones para la escala o otros efectos de entrada
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  width: 800px;
+  transform: scale(1);
+
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
   .video-modal-overlay.ng-enter & {
@@ -82,27 +79,26 @@
 
 .video-modal-content .close-button {
     position: absolute;
-    top: -15px; /* Ajusta la posición fuera del borde */
-    right: -15px; /* Ajusta la posición fuera del borde */
-    background-color: #fff; /* Fondo blanco */
+    top: -15px;
+    right: -15px;
+    background-color: #fff;
     border: none;
-    border-radius: 50%; /* Redondo */
-    width: 30px; /* Tamaño */
+    border-radius: 50%;
+    width: 30px;
     height: 30px;
-    font-size: 20px; /* Tamaño del símbolo '×' */
-    line-height: 30px; /* Centra verticalmente '×' */
-    text-align: center; /* Centra horizontalmente '×' */
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1; /* Asegura que esté por encima del video */
+    z-index: 1;
 }
 
 .video-wrapper {
     position: relative;
-    // Ajusta el padding-bottom según la proporción de tu video. (16:9 = 56.25%)
     padding-bottom: 56.25%;
     height: 0;
-    overflow: hidden; /* Oculta cualquier cosa que se salga */
+    overflow: hidden;
 
     video {
         position: absolute;
@@ -113,12 +109,11 @@
     }
 }
 
-/* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
   .video-modal-content {
-    width: 95%; /* Usa un porcentaje mayor en móviles */
-    max-width: none; /* Elimina el max-width fijo */
-    padding: 5px; /* Menos padding */
+    width: 95%;
+    max-width: none;
+    padding: 5px;
   }
    .video-modal-content .close-button {
        top: -10px;
@@ -129,7 +124,7 @@
        line-height: 25px;
    }
     .video-wrapper {
-        padding-bottom: 56.25%; // Mantén la proporción
+        padding-bottom: 56.25%;
     }
 }
 
@@ -152,9 +147,7 @@
 
 .card {
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  will-change: transform, opacity; /* Añadimos opacity si usas animaciones de entrada */
-
-  /* Añadimos la animación de temblor */
+  will-change: transform, opacity;
 }
 
 .card:hover {
@@ -164,7 +157,7 @@
 }
 
 .contactar {
-  animation: tremble 0.5s ease-in-out infinite; /* Nombre Duración Curva Repetición */
+  animation: tremble 0.5s ease-in-out infinite;
 }
 .lecciones {
   animation: tremble 0.5s ease-in-out infinite;

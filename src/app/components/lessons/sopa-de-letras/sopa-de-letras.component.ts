@@ -11,7 +11,7 @@ interface FlatGridCell {
   rowIndex: number;
   colIndex: number;
   isSelected?: boolean;
-  isFound?: boolean; // Asegúrate de que esta propiedad exista en tu interfaz
+  isFound?: boolean;
 }
 
 @Component({
@@ -33,7 +33,7 @@ export class SopaDeLetrasComponent implements OnInit {
   wordsToFind: string[] = this.languageWords[this.currentLanguage];
   gridSize: number = 10;
   grid: string[][] = [];
-  flatGrid: FlatGridCell[] = []; // Usamos la interfaz FlatGridCell
+  flatGrid: FlatGridCell[] = [];
   selectedLetters: { row: number; col: number; letter: string }[] = [];
   foundWords: string[] = [];
   message: string = '';
@@ -50,7 +50,7 @@ export class SopaDeLetrasComponent implements OnInit {
     this.currentLanguage = lang;
     this.wordsToFind = this.languageWords[this.currentLanguage];
     this.foundWords = []; // Resetear palabras encontradas al cambiar de idioma
-    this.message = ''; // Resetear mensaje
+    this.message = '';
     this.clearGrid();
     this.generateGrid();
     this.generateFlatGrid();
@@ -183,12 +183,12 @@ export class SopaDeLetrasComponent implements OnInit {
     const coordinates: { row: number; col: number }[] = [];
     for (let r = 0; r < this.gridSize; r++) {
       for (let c = 0; c < this.gridSize; c++) {
-        // Check horizontal
+        // chequea horizontal
         if (c + word.length <= this.gridSize && this.grid[r].slice(c, c + word.length).join('') === word) {
           for (let i = 0; i < word.length; i++) coordinates.push({ row: r, col: c + i });
           return coordinates;
         }
-        // Check vertical
+        // chequea vertical
         if (r + word.length <= this.gridSize) {
           let verticalWord = '';
           for (let i = 0; i < word.length; i++) verticalWord += this.grid[r + i][c];
@@ -197,7 +197,7 @@ export class SopaDeLetrasComponent implements OnInit {
             return coordinates;
           }
         }
-        // Check diagonal down
+        // chequea diagonal abajo
         if (r + word.length <= this.gridSize && c + word.length <= this.gridSize) {
           let diagonalWord = '';
           for (let i = 0; i < word.length; i++) diagonalWord += this.grid[r + i][c + i];
@@ -206,7 +206,7 @@ export class SopaDeLetrasComponent implements OnInit {
             return coordinates;
           }
         }
-        // Check diagonal up
+        // chequea diagonal arriba
         if (r - word.length >= -1 && c + word.length <= this.gridSize) {
           let diagonalWord = '';
           for (let i = 0; i < word.length; i++) diagonalWord += this.grid[r - i][c + i];

@@ -1,15 +1,10 @@
-// src/app/auth/interfaces.ts
-//Ya no se usa, import { User } from '../models/user'; // ¡Usamos la CLASE User, no la interfaz!
-
 import { RoleName } from "../../models/role-name.enum";
 
-// Interfaz para el usuario, si el backend lo manda en la respuesta al loguearse
-//Si no, no es necesaria.
-export interface UserInterface {  // Si decides usar UserInterface en lugar de User, ¡úsala consistentemente!
+export interface UserInterface {
   id: number;
   username: string;
   email: string;
-  roleName: RoleName; // <-- Usar enum
+  roleName: RoleName;
   firstName: string;
   lastName: string;
   address: string;
@@ -24,16 +19,15 @@ export type LoginInterface = Pick<UserInterface, "username"> & { password?: stri
 export interface RegisterRequest {
   username: string;
   email: string;
-  password?: string;  //La contraseña es opcional
-  confirmPassword?: string; // No se envía al backend
+  password?: string;
+  confirmPassword?: string;
   firstName: string;
   lastName: string;
   address: string;
-  roleName: string; //Se envia como string, y debe coincidir con los valores de RoleName
+  roleName: string;
 }
 
-//  ¡AQUÍ! Define la interfaz LoginResponse
 export interface LoginResponse {
   token: string;
-  user?: UserInterface; // Opcional, si usas UserInterface, o la clase User, si decides usarla.
+  user?: UserInterface;
 }

@@ -3,8 +3,6 @@ import { NgFor, NgClass, NgIf, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription, interval, forkJoin } from 'rxjs';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-
-// Importa MatSnackBar y MatSnackBarModule
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 export interface BrainstormingMatch {
@@ -20,7 +18,7 @@ export interface BrainstormingMatch {
     NgClass,
     NgIf,
     TranslateModule,
-    MatSnackBarModule // <--- AÑADIDO MatSnackBarModule
+    MatSnackBarModule
   ],
   templateUrl: './brainstorming-lesson.component.html',
   styleUrls: ['./brainstorming-lesson.component.scss']
@@ -37,14 +35,13 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   shuffledDefinitions: string[] = [];
   selectedTerm: string = '';
   selectedDefinition: string = '';
-  feedbackMessage: string = ''; // Lo mantenemos por si quieres usarlo junto con el snackbar
+  feedbackMessage: string = '';
   matchedPairs: { term: string; definition: string }[] = [];
   isGameOver: boolean = false;
   countdown: number = 3;
   showCongratulations: boolean = false;
   currentLang = '';
 
-  // Para el feedback visual de selección incorrecta en los items
   lastIncorrectTerm: string = '';
   lastIncorrectDefinition: string = '';
   incorrectFeedbackTimeout: any;
@@ -57,7 +54,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private _snackBar: MatSnackBar // <--- Inyectado MatSnackBar
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +74,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     if (this.langChangeSubscription) {
       this.langChangeSubscription.unsubscribe();
     }
-    if (this.incorrectFeedbackTimeout) { // Limpiar timeout si el componente se destruye
+    if (this.incorrectFeedbackTimeout) {
         clearTimeout(this.incorrectFeedbackTimeout);
     }
   }
@@ -134,7 +131,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     this.isGameOver = false;
     this.showCongratulations = false;
     this.countdown = 3;
-    this.clearIncorrectSelectionFeedback(); // Asegurar que se limpia el feedback de error
+    this.clearIncorrectSelectionFeedback();
     if (this.countdownSubscription) {
       this.countdownSubscription.unsubscribe();
       this.countdownSubscription = undefined;
@@ -153,30 +150,28 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
   selectTerm(term: string) {
     if (this.isGameOver || this.isAlreadyMatched(term, null) ) return;
 
-    this.clearIncorrectSelectionFeedback(); // Limpiar feedback de error anterior
+    this.clearIncorrectSelectionFeedback();
     this.selectedTerm = term;
-    this.selectedDefinition = ''; // Resetear definición si se selecciona un nuevo término
-    // this.feedbackMessage = ''; // Limpiar mensaje de feedback en HTML si no se usa el snackbar para esto
+    this.selectedDefinition = '';
     this.cdr.detectChanges();
   }
 
   selectDefinition(definition: string) {
     if (this.isGameOver || this.isAlreadyMatched(null, definition) || !this.selectedTerm) {
       if (!this.selectedTerm && !this.isGameOver) {
-        // Usar MatSnackBar si no hay término seleccionado
         this.translate.get('SELECT_PRINCIPLE_FIRST').subscribe((res: string) => {
           this._snackBar.open(res || 'Please select a principle first.', 
                               this.translate.instant('SNACKBAR.DISMISS'), {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'center',
-            panelClass: ['snackbar-warning'] // Una clase para aviso
+            panelClass: ['snackbar-warning']
           });
         });
       }
       return;
     }
-    this.clearIncorrectSelectionFeedback(); // Limpiar feedback de error anterior
+    this.clearIncorrectSelectionFeedback();
     this.selectedDefinition = definition;
     this.checkMatch();
     this.cdr.detectChanges();
@@ -189,7 +184,6 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
       let snackBarMessageKey: string;
       let snackBarActionKey: string = 'SNACKBAR.DISMISS';
       let panelClass: string[];
-      // Opcional: Mensaje para el feedback en el HTML
       let htmlFeedbackKey: string = '';
       let htmlFeedbackParams: any = {};
 
@@ -199,8 +193,6 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
 
         snackBarMessageKey = 'SNACKBAR.CORRECT_MATCH';
         panelClass = ['snackbar-correct'];
-        // htmlFeedbackKey = 'CORRECT_MATCH'; // Si quieres usar el feedback en HTML también
-        // htmlFeedbackParams = { term: this.selectedTerm, definition: this.selectedDefinition };
 
         if (this.matchedPairs.length === this.originalMatches.length) {
           this.isGameOver = true;
@@ -213,18 +205,17 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
 
         snackBarMessageKey = 'SNACKBAR.INCORRECT_MATCH';
         panelClass = ['snackbar-incorrect'];
-        // htmlFeedbackKey = 'INCORRECT_MATCH'; // Si quieres usar el feedback en HTML también
 
         if (this.incorrectFeedbackTimeout) clearTimeout(this.incorrectFeedbackTimeout);
         this.incorrectFeedbackTimeout = setTimeout(() => {
           this.clearIncorrectSelectionFeedback();
           this.cdr.detectChanges();
-        }, 1500); // Duración del temblor visual en los items
+        }, 1500);
       }
 
       // Mostrar MatSnackBar
       forkJoin({
-        message: this.translate.get(snackBarMessageKey, { term: this.selectedTerm }), // Simplificado para solo mostrar el término
+        message: this.translate.get(snackBarMessageKey, { term: this.selectedTerm }),
         action: this.translate.get(snackBarActionKey)
       }).subscribe(translations => {
         this._snackBar.open(translations.message, translations.action, {
@@ -235,19 +226,15 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
         });
       });
 
-      // (Opcional) Actualizar feedbackMessage para el HTML
       if (htmlFeedbackKey) {
         this.translate.get(htmlFeedbackKey, htmlFeedbackParams).subscribe((res: string) => {
           this.feedbackMessage = res;
           this.cdr.detectChanges();
         });
       } else {
-        this.feedbackMessage = ''; // Limpiar si solo usamos snackbar para este feedback
+        this.feedbackMessage = '';
       }
 
-      // No limpiar selectedTerm/Definition inmediatamente si fue incorrecto y queremos que tiemblen.
-      // Se limpiarán con el timeout de clearIncorrectSelectionFeedback o en la siguiente selección.
-      // Si el match fue correcto, sí podemos limpiarlos porque ya no se interactuará con ellos.
       if (panelClass.includes('snackbar-correct')) {
           this.selectedTerm = '';
           this.selectedDefinition = '';
@@ -256,6 +243,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Comprueba si el término o definición ya está emparejado
   isAlreadyMatched(term: string | null, definition: string | null): boolean {
     if (term) {
       return this.matchedPairs.some(pair => pair.term === term);
@@ -265,14 +253,14 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  // --- Funciones para el feedback visual de selección incorrecta ---
+  // Limpia feedback visual de selección incorrecta
   clearIncorrectSelectionFeedback() {
-    if (this.lastIncorrectTerm || this.lastIncorrectDefinition) { // Solo limpiar si había algo
+    if (this.lastIncorrectTerm || this.lastIncorrectDefinition) {
         this.lastIncorrectTerm = '';
         this.lastIncorrectDefinition = '';
-        this.selectedTerm = ''; // Limpiar selección actual también para resetear visualmente
+        this.selectedTerm = '';
         this.selectedDefinition = '';
-        this.cdr.detectChanges(); // Forzar actualización de la vista
+        this.cdr.detectChanges();
     }
     if (this.incorrectFeedbackTimeout) {
       clearTimeout(this.incorrectFeedbackTimeout);
@@ -280,15 +268,17 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Devuelve true si el término fue seleccionado incorrectamente
   isTermIncorrectlySelected(term: string): boolean {
     return this.lastIncorrectTerm === term;
   }
 
+    // Devuelve true si la definición fue seleccionada incorrectamente
   isDefinitionIncorrectlySelected(definition: string): boolean {
     return this.lastIncorrectDefinition === definition;
   }
-  // --- Fin funciones feedback visual ---
 
+    // Muestra popup de felicitaciones y cuenta atrás
   showCongratulationsPopup() {
     this.showCongratulations = true;
     this.countdown = 3;
@@ -311,6 +301,7 @@ export class BrainstormingLessonComponent implements OnInit, OnDestroy {
     if (this.countdownSubscription) {
       this.countdownSubscription.unsubscribe();
       this.countdownSubscription = undefined;
+      this.router.navigate(['/lecciones']);
     }
   }
 

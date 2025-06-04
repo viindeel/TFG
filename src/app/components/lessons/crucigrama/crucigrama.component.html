@@ -3,7 +3,6 @@
 <div>
   <label for="idioma">Idioma:</label>
   <select id="idioma" [(ngModel)]="idiomaSeleccionado" (change)="cambiarIdioma(idiomaSeleccionado)">
-    <option value="es">Español</option>
     <option value="en">Inglés</option>
     <option value="de">Alemán</option>
     <option value="it">Italiano</option>
@@ -36,12 +35,14 @@
     <li *ngFor="let palabra of palabras; let k = index">
       {{ k + 1 }}. {{ obtenerPista(palabra) }}
       <div class="ayuda">
+        <div class="ayuda">
         <ng-container *ngIf="palabra.orientacion === 'horizontal'">
-          ({{palabra.palabra.length}} letras, fila {{palabra.fila + 1}}, columna {{palabra.columna + 1}} <i class="fas fa-arrow-right"></i>)
+          ({{palabra.palabraActual?.length}} letras, fila {{palabra.fila + 1}}, columna {{palabra.columna + 1}} <i class="fas fa-arrow-right"></i>)
         </ng-container>
         <ng-container *ngIf="palabra.orientacion === 'vertical'">
-          ({{palabra.palabra.length}} letras, fila {{palabra.fila + 1}}, columna {{palabra.columna + 1}} <i class="fas fa-arrow-down"></i>)
+          ({{palabra.palabraActual?.length}} letras, fila {{palabra.fila + 1}}, columna {{palabra.columna + 1}} <i class="fas fa-arrow-down"></i>)
         </ng-container>
+      </div>
       </div>
     </li>
   </ol>

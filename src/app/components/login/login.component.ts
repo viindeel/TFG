@@ -1,11 +1,9 @@
-// src/app/pages/login/login.component.ts (o donde esté tu login component)
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CredentialsService } from '../../services/auth/credentials.service';
-// No necesitas TokenService ni UserStateService directamente aquí si AuthService lo maneja
-import { AuthService, BackendLoginResponse } // Importa AuthService y la interfaz
+import { AuthService, BackendLoginResponse }
   from '../../services/auth/auth.service';
 import { LoginInterface } from '../../services/auth/interfaces';
 
@@ -16,7 +14,7 @@ import { LoginInterface } from '../../services/auth/interfaces';
     ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'] // Corregido a styleUrls
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
@@ -27,7 +25,7 @@ export class LoginComponent {
     private credentialsService: CredentialsService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private authService: AuthService // Inyecta AuthService
+    private authService: AuthService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -59,13 +57,12 @@ export class LoginComponent {
         } else if (response.role === "CLIENT") {
           this.router.navigate(['/']); // O a una ruta específica de cliente
         } else {
-          this.router.navigate(['/']); // Fallback
+          this.router.navigate(['/']);
         }
       },
       error: err => {
         let message;
-        // El backend devuelve el mensaje de error directamente en err.error
-        // para los casos de "Invalid password" y "User not found"
+        // El backend devuelve el mensaje de error directamente en err.error para los casos de "Invalid password" y "User not found"
         if (err.status === 401 || err.status === 400) { // Errores comunes de credenciales
             message = err.error || "Credenciales incorrectas o usuario no encontrado.";
         } else if (err.error && typeof err.error === 'string') {

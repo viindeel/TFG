@@ -1,8 +1,7 @@
-// src/app/services/user-progress.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Ajusta si tu ruta es diferente
+import { environment } from '../../environments/environment';
 import {
   UserProgressResponse,
   GameSessionRequest,
@@ -10,7 +9,7 @@ import {
   LessonCompletionRequest,
   LessonCompletionResponse,
   PreferredLanguageRequest
-} from '../models/user-progress.model'; // Ajusta si tu ruta es diferente
+} from '../models/user-progress.model';
 
 @Injectable({
   providedIn: 'root'

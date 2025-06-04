@@ -20,16 +20,16 @@ interface Card {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './memorama-idiomas.component.html',
-  styleUrl: './memorama-idiomas.component.scss'
+  styleUrls: ['./memorama-idiomas.component.scss']
 })
 export class MemoramaIdiomasComponent implements OnInit {
   availableLanguages = ['es', 'en', 'it', 'de'];
   selectedLanguages: string[] = ['es', 'en'];
   languageWords: LanguageWords = {
-    es: ['ALGORITMO', 'RED', 'DATO', 'NUBE', 'CÓDIGO', 'SERVIDOR', 'CLIENTE', 'BASE DE DATOS'],
-    en: ['ALGORITHM', 'NETWORK', 'DATA', 'CLOUD', 'CODE', 'SERVER', 'CLIENT', 'DATABASE'],
-    it: ['ALGORITMO', 'RETE', 'DATO', 'NUVOLA', 'CODICE', 'SERVER', 'CLIENTE', 'DATABASE'],
-    de: ['ALGORITHMUS', 'NETZWERK', 'DATEN', 'CLOUD', 'CODE', 'SERVER', 'CLIENT', 'DATENBANK']
+    es: ['ALGORITMO', 'RED', 'DATO', 'NUBE', 'CÓDIGO', 'SERVIDOR', 'CLIENTE', 'BASE DE DATOS', 'INTERFAZ', 'COMPILADOR'],
+    en: ['ALGORITHM', 'NETWORK', 'DATA', 'CLOUD', 'CODE', 'SERVER', 'CLIENT', 'DATABASE', 'INTERFACE', 'COMPILER'],
+    it: ['ALGORITMO', 'RETE', 'DATO', 'NUVOLA', 'CODICE', 'SERVER', 'CLIENTE', 'DATABASE', 'INTERFACCIA', 'COMPILATORE'],
+    de: ['ALGORITHMUS', 'NETZWERK', 'DATEN', 'CLOUD', 'CODE', 'SERVER', 'CLIENT', 'DATENBANK', 'SCHNITTSTELLE', 'COMPILER']
   };
   cards: Card[] = [];
   flippedCards: Card[] = [];
@@ -37,6 +37,7 @@ export class MemoramaIdiomasComponent implements OnInit {
   totalPairs: number = 0;
   canFlip: boolean = true;
   gameOver: boolean = false;
+  numberOfPairsToPlay: number = 6;
 
   ngOnInit(): void {
     this.setupGame();
@@ -46,37 +47,50 @@ export class MemoramaIdiomasComponent implements OnInit {
     this.gameOver = false;
     this.matchesFound = 0;
     this.flippedCards = [];
-    this.cards = this.createCards(this.selectedLanguages[0], this.selectedLanguages[1], 6);
-    this.totalPairs = this.cards.length / 2;
+    // Pasamos el número de pares deseados
+    this.cards = this.createCards(this.selectedLanguages[0], this.selectedLanguages[1], this.numberOfPairsToPlay);
+    this.totalPairs = this.numberOfPairsToPlay;
     this.canFlip = true;
   }
 
-  createCards(lang1: string, lang2: string, pairs: number): Card[] {
-    // Selecciona palabras aleatorias y crea pares con un id de pareja
-    const words1 = this.shuffleArray(this.languageWords[lang1]).slice(0, pairs);
-    const words2 = this.languageWords[lang2];
-    const cards: Card[] = [];
-    for (let i = 0; i < words1.length; i++) {
-      const word1 = words1[i];
-      const word2 = words2[i];
-      cards.push({
-        id: cards.length,
+  createCards(lang1: string, lang2: string, numPairs: number): Card[] {
+    const lang1Words = this.languageWords[lang1];
+    const lang2Words = this.languageWords[lang2];
+    const createdCards: Card[] = [];
+
+    // Generar una lista de índices disponibles (0, 1, 2, ...)
+    const availableIndices = lang1Words.map((_, i) => i);
+
+    // Barajar estos índices y tomar los primeros 'numPairs'
+    const chosenIndices = this.shuffleArray(availableIndices).slice(0, numPairs);
+
+    for (let i = 0; i < chosenIndices.length; i++) {
+      const originalWordIndex = chosenIndices[i]; // Este es el índice en las listas de palabras originales
+
+      const word1 = lang1Words[originalWordIndex];
+      const word2 = lang2Words[originalWordIndex]; // La palabra traducida correspondiente
+
+      // Crear tarjeta para el idioma 1
+      createdCards.push({
+        id: createdCards.length, // ID único para la tarjeta
         word: word1,
         language: lang1,
-        pairId: i,
+        pairId: originalWordIndex, // Usar el índice original como ID de par para consistencia
         isFlipped: false,
         isMatched: false
       });
-      cards.push({
-        id: cards.length,
+      // Crear tarjeta para el idioma 2
+      createdCards.push({
+        id: createdCards.length, // ID único para la tarjeta
         word: word2,
         language: lang2,
-        pairId: i,
+        pairId: originalWordIndex, // Mismo ID de par
         isFlipped: false,
         isMatched: false
       });
     }
-    return this.shuffleArray(cards);
+    // Barajar el array final de tarjetas antes de devolverlo
+    return this.shuffleArray(createdCards);
   }
 
   shuffleArray<T>(array: T[]): T[] {
@@ -91,6 +105,11 @@ export class MemoramaIdiomasComponent implements OnInit {
   }
 
   startGame(): void {
+    // Validar que se hayan seleccionado dos idiomas diferentes
+    if (this.selectedLanguages[0] === this.selectedLanguages[1]) {
+        alert("Por favor, selecciona dos idiomas diferentes.");
+        return;
+    }
     this.setupGame();
   }
 
@@ -111,8 +130,8 @@ export class MemoramaIdiomasComponent implements OnInit {
   checkMatch(): void {
     const [card1, card2] = this.flippedCards;
 
+    // La condición clave es que tengan el mismo pairId pero diferente idioma
     if (card1.pairId === card2.pairId && card1.language !== card2.language) {
-      // Es pareja
       card1.isMatched = true;
       card2.isMatched = true;
       this.matchesFound++;
@@ -122,13 +141,13 @@ export class MemoramaIdiomasComponent implements OnInit {
         this.gameOver = true;
       }
     } else {
-      // No es pareja
+      // No es pareja, se vuelven a voltear después de un tiempo
       setTimeout(() => {
         card1.isFlipped = false;
         card2.isFlipped = false;
         this.flippedCards = [];
         this.canFlip = true;
-      }, 1000);
+      }, 1000); // 1 segundo para memorizar
     }
   }
 }

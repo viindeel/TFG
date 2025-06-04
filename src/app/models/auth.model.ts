@@ -1,26 +1,22 @@
-// src/app/models/auth.model.ts
 import { RoleName } from './role-name.enum';
 
+// Petición de login
 export interface LoginRequest {
   username?: string;
   password?: string;
 }
 
-// Esta interfaz coincide con BackendLoginResponse de tu AuthService existente
-// y también con el LoginResponse DTO del backend que diseñamos.
+// Respuesta de login del backend
 export interface AuthLoginResponse {
   token: string;
   username: string;
-  role: RoleName; // Usamos tu enum directamente
-  // Podrías añadir otros campos que el token o la respuesta de login contengan
-  // como email, firstName, etc., si están disponibles y son útiles aquí.
-  // Por ejemplo, si tu token JWT decodificado tiene estos campos:
+  role: RoleName;
   email?: string;
   firstName?: string;
   lastName?: string;
-  // id?: number; // El backend LoginResponse DTO no lo tiene, pero el token sí podría
 }
 
+// Petición de registro
 export interface RegisterRequest {
   username?: string;
   password?: string;
@@ -28,16 +24,11 @@ export interface RegisterRequest {
   firstName?: string;
   lastName?: string;
   address?: string;
-  // email?: string; // Tu User.ts tiene email. Si el formulario de registro lo pide y el backend lo acepta.
 }
 
-// Respuesta esperada del backend al registrar (basada en tu User DTO del backend)
+// Respuesta de usuario tras registro
 export interface UserBackendResponse {
     id: number;
     username: string;
-    role: { roleName: RoleName }; // El backend User tiene un objeto Role
-    // email?: string;
-    // firstName?: string;
-    // lastName?: string;
-    // address?: string;
+    role: { roleName: RoleName };
 }

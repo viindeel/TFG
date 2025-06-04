@@ -1,4 +1,3 @@
-// src/app/services/user.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -15,12 +14,12 @@ export interface UserProfile {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/api/users'; //  <--  AJUSTA ESTO a tu endpoint real, probablemente /api/users
+  private apiUrl = 'http://localhost:8080/api/users';
 
   constructor(private http: HttpClient) { }
   getUserProfile(): Observable<UserProfile> {
     //  HAZ LA PETICIÓN HTTP REAL
-    return this.http.get<UserProfile>(`${this.apiUrl}/profile`).pipe( //  <--  URL correcta
+    return this.http.get<UserProfile>(`${this.apiUrl}/profile`).pipe(
       catchError(this.handleError<UserProfile>('getUserProfile'))
     );
   }

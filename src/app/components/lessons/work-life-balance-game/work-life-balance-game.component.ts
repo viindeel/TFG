@@ -6,11 +6,9 @@ import Swal from 'sweetalert2';
 import { Subscription, Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// Imports de ELF
 import { createStore, withProps, select } from '@ngneat/elf';
 import { withEntities, selectAllEntities, setEntities, addEntities, deleteEntities, updateEntities } from '@ngneat/elf-entities';
 
-// --- Interfaces ---
 export interface WorkLifeState {
   energy: number;
   stress: number;
@@ -30,7 +28,6 @@ export interface TaskItem {
   energyEffect: number;
   stressEffect: number;
 }
-// --- Fin Interfaces ---
 
 // --- Configuración del Store de ELF ---
 const initialState: WorkLifeState = {
@@ -62,7 +59,6 @@ export class WorkLifeBalanceGameComponent implements OnInit, OnDestroy {
   availableTasks$: Observable<TaskItem[]> = tasksRepository.pipe(selectAllEntities());
   // --- Fin Observables ---
 
-  // Propiedades
   maxDays = initialState.maxDays;
   workTasksRequired = initialState.workTasksRequired;
   currentLang: string = 'en';
@@ -83,8 +79,7 @@ export class WorkLifeBalanceGameComponent implements OnInit, OnDestroy {
       { nameKey: 'TASKS.WLB.RELAX', category: 'rest', energyEffect: +10, stressEffect: -15 },
       { nameKey: 'TASKS.WLB.SHORT_BREAK', category: 'rest', energyEffect: +5, stressEffect: -5 },
   ];
-  // Usamos un array simple para las tareas del día, gestionado localmente
-  // (El HTML necesita asegurar que pasa un array a cdkDropListData con ?? [])
+
   dayTasks: { [day: number]: TaskItem[] } = {};
 
   private langChangeSubscription: Subscription | undefined;
@@ -161,7 +156,7 @@ subscribeToLangChanges() {
   drop(event: CdkDragDrop<any>): void {
     const targetListId = event.container.id;
     const sourceListId = event.previousContainer.id;
-    const task = event.item.data as TaskItem; // El item siempre debería ser TaskItem
+    const task = event.item.data as TaskItem;
 
     console.log(`Drop event: Task ${task?.id} from ${sourceListId} to ${targetListId}`);
 
@@ -180,11 +175,9 @@ subscribeToLangChanges() {
              }
         } else {
              console.log("Reordering in available list not handled.");
-             // Si availableTasks$ es el source, no podemos modificarlo directamente
         }
     } else {
         // Mover ENTRE listas
-
         let energyChange = 0;
         let stressChange = 0;
         let workTaskChange = 0;
